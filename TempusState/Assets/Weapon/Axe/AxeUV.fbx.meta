@@ -17,7 +17,52 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: side1
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: EdgeGlow
+    second: {fileID: 2100000, guid: 18b6efb42b3d94242842ee4a75cdb817, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: One
+    second: {fileID: 2100000, guid: 9398c72076125ff4a8b4cd8b27b47d60, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eight
+    second: {fileID: 2100000, guid: 391610dd09b510b4a8319cb5da45676d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: five
+    second: {fileID: 2100000, guid: a89d06bb510277548b9a75f9802a1b4f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: four
+    second: {fileID: 2100000, guid: 134c726aa4dfcd84bb93c5707d4ef960, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: seven
+    second: {fileID: 2100000, guid: fa0f496ba48503b41823c540d0a0ab30, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: six
+    second: {fileID: 2100000, guid: 919fca9e6ac8c194fb966481bfc1b875, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: three
+    second: {fileID: 2100000, guid: 4319d2817adc0294f9eda8ee1f55c30e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: two
+    second: {fileID: 2100000, guid: 19e057c99e6bfcf4f820c9a7883ff104, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -48,7 +93,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 50
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
