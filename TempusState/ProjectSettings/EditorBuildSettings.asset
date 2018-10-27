@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/FloatingIsland.unity
+    guid: 9d1a6f16acfa5c94d8e9b148a0dd8b2f
   m_configObjects: {}
