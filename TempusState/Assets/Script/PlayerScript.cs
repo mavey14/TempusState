@@ -4,24 +4,35 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour {
 
-    float zmov,speed;
+    float zmov, speed;
     Vector3 velo;
     Rigidbody rb;
     private bool move, turn;
     Animator panim;
+    int noclicks;
+    bool canclick;
+    bool iskill;
+    int cskill;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         speed = 10f;
         move = turn = true;
         rb = GetComponent<Rigidbody>();
         panim = GetComponent<Animator>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        noclicks = 0;
+        canclick = true;
+        iskill = false;
+        cskill = 0;
+    }
 
-        move = Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0;
+    // Update is called once per frame
+    void Update()
+    {
+
+        move = Input.GetAxisRaw("Vertical") != 0 && noclicks == 0 && !panim.GetCurrentAnimatorStateInfo(0).IsName("HeavyAttack")
+            || Input.GetAxisRaw("Horizontal") != 0 && noclicks == 0 && !panim.GetCurrentAnimatorStateInfo(0).IsName("HeavyAttack");
 
         GetMovement();
 
@@ -29,14 +40,121 @@ public class PlayerScript : MonoBehaviour {
         {
             pmove(zmov);
         }
-        if (turn)
+        if (turn && noclicks == 0)
         {
             pturn();
         }
 
-        panim.SetBool("move", move);
+        Skill();
+
         
-	}
+
+        AttackandDodge();
+
+        panim.SetBool("move", move);
+
+
+    }
+
+    void Skill()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1) &&cskill==0)
+        {
+            cskill = 1;
+            Debug.Log("Transform");
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha1) &&cskill==1)
+        {
+            cskill = 0;
+            Debug.Log("Pampabata");
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && cskill==0)
+        {
+            cskill = 2;
+            Debug.Log("StopTime");
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && cskill==2)
+        {
+            cskill = 0;
+            Debug.Log("Deactive stoptime");
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3) && cskill==0)
+        {
+            Debug.Log("Return past");
+            
+        }
+    }
+
+    void ComboStarter()
+    {
+        if (canclick)
+        {
+            noclicks++;
+        }
+
+        if (noclicks == 1)
+        {
+            panim.SetInteger("lightattack", 1);
+        }
+    }
+
+    public void Combo()
+    {
+        canclick = false;
+        if (panim.GetCurrentAnimatorStateInfo(0).IsName("LightAttack") && noclicks == 1)
+        {
+            panim.SetInteger("lightattack", 0);
+            canclick = true;
+            noclicks = 0;
+        }
+        else if (panim.GetCurrentAnimatorStateInfo(0).IsName("LightAttack") && noclicks >= 2)
+        {
+            panim.SetInteger("lightattack", 2);
+            canclick = true;
+        }
+        else if (panim.GetCurrentAnimatorStateInfo(0).IsName("LightAttack2") && noclicks == 2)
+        {
+            panim.SetInteger("lightattack", 0);
+            canclick = true;
+            noclicks = 0;
+        }
+        else if (panim.GetCurrentAnimatorStateInfo(0).IsName("LightAttack2") && noclicks >= 3)
+        {
+            panim.SetInteger("lightattack", 3);
+            canclick = true;
+        }
+        else if (panim.GetCurrentAnimatorStateInfo(0).IsName("LightAttack3"))
+        {
+            panim.SetInteger("lightattack", 0);
+            canclick = true;
+            noclicks = 0;
+        }
+        else
+        {
+            panim.SetInteger("lightattack", 0);
+            canclick = true;
+            noclicks = 0;
+        }
+    }
+
+
+    void AttackandDodge()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            ComboStarter();
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            panim.SetTrigger("heavyattack");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && !panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge"))
+        {
+            panim.SetTrigger("dodge");
+
+        }
+    }
 
     void pturn()
     {
@@ -81,7 +199,7 @@ public class PlayerScript : MonoBehaviour {
 
     void pmove(float zmov)
     {
-        velo = transform.TransformDirection(new Vector3(0, 0, zmov > 0 ? zmov:-zmov)).normalized * speed;
+        velo = transform.TransformDirection(new Vector3(0, 0, zmov > 0 ? zmov : -zmov)).normalized * speed;
         rb.MovePosition(transform.position + velo * Time.fixedDeltaTime);
     }
 
@@ -95,5 +213,10 @@ public class PlayerScript : MonoBehaviour {
         {
             zmov = Input.GetAxis("Horizontal");
         }
+    }
+
+    void dead()
+    {
+        //StartCoroutine(PlayerDeath());
     }
 }
