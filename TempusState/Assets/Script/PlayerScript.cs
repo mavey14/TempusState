@@ -45,7 +45,7 @@ public class PlayerScript : MonoBehaviour {
         {
             pmove(zmov);
         }
-        if (turn && noclicks == 0 && !panim.GetNextAnimatorStateInfo(0).IsName("HeavyAttack"))
+        if (turn && noclicks == 0 && !panim.GetCurrentAnimatorStateInfo(0).IsName("HeavyAttack"))
         {
             pturn();
         }
