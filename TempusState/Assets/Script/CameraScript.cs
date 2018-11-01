@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour {
 
-    public Transform lookAt;
+    [SerializeField]
+    private Transform[] lookAt;
     private Transform camTransform;
     private Camera cam;
     private float distance = 20f;
@@ -16,9 +17,11 @@ public class CameraScript : MonoBehaviour {
     private const float anglemax = 60f;
     private const float Maxdistance = 10f;
     private const float MinDistance = 5f;
+    int target;
 	// Use this for initialization
 	void Start () {
         camTransform = transform;
+        target=0;
 	}
 	
 	// Update is called once per frame
@@ -30,14 +33,28 @@ public class CameraScript : MonoBehaviour {
 
         distance += Input.GetAxis("Mouse ScrollWheel") * 10f;
         distance = Mathf.Clamp(distance, MinDistance, Maxdistance);
+
+        changetarget();
 	}
 
     private void LateUpdate()
     {
         Vector3 dir = new Vector3(0, 0, -distance);
         Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
-        camTransform.position = lookAt.position + rotation * dir;
+        camTransform.position = lookAt[target].position + rotation * dir;
 
-        camTransform.LookAt(lookAt.position);
+        camTransform.LookAt(lookAt[target].position);
+    }
+
+    void changetarget()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1) && target == 0)
+        {
+            target = 1;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha1) && target == 1)
+        {
+            target = 0;
+        }
     }
 }

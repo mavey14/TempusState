@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class GMScript : MonoBehaviour {
 
     public bool isgamepause;
     public bool timestop;
     int difficulty;
+    public int cskill;
    
 
-	// Use this for initialization
-	void Start () {
-		
+    // Use this for initialization
+    void Start () {
+        timestop = false;
+        cskill = 0;
 	}
 	
 	// Update is called once per frame

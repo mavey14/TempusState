@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerScript : MonoBehaviour {
 
     float zmov, speed;
-    Vector3 velo;
+    Vector3 velo,pastpos;
     Rigidbody rb;
     private bool move, turn;
     Animator panim;
     int noclicks;
     bool canclick;
-    bool iskill;
-    int cskill;
+    bool recordpos;
+    [SerializeField]
+    GameObject oldyoung;
+    [SerializeField]
+    GameObject gm;
+    
 
     // Use this for initialization
     void Start()
@@ -23,8 +28,8 @@ public class PlayerScript : MonoBehaviour {
         panim = GetComponent<Animator>();
         noclicks = 0;
         canclick = true;
-        iskill = false;
-        cskill = 0;
+        recordpos = false;
+        
     }
 
     // Update is called once per frame
@@ -40,15 +45,17 @@ public class PlayerScript : MonoBehaviour {
         {
             pmove(zmov);
         }
-        if (turn && noclicks == 0)
+        if (turn && noclicks == 0 && !panim.GetNextAnimatorStateInfo(0).IsName("HeavyAttack"))
         {
             pturn();
         }
 
         Skill();
-
-        
-
+        if (!recordpos)
+        {
+            Invoke("get3secpast", 5f);
+            recordpos = !recordpos;
+        }
         AttackandDodge();
 
         panim.SetBool("move", move);
@@ -56,32 +63,60 @@ public class PlayerScript : MonoBehaviour {
 
     }
 
+    
+
+    void get3secpast()
+    {
+        Debug.Log("record");
+        if(gm.GetComponent<GMScript>().cskill==0)
+        pastpos = new Vector3(transform.position.x,transform.position.y,transform.position.z);
+        Debug.Log("record "+ pastpos);
+        //gethealth
+        recordpos = !recordpos;
+    }
+
+
     void Skill()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) &&cskill==0)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && gm.GetComponent<GMScript>().cskill == 0)
         {
-            cskill = 1;
+            gm.GetComponent<GMScript>().cskill = 1;
+            noclicks = 0;
+            oldyoung.SetActive(true);
+            this.gameObject.SetActive(false);
+
             Debug.Log("Transform");
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha1) &&cskill==1)
+        else if (Input.GetKeyDown(KeyCode.Alpha1) && gm.GetComponent<GMScript>().cskill == 1)
         {
-            cskill = 0;
+            gm.GetComponent<GMScript>().cskill = 0;
+            noclicks = 0;
+            oldyoung.SetActive(true);
+            this.gameObject.SetActive(false);
+
             Debug.Log("Pampabata");
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && cskill==0)
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && gm.GetComponent<GMScript>().cskill == 0)
         {
-            cskill = 2;
+            gm.GetComponent<GMScript>().cskill = 2;
+            gm.GetComponent<GMScript>().timestop = true;
             Debug.Log("StopTime");
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && cskill==2)
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && gm.GetComponent<GMScript>().cskill == 2)
         {
-            cskill = 0;
+            gm.GetComponent<GMScript>().cskill = 0;
+            gm.GetComponent<GMScript>().timestop = true;
             Debug.Log("Deactive stoptime");
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3) && cskill==0)
+        else if (Input.GetKeyDown(KeyCode.Alpha3) && gm.GetComponent<GMScript>().cskill == 0)
         {
+            if (pastpos != Vector3.zero)
+            {
+                transform.position = pastpos;
+            }
+
             Debug.Log("Return past");
-            
+
         }
     }
 
