@@ -32,7 +32,7 @@ public class PlayerUIScript : MonoBehaviour {
             Debug.Log("Damage");
         }
         Debug.Log(hitpoints);
-        
+        updatehp();
     }
 
     void Damage(float dmg)
@@ -44,6 +44,7 @@ public class PlayerUIScript : MonoBehaviour {
 
     void updatehp()
     {
+        if(currenthb)
         currenthb.fillAmount = hitpoints / maxhp;
     }
 }
