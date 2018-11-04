@@ -127,9 +127,10 @@ GameObject:
   - component: {fileID: 4576532778056536}
   - component: {fileID: 33218975764935850}
   - component: {fileID: 23548648953862984}
+  - component: {fileID: 65501109513508544}
   m_Layer: 0
   m_Name: AxeUV
-  m_TagString: Untagged
+  m_TagString: Axe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -697,8 +698,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1389997818968012}
-  m_LocalRotation: {x: -0, y: 0.54912025, z: -0, w: 0.8357434}
-  m_LocalPosition: {x: -182.5, y: 9.28, z: 28.74}
+  m_LocalRotation: {x: -0, y: -0.96236956, z: -0, w: -0.27174416}
+  m_LocalPosition: {x: 0, y: 9.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4544389055690922}
@@ -706,7 +707,7 @@ Transform:
   - {fileID: 4267798388913834}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 66.61301, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -211.536, z: 0}
 --- !u!4 &4503180408298440
 Transform:
   m_ObjectHideFlags: 1
@@ -953,6 +954,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!65 &65501109513508544
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1304662146364934}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.7796817, y: 6.504476, z: 0.71288204}
+  m_Center: {x: 1.0153651, y: 2.8547173, z: -0.000006159435}
 --- !u!95 &95032417356459282
 Animator:
   serializedVersion: 3

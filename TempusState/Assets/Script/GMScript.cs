@@ -31,4 +31,14 @@ public class GMScript : MonoBehaviour {
     {
         difficulty = 1;
     }
+
+    public void PlayGame()
+    {
+
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerUIScript : MonoBehaviour {
+public class BossUIScript : MonoBehaviour {
+
 
     [SerializeField]
     Image currenthb;
@@ -11,16 +12,16 @@ public class PlayerUIScript : MonoBehaviour {
     private float hitpoints;
     private float maxhp;
     private float totalhp;
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
+        
+
         maxhp = 150;
         hitpoints = maxhp;
-        //currenthb = GetComponent<Image>();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
-
         if (Input.GetKeyDown(KeyCode.P))
         {
             Damage(20f);
@@ -31,19 +32,21 @@ public class PlayerUIScript : MonoBehaviour {
             Damage(20f);
             Debug.Log("Damage");
         }
+        Debug.Log(hitpoints);
         updatehp();
     }
+
 
     void Damage(float dmg)
     {
         Debug.Log("damagenato");
         hitpoints = hitpoints - dmg;
-      
+
     }
 
     void updatehp()
     {
-        if(currenthb)
-        currenthb.fillAmount = hitpoints / maxhp;
+        if (currenthb)
+            currenthb.fillAmount = hitpoints / maxhp;
     }
 }

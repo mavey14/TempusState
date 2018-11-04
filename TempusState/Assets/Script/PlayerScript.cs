@@ -10,7 +10,7 @@ public class PlayerScript : MonoBehaviour {
     Rigidbody rb;
     private bool move, turn;
     Animator panim;
-    int noclicks;
+    public int noclicks;
     bool canclick;
     bool recordpos;
     [SerializeField]
@@ -22,7 +22,7 @@ public class PlayerScript : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        speed = 10f;
+        speed = 15f;
         move = turn = true;
         rb = GetComponent<Rigidbody>();
         panim = GetComponent<Animator>();
@@ -67,10 +67,10 @@ public class PlayerScript : MonoBehaviour {
 
     void get3secpast()
     {
-        Debug.Log("record");
+        //Debug.Log("record");
         if(gm.GetComponent<GMScript>().cskill==0)
         pastpos = new Vector3(transform.position.x,transform.position.y,transform.position.z);
-        Debug.Log("record "+ pastpos);
+        //Debug.Log("record "+ pastpos);
         //gethealth
         recordpos = !recordpos;
     }
