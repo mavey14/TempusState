@@ -4,16 +4,10 @@ ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Ruins:polySurface199
-    100004: Ruins:polySurface201
-    100006: Ruins:transform204
     400000: //RootNode
-    400002: Ruins:polySurface199
-    400004: Ruins:polySurface201
-    400006: Ruins:transform204
     2100000: blinn39
-    2300000: Ruins:polySurface201
-    3300000: Ruins:polySurface201
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: Ruins:polySurface201
   externalObjects: {}
   materials:

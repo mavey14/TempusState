@@ -4,12 +4,10 @@ ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
-    100002: polySurface370
     400000: //RootNode
-    400002: polySurface370
     2100000: blinn27
-    2300000: polySurface370
-    3300000: polySurface370
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: polySurface370
   externalObjects: {}
   materials:

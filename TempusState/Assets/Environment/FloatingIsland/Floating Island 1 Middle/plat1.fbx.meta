@@ -4,19 +4,12 @@ ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
-    100002: polySurface230
     400000: //RootNode
-    400002: polySurface230
     2100000: blinn8
-    2300000: polySurface230
-    3300000: polySurface230
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: polySurface230
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: blinn8
-    second: {fileID: 2100000, guid: 89814bfabb6f05e42bda50900c0e9880, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
@@ -47,7 +40,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 20
+    globalScale: 1000
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
