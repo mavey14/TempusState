@@ -17,6 +17,8 @@ public class PlayerScript : MonoBehaviour {
     GameObject oldyoung;
     [SerializeField]
     GameObject gm;
+    [SerializeField]
+    GameObject cam;
     
 
     // Use this for initialization
@@ -58,6 +60,7 @@ public class PlayerScript : MonoBehaviour {
         }
         AttackandDodge();
 
+        if(this.gameObject.activeSelf)
         panim.SetBool("move", move);
 
 
@@ -82,6 +85,9 @@ public class PlayerScript : MonoBehaviour {
         {
             gm.GetComponent<GMScript>().cskill = 1;
             noclicks = 0;
+            oldyoung.GetComponent<Transform>().position = new Vector3(transform.position.x,transform.position.y,
+                transform.position.z);
+            oldyoung.GetComponent<Transform>().transform.rotation = transform.rotation;
             oldyoung.SetActive(true);
             this.gameObject.SetActive(false);
 
@@ -91,6 +97,9 @@ public class PlayerScript : MonoBehaviour {
         {
             gm.GetComponent<GMScript>().cskill = 0;
             noclicks = 0;
+            oldyoung.GetComponent<Transform>().position = new Vector3(transform.position.x, transform.position.y-5f,
+                transform.position.z);
+            oldyoung.GetComponent<Transform>().transform.rotation = transform.rotation;
             oldyoung.SetActive(true);
             this.gameObject.SetActive(false);
 
@@ -98,12 +107,14 @@ public class PlayerScript : MonoBehaviour {
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2) && gm.GetComponent<GMScript>().cskill == 0)
         {
+            
             gm.GetComponent<GMScript>().cskill = 2;
             gm.GetComponent<GMScript>().timestop = true;
             Debug.Log("StopTime");
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2) && gm.GetComponent<GMScript>().cskill == 2)
         {
+
             gm.GetComponent<GMScript>().cskill = 0;
             gm.GetComponent<GMScript>().timestop = true;
             Debug.Log("Deactive stoptime");

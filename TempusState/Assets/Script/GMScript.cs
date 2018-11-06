@@ -9,7 +9,7 @@ public class GMScript : MonoBehaviour {
     public bool timestop;
     int difficulty;
     public int cskill;
-   
+ 
 
     // Use this for initialization
     void Start () {
@@ -19,7 +19,7 @@ public class GMScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+      
 	}
 
     public void NormalMode()
