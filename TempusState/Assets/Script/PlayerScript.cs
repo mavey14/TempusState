@@ -17,8 +17,7 @@ public class PlayerScript : MonoBehaviour {
     GameObject oldyoung;
     [SerializeField]
     GameObject gm;
-    [SerializeField]
-    GameObject cam;
+
     
 
     // Use this for initialization

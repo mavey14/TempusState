@@ -54,3 +54,4 @@ MonoBehaviour:
   isgamepause: 0
   timestop: 0
   cskill: 0
+  uiportal: {fileID: 0}

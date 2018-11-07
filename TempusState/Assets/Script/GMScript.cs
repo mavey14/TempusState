@@ -9,7 +9,9 @@ public class GMScript : MonoBehaviour {
     public bool timestop;
     int difficulty;
     public int cskill;
- 
+    [SerializeField]
+    private GameObject uiportal;
+
 
     // Use this for initialization
     void Start () {
@@ -17,11 +19,7 @@ public class GMScript : MonoBehaviour {
         cskill = 0;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-      
-	}
-
+	
     public void NormalMode()
     {
         difficulty = 0;
@@ -40,5 +38,25 @@ public class GMScript : MonoBehaviour {
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag=="Player")
+        {
+          
+            uiportal.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            
+            uiportal.SetActive(false);
+        }
     }
 }
