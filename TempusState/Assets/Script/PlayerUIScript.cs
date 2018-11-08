@@ -7,14 +7,22 @@ public class PlayerUIScript : MonoBehaviour {
 
     [SerializeField]
     Image currenthb;
-
-    private float hitpoints;
+    [SerializeField]
+    Image currentmn;
+    PlayerScript pscript;
+    [SerializeField]
+    GameObject gmscript;
+    private static float hitpoints;
     private float maxhp;
-    private float totalhp;
+    private static float manapoints;
+    private float maxmana;
 	// Use this for initialization
 	void Start () {
         maxhp = 150;
+        maxmana = 100;
         hitpoints = maxhp;
+        manapoints = maxmana;
+        pscript = GetComponent<PlayerScript>();
         //currenthb = GetComponent<Image>();
 	}
 	
@@ -24,26 +32,92 @@ public class PlayerUIScript : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.P))
         {
             Damage(20f);
-            Debug.Log("Damage");
         }
         if (Input.GetKeyDown(KeyCode.U))
         {
-            Damage(20f);
-            Debug.Log("Damage");
+            usemana(20f);
         }
-        updatehp();
+
+        if (gmscript.GetComponent<GMScript>().cskill == 1)
+        {
+            DrainSkill1();
+        }
+        else if (gmscript.GetComponent<GMScript>().cskill == 2)
+        {
+            DrainSkill2();
+        }
+        Debug.Log(gmscript.GetComponent<GMScript>().timestop);
+        updatehphpandmana();
     }
 
-    void Damage(float dmg)
+    
+
+    void DrainSkill1()
     {
-        Debug.Log("damagenato");
-        hitpoints = hitpoints - dmg;
-      
+
+        manapoints -= 10 * Time.deltaTime;
+        if (manapoints <= 0)
+        {
+            manapoints = 0;
+            pscript.Transformtochild();
+        }
     }
 
-    void updatehp()
+    void DrainSkill2()
+    {
+
+        manapoints -= 20 * Time.deltaTime;
+        if (manapoints <= 0)
+        {
+            manapoints = 0;
+            gmscript.GetComponent<GMScript>().timestop = false;
+           
+        }
+    }
+
+    public float hpts
+    {
+        get
+        {
+            //Some other code
+            return hitpoints;
+        }
+        set
+        {
+            //Some other code
+            hitpoints = value;
+        }
+    }
+
+    public float mnpts
+    {
+        get
+        {
+            //Some other code
+            return manapoints;
+        }
+        set
+        {
+            //Some other code
+            manapoints = value;
+        }
+    }
+
+    public void Damage(float dmg)
+    {
+        hitpoints = hitpoints - dmg;
+    }
+
+    public void usemana(float manause)
+    {
+        manapoints -= manause;
+    }
+
+    void updatehphpandmana()
     {
         if(currenthb)
         currenthb.fillAmount = hitpoints / maxhp;
+        if (currentmn)
+            currentmn.fillAmount = manapoints / maxmana;
     }
 }

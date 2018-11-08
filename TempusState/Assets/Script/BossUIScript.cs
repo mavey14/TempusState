@@ -14,30 +14,22 @@ public class BossUIScript : MonoBehaviour {
     private float totalhp;
     // Use this for initialization
     void Start () {
-        
-
-        maxhp = 150;
+        maxhp = 1000;
         hitpoints = maxhp;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.Y))
         {
             Damage(20f);
             Debug.Log("Damage");
         }
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            Damage(20f);
-            Debug.Log("Damage");
-        }
-        Debug.Log(hitpoints);
         updatehp();
     }
 
 
-    void Damage(float dmg)
+    public void Damage(float dmg)
     {
         Debug.Log("damagenato");
         hitpoints = hitpoints - dmg;

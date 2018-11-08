@@ -96,7 +96,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4267798388913834}
   m_Layer: 0
-  m_Name: CameraLookOld
+  m_Name: CameraLookYoung
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,6 +128,7 @@ GameObject:
   - component: {fileID: 33218975764935850}
   - component: {fileID: 23548648953862984}
   - component: {fileID: 65501109513508544}
+  - component: {fileID: 114860154324990906}
   m_Layer: 0
   m_Name: AxeUV
   m_TagString: Axe
@@ -698,8 +699,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1389997818968012}
-  m_LocalRotation: {x: -0, y: 0.54912025, z: -0, w: 0.8357434}
-  m_LocalPosition: {x: -20.93, y: 62.07, z: -119.13}
+  m_LocalRotation: {x: -0, y: -0.96236956, z: -0, w: -0.27174416}
+  m_LocalPosition: {x: 0, y: 9.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4544389055690922}
@@ -995,9 +996,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfc324080d3aff5499d2df052ea93d6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panim: {fileID: 0}
   noclicks: 0
   oldyoung: {fileID: 0}
   gm: {fileID: 0}
+--- !u!114 &114860154324990906
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1304662146364934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab755f16da99784dbf03bf5d63f256e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1389997818968012}
+  gmscript: {fileID: 0}
 --- !u!114 &114915190715465074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1010,6 +1025,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currenthb: {fileID: 0}
+  currentmn: {fileID: 0}
+  gmscript: {fileID: 0}
 --- !u!136 &136192773426700828
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -9,7 +9,9 @@ public class PlayerScript : MonoBehaviour {
     Vector3 velo,pastpos;
     Rigidbody rb;
     private bool move, turn;
-    Animator panim;
+    [HideInInspector]
+    public Animator panim;
+    [HideInInspector]
     public int noclicks;
     bool canclick;
     bool recordpos;
@@ -17,6 +19,8 @@ public class PlayerScript : MonoBehaviour {
     GameObject oldyoung;
     [SerializeField]
     GameObject gm;
+    PlayerUIScript pui;
+    float pasthp;
 
     
 
@@ -27,6 +31,7 @@ public class PlayerScript : MonoBehaviour {
         move = turn = true;
         rb = GetComponent<Rigidbody>();
         panim = GetComponent<Animator>();
+        pui = GetComponent<PlayerUIScript>();
         noclicks = 0;
         canclick = true;
         recordpos = false;
@@ -62,72 +67,76 @@ public class PlayerScript : MonoBehaviour {
         if(this.gameObject.activeSelf)
         panim.SetBool("move", move);
 
-
+        Debug.Log(gm.GetComponent<GMScript>().cskill);
     }
 
     
 
     void get3secpast()
     {
-        //Debug.Log("record");
         if(gm.GetComponent<GMScript>().cskill==0)
         pastpos = new Vector3(transform.position.x,transform.position.y,transform.position.z);
-        //Debug.Log("record "+ pastpos);
-        //gethealth
+        pasthp = pui.hpts;
         recordpos = !recordpos;
     }
 
 
     void Skill()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && gm.GetComponent<GMScript>().cskill == 0)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && gm.GetComponent<GMScript>().cskill == 0&&pui.mnpts>0)
         {
-            gm.GetComponent<GMScript>().cskill = 1;
-            noclicks = 0;
-            oldyoung.GetComponent<Transform>().position = new Vector3(transform.position.x,transform.position.y,
-                transform.position.z);
-            oldyoung.GetComponent<Transform>().transform.rotation = transform.rotation;
-            oldyoung.SetActive(true);
-            this.gameObject.SetActive(false);
+            TransformtoOld();
 
-            Debug.Log("Transform");
         }
         else if (Input.GetKeyDown(KeyCode.Alpha1) && gm.GetComponent<GMScript>().cskill == 1)
         {
-            gm.GetComponent<GMScript>().cskill = 0;
-            noclicks = 0;
-            oldyoung.GetComponent<Transform>().position = new Vector3(transform.position.x, transform.position.y-5f,
-                transform.position.z);
-            oldyoung.GetComponent<Transform>().transform.rotation = transform.rotation;
-            oldyoung.SetActive(true);
-            this.gameObject.SetActive(false);
+            Transformtochild();
 
-            Debug.Log("Pampabata");
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && gm.GetComponent<GMScript>().cskill == 0)
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && gm.GetComponent<GMScript>().cskill == 0 && pui.mnpts > 0)
         {
-            
             gm.GetComponent<GMScript>().cskill = 2;
             gm.GetComponent<GMScript>().timestop = true;
-            Debug.Log("StopTime");
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2) && gm.GetComponent<GMScript>().cskill == 2)
         {
-
             gm.GetComponent<GMScript>().cskill = 0;
-            gm.GetComponent<GMScript>().timestop = true;
-            Debug.Log("Deactive stoptime");
+            gm.GetComponent<GMScript>().timestop = false;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3) && gm.GetComponent<GMScript>().cskill == 0)
+        else if (Input.GetKeyDown(KeyCode.Alpha3) && gm.GetComponent<GMScript>().cskill == 0&& pui.mnpts > 40)
         {
             if (pastpos != Vector3.zero)
             {
+                pui.mnpts -= 40;
+                pui.hpts = pasthp;
                 transform.position = pastpos;
             }
 
-            Debug.Log("Return past");
 
         }
+    }
+
+
+    public void TransformtoOld()
+    {
+        gm.GetComponent<GMScript>().cskill = 1;
+        noclicks = 0;
+        oldyoung.GetComponent<Transform>().position = new Vector3(transform.position.x, transform.position.y,
+            transform.position.z);
+        oldyoung.GetComponent<Transform>().transform.rotation = transform.rotation;
+        oldyoung.SetActive(true);
+        this.gameObject.SetActive(false);
+    }
+
+    public void Transformtochild()
+    {
+        gm.GetComponent<GMScript>().cskill = 0;
+        noclicks = 0;
+        oldyoung.GetComponent<Transform>().position = new Vector3(transform.position.x, transform.position.y - 5f,
+            transform.position.z);
+        oldyoung.GetComponent<Transform>().transform.rotation = transform.rotation;
+        oldyoung.SetActive(true);
+        this.gameObject.SetActive(false);
     }
 
     void ComboStarter()

@@ -18,6 +18,8 @@ public class CameraScript : MonoBehaviour {
     private const float Maxdistance = 10f;
     private const float MinDistance = 5f;
     int target;
+    [SerializeField]
+    GameObject gmscript;
 	// Use this for initialization
 	void Start () {
         camTransform = transform;
@@ -48,13 +50,15 @@ public class CameraScript : MonoBehaviour {
 
     void changetarget()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && target == 0)
-        {
-            target = 1;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha1) && target == 1)
+
+
+        if(gmscript.GetComponent<GMScript>().cskill == 0)
         {
             target = 0;
+        }
+        else if (gmscript.GetComponent<GMScript>().cskill == 1)
+        {
+            target = 1;
         }
     }
 }

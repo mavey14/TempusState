@@ -183,7 +183,32 @@ ModelImporter:
     2300000: polySurface77
     3300000: polySurface77
     4300000: polySurface77
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PinakaCore
+    second: {fileID: 2100000, guid: 719f1652769e947429fac706e1001458, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: trc
+    second: {fileID: 2100000, guid: fe4e17403d385cb40856bb9ca4026eaf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: trc2
+    second: {fileID: 2100000, guid: bc21c88a7485a7b40a07a6951b1c3dad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: trc3
+    second: {fileID: 2100000, guid: 0b36b01d75907634bb66fe048de9b1c9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: trc4
+    second: {fileID: 2100000, guid: ff92c2f7dc7674443a38b974b1acee04, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -214,7 +239,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 80
     meshCompression: 0
     addColliders: 0
     importVisibility: 1

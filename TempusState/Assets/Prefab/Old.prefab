@@ -248,6 +248,7 @@ GameObject:
   - component: {fileID: 33713704638437654}
   - component: {fileID: 23227025734029916}
   - component: {fileID: 65850496174240230}
+  - component: {fileID: 114648595403150456}
   m_Layer: 0
   m_Name: AxeUV
   m_TagString: Axe
@@ -349,7 +350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1760210660212096
 GameObject:
   m_ObjectHideFlags: 1
@@ -559,16 +560,16 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1722839874752088}
-  m_LocalRotation: {x: -0, y: 0.54912025, z: -0, w: 0.8357434}
-  m_LocalPosition: {x: -228.2, y: 67.16, z: 63.5}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 11.06, z: 7.58}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4791351156448246}
   - {fileID: 4464882842279862}
   - {fileID: 4080358763037866}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 66.61301, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4150071645185566
 Transform:
   m_ObjectHideFlags: 1
@@ -984,6 +985,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114648595403150456
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1575033513067408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab755f16da99784dbf03bf5d63f256e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1722839874752088}
+  gmscript: {fileID: 0}
 --- !u!114 &114727059183571572
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -995,6 +1009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfc324080d3aff5499d2df052ea93d6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panim: {fileID: 0}
   noclicks: 0
   oldyoung: {fileID: 0}
   gm: {fileID: 0}
@@ -1010,6 +1025,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currenthb: {fileID: 0}
+  currentmn: {fileID: 0}
+  gmscript: {fileID: 0}
 --- !u!136 &136742139211451264
 CapsuleCollider:
   m_ObjectHideFlags: 1
