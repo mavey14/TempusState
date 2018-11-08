@@ -12,6 +12,8 @@ public class PlayerUIScript : MonoBehaviour {
     PlayerScript pscript;
     [SerializeField]
     GameObject gmscript;
+    [SerializeField]
+    PlayerUIScript young;
     private static float hitpoints;
     private float maxhp;
     private static float manapoints;
@@ -21,7 +23,7 @@ public class PlayerUIScript : MonoBehaviour {
         maxhp = 150;
         maxmana = 100;
         hitpoints = maxhp;
-        manapoints = maxmana;
+        manapoints = gameObject.name=="Old"?young.mnpts:maxmana;
         pscript = GetComponent<PlayerScript>();
         //currenthb = GetComponent<Image>();
 	}
