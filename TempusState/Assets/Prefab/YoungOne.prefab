@@ -1027,6 +1027,7 @@ MonoBehaviour:
   currenthb: {fileID: 0}
   currentmn: {fileID: 0}
   gmscript: {fileID: 0}
+  young: {fileID: 0}
 --- !u!136 &136192773426700828
 CapsuleCollider:
   m_ObjectHideFlags: 1

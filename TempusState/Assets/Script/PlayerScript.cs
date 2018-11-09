@@ -67,7 +67,7 @@ public class PlayerScript : MonoBehaviour {
         if(this.gameObject.activeSelf)
         panim.SetBool("move", move);
 
-        Debug.Log(gm.GetComponent<GMScript>().cskill);
+        //Debug.Log(gm.GetComponent<GMScript>().cskill);
     }
 
     

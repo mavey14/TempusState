@@ -15,7 +15,7 @@ public class CameraScript : MonoBehaviour {
     //private float sensitivityY = 1f;
     private const float anglemin = -60f;
     private const float anglemax = 60f;
-    private const float Maxdistance = 10f;
+    private const float Maxdistance = 20f;
     private const float MinDistance = 5f;
     int target;
     [SerializeField]

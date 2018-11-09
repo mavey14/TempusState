@@ -48,7 +48,7 @@ public class PlayerUIScript : MonoBehaviour {
         {
             DrainSkill2();
         }
-        Debug.Log(gmscript.GetComponent<GMScript>().timestop);
+        //Debug.Log(gmscript.GetComponent<GMScript>().timestop);
         updatehphpandmana();
     }
 
@@ -108,6 +108,13 @@ public class PlayerUIScript : MonoBehaviour {
     public void Damage(float dmg)
     {
         hitpoints = hitpoints - dmg;
+    }
+
+    public void addmana()
+    {
+        manapoints +=5;
+        if (manapoints > 100)
+            manapoints = 100;
     }
 
     public void usemana(float manause)

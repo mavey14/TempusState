@@ -6,7 +6,8 @@ public class GraveyardBoss : MonoBehaviour {
 
     [SerializeField]
     private Transform player;
-    Animator anim;
+    [HideInInspector]
+    public Animator anim;
 
     public GameObject[] waypoints;
     int currentWP = 0;
@@ -33,6 +34,7 @@ public class GraveyardBoss : MonoBehaviour {
         dt = ca = false;
         countattack = lanterncount = 0;
         canattack = true;
+       
 	}
 	
 	// Update is called once per frame
@@ -69,8 +71,8 @@ public class GraveyardBoss : MonoBehaviour {
             lanterncount++;
             Debug.Log("asdad");
         }
-        Debug.Log("Boss State" + bstate.ToString());
-        Debug.Log("Lanter " + lanterncount);
+        //Debug.Log("Boss State" + bstate.ToString());
+        //Debug.Log("Lanter " + lanterncount);
         //Debug.Log(countattack);
         //Debug.Log("Canattack " + canattack);
 	}
@@ -149,35 +151,53 @@ public class GraveyardBoss : MonoBehaviour {
             rotSpeed * Time.deltaTime);
 
 
-        if (direction.magnitude > 20)
+        if (direction.magnitude > 25)
         {
             transform.Translate(0, 0, speed * Time.deltaTime);
             anim.SetBool("Running", true);
             anim.SetInteger("Attack",0);
 
         }
-        else
+        else if(canattack==true)
         {
-            if (canattack == true)
+            //Debug.Log("test");
+            //anim.SetBool("Running", false);
+            //anim.SetInteger("Attack", 1);
+            //countattack++;
+            //if (countattack == 2)
+            //{
+            //    anim.SetBool("Running", false);
+            //    anim.SetInteger("Attack", 0);
+            //    countattack = 0;
+            //    bstate = BossState.ChargeAttack;
+            //}
+            //StartCoroutine(attackinterval());
+            //canattack = false;
+            if (countattack >= 6)
             {
                 anim.SetBool("Running", false);
-                anim.SetInteger("Attack", 1);
-                countattack++;
-                if (countattack == 2)
-                {
-                    anim.SetBool("Running", false);
-                    anim.SetInteger("Attack", 0);
-                    countattack = 0;
-                    bstate = BossState.ChargeAttack;
-                }
-                StartCoroutine(attackinterval());
-                canattack = false;
+                anim.SetInteger("Attack", 0);
+                countattack = 0;
+                bstate = BossState.ChargeAttack;
             }
+            else
+            {
+                StartCoroutine(attackinterval());
+                countattack++;
+                 //Debug.Log("attackingboss");
+                 canattack = false;
+            }
+                
+           
         }
     }
     IEnumerator attackinterval()
     {
-        yield return new WaitForSeconds(4f);
+        anim.SetBool("Running", false);
+        anim.SetInteger("Attack", 1);
+        yield return new WaitForSeconds(.2f);
+        anim.SetInteger("Attack",0);
+        yield return new WaitForSeconds(3f);
         canattack = true;
     }
 
