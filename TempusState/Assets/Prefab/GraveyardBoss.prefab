@@ -2234,7 +2234,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1287533001684466}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 31.669647, y: 17, z: -85.31436}
+  m_LocalPosition: {x: -368.4, y: 9.2, z: 127}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4930209911350992}
@@ -2832,8 +2832,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1140824115196248}
   m_LocalRotation: {x: 0.039886463, y: -0.052791305, z: -0.030452624, w: 0.9973439}
-  m_LocalPosition: {x: -2.32, y: -0.22, z: -4.62}
-  m_LocalScale: {x: 5.0183754, y: 5.0183754, z: 5.0183754}
+  m_LocalPosition: {x: -2.46, y: -0.32, z: -3.34}
+  m_LocalScale: {x: 4.30396, y: 4.30396, z: 4.30396}
   m_Children: []
   m_Father: {fileID: 4427964787443316}
   m_RootOrder: 1
@@ -3514,8 +3514,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.1075864, y: 0.330215, z: 5.114661}
-  m_Center: {x: 0.016677609, y: -0.000006147493, z: -0.013101698}
+  m_Size: {x: 2.1075864, y: 1.3388753, z: 5.114661}
+  m_Center: {x: 0.016677193, y: -0.5043349, z: -0.013101663}
 --- !u!95 &95630196083453820
 Animator:
   serializedVersion: 3
@@ -3566,6 +3566,14 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   rotSpeed: 1
   bstate: 0
 --- !u!114 &114933885857821652
@@ -3589,10 +3597,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 5.6085563
+  m_Radius: 6.1605673
   m_Height: 17.61599
   m_Direction: 1
-  m_Center: {x: -0.879519, y: -3.8863544, z: 0.26367855}
+  m_Center: {x: -0.879519, y: -3.8863544, z: 0.81569004}
 --- !u!137 &137765796722155042
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

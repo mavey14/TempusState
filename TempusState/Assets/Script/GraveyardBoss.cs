@@ -12,7 +12,7 @@ public class GraveyardBoss : MonoBehaviour {
     public GameObject[] waypoints;
     int currentWP = 0;
     public float rotSpeed = 1f;
-    float speed = 5f;
+    float speed = 8f;
     float accuracyWP = 20f;
     float downtime;
     bool dt,canattack,ca;
@@ -28,7 +28,7 @@ public class GraveyardBoss : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        bstate = BossState.Battlemode;
+        bstate = BossState.Patrol;
         anim = GetComponent<Animator>();
         downtime = 5f;
         dt = ca = false;
@@ -151,7 +151,7 @@ public class GraveyardBoss : MonoBehaviour {
             rotSpeed * Time.deltaTime);
 
 
-        if (direction.magnitude > 25)
+        if (direction.magnitude > 18)
         {
             transform.Translate(0, 0, speed * Time.deltaTime);
             anim.SetBool("Running", true);

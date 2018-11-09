@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class GMScript : MonoBehaviour {
@@ -38,6 +39,11 @@ public class GMScript : MonoBehaviour {
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void ChangeCemeterySceene()
+    {
+        SceneManager.LoadScene("Graveyard");
     }
 
 
