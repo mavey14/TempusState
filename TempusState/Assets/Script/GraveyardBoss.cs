@@ -18,6 +18,8 @@ public class GraveyardBoss : MonoBehaviour {
     bool dt,canattack,ca;
     int countattack,lanterncount;
     AnimatorStateInfo charPlayerStateInfo;
+    [SerializeField]
+    GameObject gmscript;
 
     public enum BossState
     {
@@ -42,18 +44,22 @@ public class GraveyardBoss : MonoBehaviour {
 
         Vector3 direction = player.position - transform.position;
         direction.y= 0;
-        
-        switch (bstate)
+
+        anim.enabled = !gmscript.GetComponent<GMScript>().timestop;
+            switch (bstate)
         {
             case BossState.Patrol:
+                if(gmscript.GetComponent<GMScript>().timestop==false)
                 Patrol();
                 break;
             case BossState.Battlemode:
+                if (gmscript.GetComponent<GMScript>().timestop == false)
                 Battlemode(direction);
                 break;
             case BossState.Destroybell:
                 break;
             case BossState.ChargeAttack:
+                if (gmscript.GetComponent<GMScript>().timestop == false)
                 ChargeAttack();
                 break;
             case BossState.Death:
