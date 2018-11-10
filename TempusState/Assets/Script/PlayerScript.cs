@@ -67,6 +67,10 @@ public class PlayerScript : MonoBehaviour {
         if(this.gameObject.activeSelf)
         panim.SetBool("move", move);
 
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            resetanim();
+        }
         //Debug.Log(gm.GetComponent<GMScript>().cskill);
     }
 
@@ -137,6 +141,13 @@ public class PlayerScript : MonoBehaviour {
         oldyoung.GetComponent<Transform>().transform.rotation = transform.rotation;
         oldyoung.SetActive(true);
         this.gameObject.SetActive(false);
+    }
+
+    void resetanim()
+    {
+        canclick = true;
+        noclicks = 0;
+        panim.Play("Idle");
     }
 
     void ComboStarter()
