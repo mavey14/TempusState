@@ -33,7 +33,6 @@ public class BossUIScript : MonoBehaviour {
     {
         Debug.Log("damagenato");
         hitpoints = hitpoints - dmg;
-
     }
 
     void updatehp()

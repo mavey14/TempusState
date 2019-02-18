@@ -7,6 +7,8 @@ TagManager:
   - Axe
   - Enemy
   - Lantern
+  - Gboss
+  - Old
   layers:
   - Default
   - TransparentFX

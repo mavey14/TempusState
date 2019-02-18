@@ -5,10 +5,12 @@ using UnityEngine;
 public class GraveyardBoss : MonoBehaviour {
 
     [SerializeField]
-    private Transform player;
+    private GameObject YoungOne;
+    [SerializeField]
+    private GameObject OldOne;
     [HideInInspector]
     public Animator anim;
-
+    Vector3 direction;
     public GameObject[] waypoints;
     int currentWP = 0;
     public float rotSpeed = 1f;
@@ -20,7 +22,7 @@ public class GraveyardBoss : MonoBehaviour {
     AnimatorStateInfo charPlayerStateInfo;
     [SerializeField]
     GameObject gmscript;
-
+    
     public enum BossState
     {
         Patrol,Battlemode,Destroybell,ChargeAttack,Death,Down
@@ -42,9 +44,15 @@ public class GraveyardBoss : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        Vector3 direction = player.position - transform.position;
+        if (YoungOne.activeSelf == true)
+        {
+            direction = YoungOne.GetComponent<Transform>().position - transform.position;
+        }
+        else if (OldOne.activeSelf == true)
+        {
+            direction = OldOne.GetComponent<Transform>().position - transform.position;
+        }
         direction.y= 0;
-
         anim.enabled = !gmscript.GetComponent<GMScript>().timestop;
             switch (bstate)
         {

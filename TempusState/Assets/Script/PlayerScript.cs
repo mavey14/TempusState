@@ -125,7 +125,7 @@ public class PlayerScript : MonoBehaviour {
     {
         gm.GetComponent<GMScript>().cskill = 1;
         noclicks = 0;
-        oldyoung.GetComponent<Transform>().position = new Vector3(transform.position.x, transform.position.y,
+        oldyoung.GetComponent<Transform>().position = new Vector3(transform.position.x, transform.position.y+2f,
             transform.position.z);
         oldyoung.GetComponent<Transform>().transform.rotation = transform.rotation;
         oldyoung.SetActive(true);
@@ -136,7 +136,7 @@ public class PlayerScript : MonoBehaviour {
     {
         gm.GetComponent<GMScript>().cskill = 0;
         noclicks = 0;
-        oldyoung.GetComponent<Transform>().position = new Vector3(transform.position.x, transform.position.y - 5f,
+        oldyoung.GetComponent<Transform>().position = new Vector3(transform.position.x, transform.position.y-2f,
             transform.position.z);
         oldyoung.GetComponent<Transform>().transform.rotation = transform.rotation;
         oldyoung.SetActive(true);

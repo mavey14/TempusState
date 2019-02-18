@@ -497,7 +497,7 @@ GameObject:
   - component: {fileID: 114876921832652150}
   m_Layer: 0
   m_Name: GraveyardBoss
-  m_TagString: Enemy
+  m_TagString: Gboss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3490,7 +3490,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!65 &65277298257141994
 BoxCollider:
@@ -3558,7 +3558,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a25d33059557543a4b32a5babc0b16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  YoungOne: {fileID: 0}
+  OldOne: {fileID: 0}
   anim: {fileID: 0}
   waypoints:
   - {fileID: 0}
@@ -3575,6 +3576,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   rotSpeed: 1
+  gmscript: {fileID: 0}
   bstate: 0
 --- !u!114 &114933885857821652
 MonoBehaviour:

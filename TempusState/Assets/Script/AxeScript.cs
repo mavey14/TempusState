@@ -12,24 +12,38 @@ public class AxeScript : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy"  && 
+        if (other.tag == "Gboss"  && 
              player.GetComponent<PlayerScript>().noclicks!=0)
         {
-            other.GetComponent<BossUIScript>().Damage(other.GetComponent<GraveyardBoss>().bstate == GraveyardBoss.BossState.Down ? 
-                gmscript.GetComponent<GMScript>().cskill == 0 ? 1:10 : gmscript.GetComponent<GMScript>().cskill == 1 ? 10 : 1);
+            other.GetComponent<BossUIScript>().Damage(15);
 
             player.GetComponent<PlayerUIScript>().addmana();
             if (other.GetComponent<GraveyardBoss>().bstate != GraveyardBoss.BossState.Battlemode)
                 other.GetComponent<GraveyardBoss>().bstate = GraveyardBoss.BossState.Battlemode;
         }
-        else if (other.tag == "Enemy" &&
+        else if (other.tag == "Gboss" &&
              player.GetComponent<PlayerScript>().panim.GetCurrentAnimatorStateInfo(0).IsName("HeavyAttack"))
         {
-            other.GetComponent<BossUIScript>().Damage(other.GetComponent<GraveyardBoss>().bstate == GraveyardBoss.BossState.Down ?
-                gmscript.GetComponent<GMScript>().cskill == 0 ? 5 : 25 : gmscript.GetComponent<GMScript>().cskill == 1 ? 25:5);
+            other.GetComponent<BossUIScript>().Damage(25);
             player.GetComponent<PlayerUIScript>().addmana();
             other.GetComponent<GraveyardBoss>().bstate = GraveyardBoss.BossState.Battlemode;
         }
-        
+
+        if (other.tag == "Enemy" &&
+             player.GetComponent<PlayerScript>().noclicks != 0)
+        {
+            other.GetComponent<SkeletonScript>().ReduceHP();
+
+            player.GetComponent<PlayerUIScript>().addmana();
+            
+        }
+        else if (other.tag == "Enemy" &&
+             player.GetComponent<PlayerScript>().panim.GetCurrentAnimatorStateInfo(0).IsName("HeavyAttack"))
+        {
+            other.GetComponent<SkeletonScript>().ReduceHP();
+            player.GetComponent<PlayerUIScript>().addmana();
+            
+        }
+
     }
 }

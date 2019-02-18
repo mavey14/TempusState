@@ -112,6 +112,7 @@ public class PlayerUIScript : MonoBehaviour {
 
     public void addmana()
     {
+        if (gmscript.GetComponent<GMScript>().cskill == 0)
         manapoints +=5;
         if (manapoints > 100)
             manapoints = 100;
