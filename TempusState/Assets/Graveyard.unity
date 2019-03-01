@@ -456,6 +456,11 @@ Prefab:
       propertyPath: gmscript
       value: 
       objectReference: {fileID: 1018878695}
+    - target: {fileID: 95032417356459282, guid: 491635e81da0b284997d4200affae7f7,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 8a4d02f407095594fb2a29a4a54e66f9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 491635e81da0b284997d4200affae7f7, type: 2}
   m_IsPrefabAsset: 0
