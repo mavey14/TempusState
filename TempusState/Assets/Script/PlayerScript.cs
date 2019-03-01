@@ -27,6 +27,7 @@ public class PlayerScript : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+       
         speed = 15f;
         move = turn = true;
         rb = GetComponent<Rigidbody>();
@@ -125,7 +126,7 @@ public class PlayerScript : MonoBehaviour {
     {
         gm.GetComponent<GMScript>().cskill = 1;
         noclicks = 0;
-        oldyoung.GetComponent<Transform>().position = new Vector3(transform.position.x, transform.position.y+2f,
+        oldyoung.GetComponent<Transform>().position = new Vector3(transform.position.x, transform.position.y-4.1f,
             transform.position.z);
         oldyoung.GetComponent<Transform>().transform.rotation = transform.rotation;
         oldyoung.SetActive(true);
@@ -136,7 +137,7 @@ public class PlayerScript : MonoBehaviour {
     {
         gm.GetComponent<GMScript>().cskill = 0;
         noclicks = 0;
-        oldyoung.GetComponent<Transform>().position = new Vector3(transform.position.x, transform.position.y-2f,
+        oldyoung.GetComponent<Transform>().position = new Vector3(transform.position.x, transform.position.y+4f,
             transform.position.z);
         oldyoung.GetComponent<Transform>().transform.rotation = transform.rotation;
         oldyoung.SetActive(true);
