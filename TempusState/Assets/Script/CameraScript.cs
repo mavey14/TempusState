@@ -13,7 +13,7 @@ public class CameraScript : MonoBehaviour {
     private float currentY = 0f;
     //private float sensitivityX = 4.0f;
     //private float sensitivityY = 1f;
-    private const float anglemin = -60f;
+    private const float anglemin = -20f;
     private const float anglemax = 60f;
     private const float Maxdistance = 20f;
     private const float MinDistance = 5f;

@@ -32,7 +32,7 @@ public class SkeletonScript : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         canattack = true;
         direct = Vector3.zero;
-        HP = 5;
+        HP = 3;
 	}
 	
 	// Update is called once per frame

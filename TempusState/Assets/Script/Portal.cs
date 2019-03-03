@@ -10,10 +10,11 @@ public class Portal : MonoBehaviour {
     GameObject obsexit;
     [SerializeField]
     GameObject Player;
-    bool collide;
+    bool collide,activate;
     // Use this for initialization
     void Start () {
         collide = false;
+        activate = true;
     }
 	
 	// Update is called once per frame
@@ -25,33 +26,39 @@ public class Portal : MonoBehaviour {
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("asda");
-        if (collision.collider.tag == "Player" && collide == false)
+        if (activate == true&& other.gameObject.tag == "Player")
         {
-            Debug.Log("test");
-            Vector3 dir = (Player.GetComponent<Transform>().localPosition- transform.position).normalized;
-            if (Vector3.Dot(dir, transform.forward) > 0 && collide == false)
-            {
-                Debug.Log("Enter");
-                collide = true;
-                Debug.Log(collide);
-                obsenter.SetActive(true);
-                obsexit.SetActive(false);
-            }
+            Debug.Log("asda");
 
-            if (collide==true)
-            {
-                
-                Debug.Log("Exit");
-                obsenter.SetActive(false);
-                obsexit.SetActive(true);
-                collide = false;
+             Debug.Log("test saan galing ");
+             Vector3 dir = (Player.GetComponent<Transform>().position - this.transform.position).normalized;
+                if (Vector3.Dot(dir, Vector3.forward) > 0)
+                {
+                    Debug.Log("Enter");
+                //collide = true;
+                //Debug.Log(collide);
+                    obsenter.SetActive(true);
+                    obsexit.SetActive(false);
+                 }
+                else /*if (Vector3.Dot(dir, transform.forward) < 0)*/
+                {
+                    Debug.Log("Exit");
+                    obsenter.SetActive(false);
+                    obsexit.SetActive(true);
+                }
 
-            }
-
+            StartCoroutine(Reactive());
+            activate = false;
         }
+       
+    }
+
+    IEnumerator Reactive()
+    {
+        yield return new WaitForSeconds(1f);
+        activate =true;
     }
 
     
