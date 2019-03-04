@@ -21,7 +21,10 @@ public class PlayerScript : MonoBehaviour {
     GameObject gm;
     PlayerUIScript pui;
     float pasthp;
-
+    [SerializeField]
+    GameObject[] SkillEffects;
+    [SerializeField]
+    Transform[] Effects;
     
 
     // Use this for initialization
@@ -60,45 +63,33 @@ public class PlayerScript : MonoBehaviour {
         }
 
         Skill();
-        if (!recordpos)
-        {
-            Invoke("get3secpast", 5f);
-            recordpos = !recordpos;
-        }
         AttackandDodge();
 
         if(this.gameObject.activeSelf)
         panim.SetBool("move", move);
 
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             resetanim();
         }
         //Debug.Log(gm.GetComponent<GMScript>().cskill);
     }
 
-    
-
-    void get3secpast()
-    {
-        if(gm.GetComponent<GMScript>().cskill==0)
-        pastpos = new Vector3(transform.position.x,transform.position.y,transform.position.z);
-        pasthp = pui.hpts;
-        recordpos = !recordpos;
-    }
+   
 
 
     void Skill()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1) && gm.GetComponent<GMScript>().cskill == 0&&pui.mnpts>0)
         {
-            TransformtoOld();
+            
+            StartCoroutine(TransformtoOld());
 
         }
         else if (Input.GetKeyDown(KeyCode.Alpha1) && gm.GetComponent<GMScript>().cskill == 1)
         {
             Transformtochild();
-
+           
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2) && gm.GetComponent<GMScript>().cskill == 0 && pui.mnpts > 0)
         {
@@ -110,7 +101,7 @@ public class PlayerScript : MonoBehaviour {
             gm.GetComponent<GMScript>().cskill = 0;
             gm.GetComponent<GMScript>().timestop = false;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3) && gm.GetComponent<GMScript>().cskill == 0&& pui.mnpts > 40)
+        else if (Input.GetKeyDown(KeyCode.Alpha3) && gm.GetComponent<GMScript>().cskill == 0&& pui.mnpts >0)
         {
             if (pastpos != Vector3.zero)
             {
@@ -124,8 +115,12 @@ public class PlayerScript : MonoBehaviour {
     }
 
 
-    public void TransformtoOld()
+    IEnumerator TransformtoOld()
     {
+        panim.SetTrigger("age");
+        yield return new WaitForSeconds(1f);
+        Instantiate(SkillEffects[0],Effects[0].transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(1f);
         gm.GetComponent<GMScript>().cskill = 1;
         noclicks = 0;
         oldyoung.GetComponent<Transform>().position = new Vector3(transform.position.x, transform.position.y-4.1f,
@@ -137,6 +132,8 @@ public class PlayerScript : MonoBehaviour {
 
     public void Transformtochild()
     {
+        resetanim();
+        //yield return new WaitForSeconds(1f);
         gm.GetComponent<GMScript>().cskill = 0;
         noclicks = 0;
         oldyoung.GetComponent<Transform>().position = new Vector3(transform.position.x, transform.position.y+4f,
@@ -186,12 +183,12 @@ public class PlayerScript : MonoBehaviour {
             canclick = true;
             noclicks = 0;
         }
-        else if (panim.GetCurrentAnimatorStateInfo(0).IsName("LightAttack2") && noclicks >= 3)
+        else if (panim.GetCurrentAnimatorStateInfo(0).IsName("LightAttack2") && noclicks >= 3&&this.gameObject.name=="YoungOne")
         {
             panim.SetInteger("lightattack", 3);
             canclick = true;
         }
-        else if (panim.GetCurrentAnimatorStateInfo(0).IsName("LightAttack3"))
+        else if (panim.GetCurrentAnimatorStateInfo(0).IsName("LightAttack3") && this.gameObject.name == "YoungOne")
         {
             panim.SetInteger("lightattack", 0);
             canclick = true;
@@ -212,13 +209,14 @@ public class PlayerScript : MonoBehaviour {
         {
             ComboStarter();
         }
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1)&& this.gameObject.name == "YoungOne")
         {
             panim.SetTrigger("heavyattack");
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && !panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge"))
+        if (Input.GetKeyDown(KeyCode.Space) && !panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge")&&this.gameObject.name=="YoungOne"&&pui.stam>=50)
         {
+            pui.DodgeStamina();
             panim.SetTrigger("dodge");
 
         }

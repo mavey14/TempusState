@@ -10,20 +10,10 @@ public class Portal : MonoBehaviour {
     GameObject obsexit;
     [SerializeField]
     GameObject Player;
-    bool collide,activate;
+    bool activate;
     // Use this for initialization
     void Start () {
-        collide = false;
         activate = true;
-    }
-	
-	// Update is called once per frame
-	void Update () {
-        
-        if(Input.GetKey(KeyCode.P))
-        {
-            collide = false;
-        }
     }
 
     private void OnTriggerEnter(Collider other)

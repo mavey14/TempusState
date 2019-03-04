@@ -336,6 +336,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1644261161129686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4740438234542624}
+  m_Layer: 0
+  m_Name: Effects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1712602713183066
 GameObject:
   m_ObjectHideFlags: 1
@@ -700,12 +715,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1389997818968012}
   m_LocalRotation: {x: -0, y: 0.54912025, z: -0, w: 0.8357434}
-  m_LocalPosition: {x: -13.4, y: 62.89, z: 6.5}
+  m_LocalPosition: {x: -13.4, y: 62.94, z: 6.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4544389055690922}
   - {fileID: 4174398674401630}
   - {fileID: 4267798388913834}
+  - {fileID: 4740438234542624}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 66.61301, z: 0}
@@ -832,6 +848,19 @@ Transform:
   - {fileID: 4331648259340186}
   m_Father: {fileID: 4564252361983772}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4740438234542624
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1644261161129686}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: -3.96, z: 0.44}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4451885063992304}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4798528990130528
 Transform:
@@ -1000,6 +1029,10 @@ MonoBehaviour:
   noclicks: 0
   oldyoung: {fileID: 0}
   gm: {fileID: 0}
+  SkillEffects:
+  - {fileID: 1614736604405850, guid: 21e66c0c87351d7419719eccd09ca62c, type: 2}
+  Effects:
+  - {fileID: 4740438234542624}
 --- !u!114 &114860154324990906
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1026,6 +1059,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currenthb: {fileID: 0}
   currentmn: {fileID: 0}
+  currentstam: {fileID: 0}
   gmscript: {fileID: 0}
   young: {fileID: 0}
 --- !u!136 &136192773426700828

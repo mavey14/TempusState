@@ -4672,6 +4672,11 @@ Prefab:
       propertyPath: gm
       value: 
       objectReference: {fileID: 2137181683}
+    - target: {fileID: 114860154324990906, guid: 491635e81da0b284997d4200affae7f7,
+        type: 2}
+      propertyPath: gmscript
+      value: 
+      objectReference: {fileID: 2137181683}
     - target: {fileID: 114915190715465074, guid: 491635e81da0b284997d4200affae7f7,
         type: 2}
       propertyPath: currenthb
@@ -5425,6 +5430,16 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 1141876674}
+    - target: {fileID: 114251186118261014, guid: 0c3a8845363a06f459aabfb8a17ab29b,
+        type: 2}
+      propertyPath: oldyoung
+      value: 
+      objectReference: {fileID: 1141876674}
+    - target: {fileID: 114251186118261014, guid: 0c3a8845363a06f459aabfb8a17ab29b,
+        type: 2}
+      propertyPath: gm
+      value: 
+      objectReference: {fileID: 2137181683}
     - target: {fileID: 114135811090228504, guid: 0c3a8845363a06f459aabfb8a17ab29b,
         type: 2}
       propertyPath: currenthb
@@ -5445,16 +5460,6 @@ Prefab:
       propertyPath: young
       value: 
       objectReference: {fileID: 1141876675}
-    - target: {fileID: 114251186118261014, guid: 0c3a8845363a06f459aabfb8a17ab29b,
-        type: 2}
-      propertyPath: oldyoung
-      value: 
-      objectReference: {fileID: 1141876674}
-    - target: {fileID: 114251186118261014, guid: 0c3a8845363a06f459aabfb8a17ab29b,
-        type: 2}
-      propertyPath: gm
-      value: 
-      objectReference: {fileID: 2137181683}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c3a8845363a06f459aabfb8a17ab29b, type: 2}
   m_IsPrefabAsset: 0

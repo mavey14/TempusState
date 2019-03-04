@@ -8,7 +8,7 @@ public class GMScript : MonoBehaviour {
 
     public bool isgamepause;
     public bool timestop;
-    int difficulty;
+    //int difficulty;
     public int cskill;
     [SerializeField]
     private GameObject uiportal;
@@ -23,12 +23,12 @@ public class GMScript : MonoBehaviour {
 	
     public void NormalMode()
     {
-        difficulty = 0;
+        //difficulty = 0;
     }
 
     public void ApocalypseMode()
     {
-        difficulty = 1;
+        //difficulty = 1;
     }
 
     public void PlayGame()

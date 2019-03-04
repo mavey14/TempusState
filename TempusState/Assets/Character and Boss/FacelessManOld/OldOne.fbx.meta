@@ -68,8 +68,8 @@ ModelImporter:
     4300000: polySurface203
     7400000: Idle
     7400002: Running
-    7400004: Attack
-    7400006: Attack2
+    7400004: LightAttack
+    7400006: LightAttack2
     7400008: Attack3
     9500000: //RootNode
     13700000: polySurface203
@@ -188,7 +188,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Attack
+      name: LightAttack
       takeName: Take 001
       firstFrame: 101
       lastFrame: 125
@@ -210,13 +210,21 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.797235
+        functionName: Combo
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: dfc324080d3aff5499d2df052ea93d6b,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Attack2
+      name: LightAttack2
       takeName: Take 001
       firstFrame: 125
       lastFrame: 145
@@ -238,35 +246,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Attack3
-      takeName: Take 001
-      firstFrame: 145
-      lastFrame: 170
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
+      events:
+      - time: 0.79262674
+        functionName: Combo
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: dfc324080d3aff5499d2df052ea93d6b,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

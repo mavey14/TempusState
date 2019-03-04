@@ -24,6 +24,7 @@ public class SkeletonScript : MonoBehaviour {
     public bool canattack;
     public int noattack;
     int HP;
+    bool awake;
 
 	// Use this for initialization
 	void Start () {
@@ -33,33 +34,38 @@ public class SkeletonScript : MonoBehaviour {
         canattack = true;
         direct = Vector3.zero;
         HP = 3;
+        awake = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (YoungOne.activeSelf == true)
+        if (awake == true)
         {
-            direct = YoungOne.GetComponent<Transform>().transform.position - this.transform.position;
-        }
-        if (OldOne.activeSelf == true)
-        {
-            direct = OldOne.GetComponent<Transform>().transform.position - this.transform.position;
-        }
-        direct.y = 0;
-        Debug.Log(Vector3.Distance(direct, this.transform.position));
-        float angle = Vector3.Angle(direct, this.transform.forward);
+            if (YoungOne.activeSelf == true)
+            {
+                direct = YoungOne.GetComponent<Transform>().transform.position - this.transform.position;
+            }
+            if (OldOne.activeSelf == true)
+            {
+                direct = OldOne.GetComponent<Transform>().transform.position - this.transform.position;
+            }
+            direct.y = 0;
+            Debug.Log(Vector3.Distance(direct, this.transform.position));
+            float angle = Vector3.Angle(direct, this.transform.forward);
 
-        switch (estate)
-        {
-            //case EnemyState.Sleep:
-            //    AwakeEne(direct);
-            //    break;
-            case EnemyState.Battle:
-                Battle(direct, angle);
-                break;
-            case EnemyState.Death:
-                break;
+            switch (estate)
+            {
+                //case EnemyState.Sleep:
+                //    AwakeEne(direct);
+                //    break;
+                case EnemyState.Battle:
+                    Battle(direct, angle);
+                    break;
+                case EnemyState.Death:
+                    break;
+            }
         }
+       
 	}
 
     //void AwakeEne(Vector3 direct)
@@ -112,7 +118,8 @@ public class SkeletonScript : MonoBehaviour {
     {
         if (other.tag == "Player" || other.tag == "Old")
         {
-            anim.SetBool("Awake", true);
+            awake = true;
+            anim.SetBool("Awake", awake);
             estate = EnemyState.Battle;
         }
     }

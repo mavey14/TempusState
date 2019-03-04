@@ -9,6 +9,8 @@ public class PlayerUIScript : MonoBehaviour {
     Image currenthb;
     [SerializeField]
     Image currentmn;
+    [SerializeField]
+    Image currentstam;
     PlayerScript pscript;
     [SerializeField]
     GameObject gmscript;
@@ -18,15 +20,27 @@ public class PlayerUIScript : MonoBehaviour {
     private float maxhp;
     private static float manapoints;
     private float maxmana;
-	// Use this for initialization
-	void Start () {
+    private static float stamina;
+    private float maxstamina;
+    float staminaregentime;
+    float staminadepletedskill1;
+    float staminadepletedskill2;
+    float staminadepletedskill3;
+    // Use this for initialization
+    void Start () {
         maxhp = 150;
         maxmana = 100;
+        maxstamina = 100;
         hitpoints = maxhp;
         manapoints = gameObject.name=="Old"?young.mnpts:maxmana;
+        stamina = maxstamina;
         pscript = GetComponent<PlayerScript>();
+        staminaregentime = 0.1f;
+        staminadepletedskill1 = 10;
+        staminadepletedskill1 = 20;
+        staminadepletedskill1 = 30;
         //currenthb = GetComponent<Image>();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -42,7 +56,7 @@ public class PlayerUIScript : MonoBehaviour {
 
         if (gmscript.GetComponent<GMScript>().cskill == 1)
         {
-            DrainSkill1();
+            //DrainSkill1();
         }
         else if (gmscript.GetComponent<GMScript>().cskill == 2)
         {
@@ -50,6 +64,13 @@ public class PlayerUIScript : MonoBehaviour {
         }
         //Debug.Log(gmscript.GetComponent<GMScript>().timestop);
         updatehphpandmana();
+        Debug.Log(stamina);
+        
+        if (!pscript.panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge")&&stamina<100)
+        {
+            stamina += Time.deltaTime/staminaregentime;
+            stamina = Mathf.Clamp(stamina, 0f, 100f);
+        }
     }
 
     
@@ -76,6 +97,40 @@ public class PlayerUIScript : MonoBehaviour {
            
         }
     }
+
+    void DrainSkill3()
+    {
+
+        manapoints -= 20 * Time.deltaTime;
+        if (manapoints <= 0)
+        {
+            manapoints = 0;
+            gmscript.GetComponent<GMScript>().timestop = false;
+
+        }
+    }
+
+    public void DodgeStamina()
+    {
+        stamina -= 50f;
+        Debug.Log("test");
+        Debug.Log(stamina);
+    }
+
+    public float stam
+    {
+        get
+        {
+            //Some other code
+            return stamina;
+        }
+        set
+        {
+            //Some other code
+            stamina = value;
+        }
+    }
+
 
     public float hpts
     {
