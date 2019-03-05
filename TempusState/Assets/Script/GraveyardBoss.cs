@@ -10,35 +10,36 @@ public class GraveyardBoss : MonoBehaviour {
     private GameObject OldOne;
     [HideInInspector]
     public Animator anim;
+    [SerializeField]
+    GameObject[] Effects;
     Vector3 direction;
     public GameObject[] waypoints;
     int currentWP = 0;
     public float rotSpeed = 1f;
     float speed = 8f;
     float accuracyWP = 20f;
-    float downtime;
-    bool dt,canattack,ca;
-    int countattack,lanterncount;
+    bool canattack,summontotem, summonminions, spit;
+    public int Attack;
     AnimatorStateInfo charPlayerStateInfo;
     [SerializeField]
     GameObject gmscript;
+    Rigidbody rb;
     
-    public enum BossState
-    {
-        Patrol,Battlemode,Destroybell,ChargeAttack,Death,Down
-    }
+    public enum BossState{Patrol,Battlemode,Death};
+    public enum PhaseState { phase1, phase2, phase3 };
 
     public BossState bstate;
+    public PhaseState pstate;
 
     // Use this for initialization
     void Start () {
         bstate = BossState.Patrol;
+        pstate = PhaseState.phase1;
         anim = GetComponent<Animator>();
-        downtime = 5f;
-        dt = ca = false;
-        countattack = lanterncount = 0;
+        rb = GetComponent<Rigidbody>();
         canattack = true;
-       
+        summontotem = summontotem = spit = false;
+        Attack = 0;
 	}
 	
 	// Update is called once per frame
@@ -54,7 +55,7 @@ public class GraveyardBoss : MonoBehaviour {
         }
         direction.y= 0;
         anim.enabled = !gmscript.GetComponent<GMScript>().timestop;
-            switch (bstate)
+        switch (bstate)
         {
             case BossState.Patrol:
                 if(gmscript.GetComponent<GMScript>().timestop==false)
@@ -64,26 +65,9 @@ public class GraveyardBoss : MonoBehaviour {
                 if (gmscript.GetComponent<GMScript>().timestop == false)
                 Battlemode(direction);
                 break;
-            case BossState.Destroybell:
-                break;
-            case BossState.ChargeAttack:
-                if (gmscript.GetComponent<GMScript>().timestop == false)
-                ChargeAttack();
-                break;
             case BossState.Death:
                 break;
-            case BossState.Down:
-                if (dt == false)
-                {
-                    Down();
-                    dt = true;
-                }
-                break;
-        }
-        if(Input.GetKeyDown(KeyCode.T))
-        {
-            lanterncount++;
-            Debug.Log("asdad");
+
         }
         //Debug.Log("Boss State" + bstate.ToString());
         //Debug.Log("Lanter " + lanterncount);
@@ -93,44 +77,14 @@ public class GraveyardBoss : MonoBehaviour {
 
 
 
-    void ChargeAttack()
+    public void changephase2()
     {
-        if (ca == false)
-        {
-            anim.SetTrigger("CU");
-            ca = true;
-        }
-        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1.0f && lanterncount <= 5)
-        {
-            ca = false;
-            bstate = BossState.Battlemode;
-        }
-        else if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f && lanterncount >= 5)
-        {
-            ca = false;
-            bstate = BossState.Down;
-        }
-     
+        pstate = PhaseState.phase2;
     }
 
-    void Down()
+    public void changephase3()
     {
-        anim.SetBool("Idle", false);
-        anim.SetBool("Running", false);
-        anim.SetInteger("Attack", 0);
-        anim.SetTrigger("FC");
-        StartCoroutine(Recover(downtime));
-    }
-
-    IEnumerator Recover(float downtime)
-    {
-        yield return new WaitForSeconds(downtime);
-        anim.SetBool("Recover", true);
-        yield return new WaitForSeconds(1f);
-        anim.SetBool("Recover", false);
-        dt = false;
-        lanterncount = 0;
-        bstate = BossState.Battlemode;
+        pstate = PhaseState.phase3;
     }
 
     void Patrol()
@@ -153,7 +107,8 @@ public class GraveyardBoss : MonoBehaviour {
 
             dir = waypoints[currentWP].transform.position - transform.position;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), rotSpeed * Time.deltaTime);
-            transform.Translate(0, 0, speed * Time.deltaTime);
+            //transform.Translate(0, 0, speed * Time.deltaTime);
+            rb.MovePosition(rb.position + transform.forward * speed * Time.deltaTime);
         }
     }
 
@@ -169,52 +124,110 @@ public class GraveyardBoss : MonoBehaviour {
         {
             transform.Translate(0, 0, speed * Time.deltaTime);
             anim.SetBool("Running", true);
+            anim.SetBool("Idle", false);
             anim.SetInteger("Attack",0);
 
         }
         else if(canattack==true)
         {
-            //Debug.Log("test");
-            //anim.SetBool("Running", false);
-            //anim.SetInteger("Attack", 1);
-            //countattack++;
-            //if (countattack == 2)
-            //{
-            //    anim.SetBool("Running", false);
-            //    anim.SetInteger("Attack", 0);
-            //    countattack = 0;
-            //    bstate = BossState.ChargeAttack;
-            //}
-            //StartCoroutine(attackinterval());
-            //canattack = false;
-            if (countattack >= 6)
+            if (pstate == PhaseState.phase1)
             {
-                anim.SetBool("Running", false);
-                anim.SetInteger("Attack", 0);
-                countattack = 0;
-                bstate = BossState.ChargeAttack;
+                //phase1Attack();
+                phase1Attack();
+                canattack = false;
+            }
+            else if (pstate == PhaseState.phase2)
+            {
+
+                phase2Attack();
+                canattack = false;
             }
             else
             {
-                StartCoroutine(attackinterval());
-                countattack++;
-                 //Debug.Log("attackingboss");
-                 canattack = false;
+                phase3Attack();
+                canattack = false;
             }
-                
-           
+
+            StartCoroutine(AttackCD());
         }
     }
-    IEnumerator attackinterval()
-    {
+
+    void phase1Attack()
+    {  //attack 7
+        Attack = Random.Range(1, 4);
+        anim.SetInteger("Attack", Attack);
+        anim.SetBool("Idle", true);
         anim.SetBool("Running", false);
-        anim.SetInteger("Attack", 1);
-        yield return new WaitForSeconds(.2f);
-        anim.SetInteger("Attack",0);
-        yield return new WaitForSeconds(3f);
-        canattack = true;
+        StartCoroutine(AttackCD());
+
     }
 
+
+    void phase2Attack()
+    {
+        Attack = Random.Range(1, 6);
+        if (Attack == 5 && summonminions == false)
+        {
+            //summon minions
+            summonminions = true;
+        }
+        else
+        {
+            Attack = Random.Range(1, 5);
+        }
+
+        anim.SetInteger("Attack", Attack);
+        anim.SetBool("Idle", true);
+        anim.SetBool("Running", false);
+        StartCoroutine(AttackCD());
+    }
+
+    void phase3Attack()
+    {
+
+        Attack = Random.Range(1, 8);
+        if (Attack == 5 && summonminions == false)
+        {
+            //summon minions
+            Debug.Log("summon minions");
+            // StartCoroutine(Reset());
+            summonminions = true;
+        }
+        else if (Attack == 7 && summontotem == false)
+        {
+            //summon Totem
+            Debug.Log("summon totem");
+            //StartCoroutine(Reset2());
+            summontotem = true;
+        }
+        else if (Attack == 6 && spit == false)
+        {
+            //summon poison
+            Debug.Log("Spit");
+            //StartCoroutine(Reset3());
+            spit = true;
+        }
+        else
+        {
+            Attack = Random.Range(1, 5);
+        }
+
+        anim.SetInteger("Attack", Attack);
+        anim.SetBool("Idle", true);
+        anim.SetBool("Running", false);
+        StartCoroutine(AttackCD());
+    }
+
+    IEnumerator AttackCD()
+    {
+        yield return new WaitForSeconds(4f);
+        Attack = 0;
+        canattack = true;
+        anim.SetBool("Idle", false);
+        Debug.Log("ReadyToAttack");
+    }
+
+ 
 
 
 }

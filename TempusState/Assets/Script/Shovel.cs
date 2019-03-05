@@ -8,12 +8,25 @@ public class Shovel : MonoBehaviour {
     private GameObject graveyardboss;
     [SerializeField]
     private GameObject player;
+    [SerializeField]
+    private BoxCollider collide;
+    private void Start()
+    {
+        //collide.enabled = false;
+    }
+
+    private void Update()
+    {
+        collide.enabled = graveyardboss.GetComponent<GraveyardBoss>().anim.GetCurrentAnimatorStateInfo(0).IsName("Attack") ||
+            graveyardboss.GetComponent<GraveyardBoss>().anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1") ||
+            graveyardboss.GetComponent<GraveyardBoss>().anim.GetCurrentAnimatorStateInfo(0).IsName("ChargeAttack");
+
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player" &&
-            graveyardboss.GetComponent<GraveyardBoss>().
-            anim.GetCurrentAnimatorStateInfo(0).IsName("AttackCombo")&&
+            graveyardboss.GetComponent<GraveyardBoss>().Attack>0&&
             !player.GetComponent<PlayerScript>().panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge"))
         {
             Debug.Log("Damage Player");

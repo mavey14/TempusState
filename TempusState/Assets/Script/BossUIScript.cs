@@ -8,6 +8,8 @@ public class BossUIScript : MonoBehaviour {
 
     [SerializeField]
     Image currenthb;
+    [SerializeField]
+    GraveyardBoss GraveyardBossScript;
 
     private float hitpoints;
     private float maxhp;
@@ -26,12 +28,21 @@ public class BossUIScript : MonoBehaviour {
             Debug.Log("Damage");
         }
         updatehp();
+        if (hitpoints < 660&&GraveyardBossScript.pstate== GraveyardBoss.PhaseState.phase1)
+        {
+            GraveyardBossScript.changephase2();
+            Debug.Log("change to phase 2");
+        }
+        else if (hitpoints < 330&& GraveyardBossScript.pstate == GraveyardBoss.PhaseState.phase2)
+        {
+            GraveyardBossScript.changephase3();
+            Debug.Log("change to phase 3");
+        }
     }
 
 
     public void Damage(float dmg)
     {
-        Debug.Log("damagenato");
         hitpoints = hitpoints - dmg;
     }
 

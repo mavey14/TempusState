@@ -8,7 +8,8 @@ public class AxeScript : MonoBehaviour {
     private GameObject player;
     [SerializeField]
     private GameObject gmscript;
-   
+    [SerializeField]
+    private BoxCollider axebox;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,7 +17,6 @@ public class AxeScript : MonoBehaviour {
              player.GetComponent<PlayerScript>().noclicks!=0)
         {
             other.GetComponent<BossUIScript>().Damage(15);
-
             player.GetComponent<PlayerUIScript>().addmana();
             if (other.GetComponent<GraveyardBoss>().bstate != GraveyardBoss.BossState.Battlemode)
                 other.GetComponent<GraveyardBoss>().bstate = GraveyardBoss.BossState.Battlemode;
@@ -26,7 +26,8 @@ public class AxeScript : MonoBehaviour {
         {
             other.GetComponent<BossUIScript>().Damage(25);
             player.GetComponent<PlayerUIScript>().addmana();
-            other.GetComponent<GraveyardBoss>().bstate = GraveyardBoss.BossState.Battlemode;
+            if (other.GetComponent<GraveyardBoss>().bstate != GraveyardBoss.BossState.Battlemode)
+                other.GetComponent<GraveyardBoss>().bstate = GraveyardBoss.BossState.Battlemode;
         }
 
         if (other.tag == "Enemy" &&

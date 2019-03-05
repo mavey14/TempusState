@@ -11,6 +11,7 @@ public class PlayerUIScript : MonoBehaviour {
     Image currentmn;
     [SerializeField]
     Image currentstam;
+    [SerializeField]
     PlayerScript pscript;
     [SerializeField]
     GameObject gmscript;
@@ -31,8 +32,8 @@ public class PlayerUIScript : MonoBehaviour {
         maxhp = 150;
         maxmana = 100;
         maxstamina = 100;
-        hitpoints = maxhp;
-        manapoints = gameObject.name=="Old"?young.mnpts:maxmana;
+        hitpoints = this.gameObject.tag == "Old" ? young.hpts : maxhp;
+        manapoints = this.gameObject.tag=="Old"?young.mnpts:maxmana;
         stamina = maxstamina;
         pscript = GetComponent<PlayerScript>();
         staminaregentime = 0.1f;
@@ -56,7 +57,7 @@ public class PlayerUIScript : MonoBehaviour {
 
         if (gmscript.GetComponent<GMScript>().cskill == 1)
         {
-            //DrainSkill1();
+            DrainSkill1();
         }
         else if (gmscript.GetComponent<GMScript>().cskill == 2)
         {
@@ -64,13 +65,13 @@ public class PlayerUIScript : MonoBehaviour {
         }
         //Debug.Log(gmscript.GetComponent<GMScript>().timestop);
         updatehphpandmana();
-        Debug.Log(stamina);
+       // Debug.Log(stamina);
         
-        if (!pscript.panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge")&&stamina<100)
-        {
-            stamina += Time.deltaTime/staminaregentime;
-            stamina = Mathf.Clamp(stamina, 0f, 100f);
-        }
+        //if (!pscript.panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge")&&stamina<100&&this.gameObject.tag=="Player")
+        //{
+        //    stamina += Time.deltaTime/staminaregentime;
+        //    stamina = Mathf.Clamp(stamina, 0f, 100f);
+        //}
     }
 
     
@@ -82,7 +83,7 @@ public class PlayerUIScript : MonoBehaviour {
         if (manapoints <= 0)
         {
             manapoints = 0;
-            pscript.Transformtochild();
+            pscript.GetComponent<PlayerScript>().Transformtochild();
         }
     }
 
@@ -113,8 +114,6 @@ public class PlayerUIScript : MonoBehaviour {
     public void DodgeStamina()
     {
         stamina -= 50f;
-        Debug.Log("test");
-        Debug.Log(stamina);
     }
 
     public float stam

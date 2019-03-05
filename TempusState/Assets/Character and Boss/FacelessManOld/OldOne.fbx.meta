@@ -211,10 +211,10 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.797235
+      - time: 0.9953917
         functionName: Combo
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: dfc324080d3aff5499d2df052ea93d6b,
+        objectReferenceParameter: {fileID: 11500000, guid: 1c7aea6fd08db9d40ba095d24965ca11,
           type: 3}
         floatParameter: 0
         intParameter: 0
@@ -247,10 +247,10 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.79262674
+      - time: 0.6774194
         functionName: Combo
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: dfc324080d3aff5499d2df052ea93d6b,
+        objectReferenceParameter: {fileID: 11500000, guid: 1c7aea6fd08db9d40ba095d24965ca11,
           type: 3}
         floatParameter: 0
         intParameter: 0

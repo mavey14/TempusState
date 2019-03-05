@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public class OldOneScript : MonoBehaviour {
 
-public class PlayerScript : MonoBehaviour {
 
     float zmov, speed;
-    Vector3 velo,pastpos;
+    Vector3 velo;
     Rigidbody rb;
     private bool move, turn;
     [HideInInspector]
@@ -15,20 +15,16 @@ public class PlayerScript : MonoBehaviour {
     public int noclicks;
     bool canclick;
     [SerializeField]
-    GameObject old;
+    GameObject young;
+    PlayerUIScript pui;
     [SerializeField]
     GameObject gm;
-    PlayerUIScript pui;
     [SerializeField]
     GameObject[] SkillEffects;
     [SerializeField]
     Transform[] Effects;
-    
-
     // Use this for initialization
-    void Start()
-    {
-       
+    void Start () {
         speed = 15f;
         move = turn = true;
         rb = GetComponent<Rigidbody>();
@@ -36,17 +32,13 @@ public class PlayerScript : MonoBehaviour {
         pui = GetComponent<PlayerUIScript>();
         noclicks = 0;
         canclick = true;
-        
     }
+	
+	// Update is called once per frame
+	void Update () {
 
-    // Update is called once per frame
-    void Update()
-    {
-
-        move = Input.GetAxisRaw("Vertical") != 0 && noclicks == 0 && !panim.GetCurrentAnimatorStateInfo(0).IsName("HeavyAttack")
-            || Input.GetAxisRaw("Horizontal") != 0 && noclicks == 0 && !panim.GetCurrentAnimatorStateInfo(0).IsName("HeavyAttack");
-
-        speed = panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge") == true ? 28f : 15f;
+        move = Input.GetAxisRaw("Vertical") != 0 && noclicks == 0 
+            || Input.GetAxisRaw("Horizontal") != 0 && noclicks == 0 ;
 
         GetMovement();
 
@@ -62,82 +54,36 @@ public class PlayerScript : MonoBehaviour {
         Skill();
         AttackandDodge();
 
-        if(this.gameObject.activeSelf)
-        panim.SetBool("move", move);
+        if (this.gameObject.activeSelf)
+            panim.SetBool("move", move);
 
         if (Input.GetKeyDown(KeyCode.F))
         {
             resetanim();
         }
-        //Debug.Log(gm.GetComponent<GMScript>().cskill);
     }
-
-   
-
 
     void Skill()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && gm.GetComponent<GMScript>().cskill == 0&&pui.mnpts>0)
-        {
-            
-            StartCoroutine(TransformtoOld());
-
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha1) && gm.GetComponent<GMScript>().cskill == 1)
+         if (Input.GetKeyDown(KeyCode.Alpha1) && gm.GetComponent<GMScript>().cskill == 1)
         {
             Transformtochild();
-           
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && gm.GetComponent<GMScript>().cskill == 0 && pui.mnpts > 0)
-        {
-            gm.GetComponent<GMScript>().cskill = 2;
-            gm.GetComponent<GMScript>().timestop = true;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && gm.GetComponent<GMScript>().cskill == 2)
-        {
-            gm.GetComponent<GMScript>().cskill = 0;
-            gm.GetComponent<GMScript>().timestop = false;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3) && gm.GetComponent<GMScript>().cskill == 0&& pui.mnpts >0)
-        {
-            if (pastpos != Vector3.zero)
-            {
-                pui.mnpts -= 40;
-                transform.position = pastpos;
-            }
-
 
         }
-    }
-
-
-    IEnumerator TransformtoOld()
-    {
-        panim.SetTrigger("age");
-        yield return new WaitForSeconds(1f);
-        Instantiate(SkillEffects[0],Effects[0].transform.position, Quaternion.identity);
-        yield return new WaitForSeconds(1f);
-        gm.GetComponent<GMScript>().cskill = 1;
-        noclicks = 0;
-        old.GetComponent<Transform>().position = new Vector3(transform.position.x, transform.position.y-4.1f,
-            transform.position.z);
-        old.GetComponent<Transform>().transform.rotation = transform.rotation;
-        old.SetActive(true);
-        this.gameObject.SetActive(false);
+       
     }
 
     public void Transformtochild()
     {
-        //old.SetActive(true);
-        //resetanim();
-        ////yield return new WaitForSeconds(1f);
-        //gm.GetComponent<GMScript>().cskill = 0;
-        //noclicks = 0;
-        //old.GetComponent<Transform>().position = new Vector3(transform.position.x, transform.position.y+4f,
-        //    transform.position.z);
-        //old.GetComponent<Transform>().transform.rotation = transform.rotation;
-        //this.gameObject.SetActive(false);
-        Debug.Log("test");
+        resetanim();
+        //yield return new WaitForSeconds(1f);
+        gm.GetComponent<GMScript>().cskill = 0;
+        noclicks = 0;
+        young.GetComponent<Transform>().position = new Vector3(transform.position.x, transform.position.y + 4f,
+            transform.position.z);
+        young.GetComponent<Transform>().transform.rotation = transform.rotation;
+        young.SetActive(true);
+        this.gameObject.SetActive(false);
     }
 
     void resetanim()
@@ -180,17 +126,6 @@ public class PlayerScript : MonoBehaviour {
             canclick = true;
             noclicks = 0;
         }
-        else if (panim.GetCurrentAnimatorStateInfo(0).IsName("LightAttack2") && noclicks >= 3&&this.gameObject.name=="YoungOne")
-        {
-            panim.SetInteger("lightattack", 3);
-            canclick = true;
-        }
-        else if (panim.GetCurrentAnimatorStateInfo(0).IsName("LightAttack3") && this.gameObject.name == "YoungOne")
-        {
-            panim.SetInteger("lightattack", 0);
-            canclick = true;
-            noclicks = 0;
-        }
         else
         {
             panim.SetInteger("lightattack", 0);
@@ -205,17 +140,6 @@ public class PlayerScript : MonoBehaviour {
         if (Input.GetMouseButtonDown(0))
         {
             ComboStarter();
-        }
-        if (Input.GetMouseButtonDown(1)&& this.gameObject.name == "YoungOne")
-        {
-            panim.SetTrigger("heavyattack");
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space) && !panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge")&&this.gameObject.name=="YoungOne"&&pui.stam>=50)
-        {
-            pui.DodgeStamina();
-            panim.SetTrigger("dodge");
-
         }
     }
 
@@ -276,10 +200,5 @@ public class PlayerScript : MonoBehaviour {
         {
             zmov = Input.GetAxis("Horizontal");
         }
-    }
-
-    void dead()
-    {
-        //StartCoroutine(PlayerDeath());
     }
 }

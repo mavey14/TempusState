@@ -267,10 +267,9 @@ GameObject:
   - component: {fileID: 54276354248423142}
   - component: {fileID: 136165567376990778}
   - component: {fileID: 114135811090228504}
-  - component: {fileID: 114251186118261014}
   m_Layer: 0
   m_Name: OldOne
-  m_TagString: Untagged
+  m_TagString: Old
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1012,24 +1011,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ab755f16da99784dbf03bf5d63f256e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1564888388357904}
   gmscript: {fileID: 0}
---- !u!114 &114251186118261014
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1564888388357904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfc324080d3aff5499d2df052ea93d6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panim: {fileID: 0}
-  noclicks: 0
-  oldyoung: {fileID: 0}
-  gm: {fileID: 0}
-  SkillEffects: []
+  axebox: {fileID: 65581958200900616}
 --- !u!136 &136165567376990778
 CapsuleCollider:
   m_ObjectHideFlags: 1
