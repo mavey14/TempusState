@@ -79,11 +79,11 @@ public class PlayerUIScript : MonoBehaviour {
         updatehphpandmana();
         // Debug.Log(stamina);
 
-        //if (!pscript.panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge") && stamina < 100 && this.gameObject.tag == "Player")
-        //{
-        //    stamina += Time.deltaTime / staminaregentime;
-        //    stamina = Mathf.Clamp(stamina, 0f, 100f);
-        //}
+        if (!pscript.panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge") && stamina < 100 && this.gameObject.tag == "Player")
+        {
+            stamina += Time.deltaTime / staminaregentime;
+            stamina = Mathf.Clamp(stamina, 0f, 100f);
+        }
     }
 
     
@@ -210,5 +210,7 @@ public class PlayerUIScript : MonoBehaviour {
         currenthb.fillAmount = hitpoints / maxhp;
         if (currentmn)
             currentmn.fillAmount = manapoints / maxmana;
+        if (currentstam)
+            currentstam.fillAmount = stamina / maxstamina;
     }
 }

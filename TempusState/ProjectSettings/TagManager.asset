@@ -14,6 +14,9 @@ TagManager:
   - explo
   - GA
   - tr
+  - la
+  - lr
+  - wb
   layers:
   - Default
   - TransparentFX
