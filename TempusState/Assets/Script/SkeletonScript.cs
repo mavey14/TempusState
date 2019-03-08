@@ -50,7 +50,7 @@ public class SkeletonScript : MonoBehaviour {
                 direct = OldOne.GetComponent<Transform>().transform.position - this.transform.position;
             }
             direct.y = 0;
-            Debug.Log(Vector3.Distance(direct, this.transform.position));
+            //Debug.Log(Vector3.Distance(direct, this.transform.position));
             float angle = Vector3.Angle(direct, this.transform.forward);
 
             switch (estate)
@@ -95,6 +95,7 @@ public class SkeletonScript : MonoBehaviour {
         {
             if (canattack == true)
             {
+                anim.SetBool("Idle", false);
                 anim.SetBool("Run", false);
                 int random = Random.Range(1, 4);
                 noattack = random;

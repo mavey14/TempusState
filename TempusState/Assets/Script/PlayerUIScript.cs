@@ -11,7 +11,7 @@ public class PlayerUIScript : MonoBehaviour {
     Image currentmn;
     [SerializeField]
     Image currentstam;
-    [SerializeField]
+    OldOneScript oldscript;
     PlayerScript pscript;
     [SerializeField]
     GameObject gmscript;
@@ -35,7 +35,14 @@ public class PlayerUIScript : MonoBehaviour {
         hitpoints = this.gameObject.tag == "Old" ? young.hpts : maxhp;
         manapoints = this.gameObject.tag=="Old"?young.mnpts:maxmana;
         stamina = maxstamina;
-        pscript = GetComponent<PlayerScript>();
+        if (this.gameObject.tag == "Old")
+        {
+            oldscript = GetComponent<OldOneScript>();
+        }
+        else
+        {
+            pscript = GetComponent<PlayerScript>();
+        }
         staminaregentime = 0.1f;
         staminadepletedskill1 = 10;
         staminadepletedskill1 = 20;
@@ -63,6 +70,10 @@ public class PlayerUIScript : MonoBehaviour {
         {
             DrainSkill2();
         }
+        else if (gmscript.GetComponent<GMScript>().cskill == 3)
+        {
+            DrainSkill3();
+        }
         //Debug.Log(gmscript.GetComponent<GMScript>().timestop);
         updatehphpandmana();
        // Debug.Log(stamina);
@@ -83,7 +94,12 @@ public class PlayerUIScript : MonoBehaviour {
         if (manapoints <= 0)
         {
             manapoints = 0;
-            pscript.GetComponent<PlayerScript>().Transformtochild();
+            if (gameObject.tag == "Old")
+            {
+                Debug.Log("turnchild");
+                oldscript.Transformtochild();
+            }
+              
         }
     }
 
@@ -94,7 +110,12 @@ public class PlayerUIScript : MonoBehaviour {
         if (manapoints <= 0)
         {
             manapoints = 0;
-            gmscript.GetComponent<GMScript>().timestop = false;
+            if (this.gameObject.tag == "Player")
+            {
+                gmscript.GetComponent<GMScript>().timestop = false;
+                pscript.turnoffeffects();
+            }
+           
            
         }
     }
@@ -106,7 +127,12 @@ public class PlayerUIScript : MonoBehaviour {
         if (manapoints <= 0)
         {
             manapoints = 0;
-            gmscript.GetComponent<GMScript>().timestop = false;
+            if (this.gameObject.tag == "Player")
+            {
+               
+                pscript.turnoffeffects3();
+            }
+
 
         }
     }

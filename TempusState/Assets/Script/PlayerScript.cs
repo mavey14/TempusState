@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour {
 
     float zmov, speed;
-    Vector3 velo,pastpos;
+    Vector3 velo;
     Rigidbody rb;
     private bool move, turn;
     [HideInInspector]
@@ -14,6 +14,7 @@ public class PlayerScript : MonoBehaviour {
     [HideInInspector]
     public int noclicks;
     bool canclick;
+    public bool backtrack;
     [SerializeField]
     GameObject old;
     [SerializeField]
@@ -36,6 +37,7 @@ public class PlayerScript : MonoBehaviour {
         pui = GetComponent<PlayerUIScript>();
         noclicks = 0;
         canclick = true;
+        backtrack = false;
         
     }
 
@@ -83,33 +85,57 @@ public class PlayerScript : MonoBehaviour {
             StartCoroutine(TransformtoOld());
 
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha1) && gm.GetComponent<GMScript>().cskill == 1)
-        {
-            Transformtochild();
-           
-        }
         else if (Input.GetKeyDown(KeyCode.Alpha2) && gm.GetComponent<GMScript>().cskill == 0 && pui.mnpts > 0)
         {
-            gm.GetComponent<GMScript>().cskill = 2;
-            gm.GetComponent<GMScript>().timestop = true;
+            
+            StartCoroutine(Freeze());
+
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2) && gm.GetComponent<GMScript>().cskill == 2)
         {
             gm.GetComponent<GMScript>().cskill = 0;
             gm.GetComponent<GMScript>().timestop = false;
+            SkillEffects[01].SetActive(false);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3) && gm.GetComponent<GMScript>().cskill == 0&& pui.mnpts >0)
         {
-            if (pastpos != Vector3.zero)
-            {
-                pui.mnpts -= 40;
-                transform.position = pastpos;
-            }
-
-
+            backtrack = true;
+            gm.GetComponent<GMScript>().cskill = 3;
+            StartCoroutine(BackTrack());
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3) && gm.GetComponent<GMScript>().cskill == 3)
+        {
+            gm.GetComponent<GMScript>().cskill = 0;
+            backtrack = false;
+            SkillEffects[02].SetActive(false);
         }
     }
 
+    public IEnumerator BackTrack()
+    {
+        SkillEffects[02].SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        SkillEffects[02].SetActive(false);
+    }
+
+    public void turnoffeffects3()
+    {
+        SkillEffects[02].SetActive(false);
+    }
+
+    public void turnoffeffects()
+    {
+        SkillEffects[01].SetActive(false);
+    }
+
+    IEnumerator Freeze()
+    {
+        panim.SetTrigger("freeze");
+        yield return new WaitForSeconds(1f);
+        SkillEffects[01].SetActive(true);
+        gm.GetComponent<GMScript>().cskill = 2;
+        gm.GetComponent<GMScript>().timestop = true;
+    }
 
     IEnumerator TransformtoOld()
     {
@@ -126,19 +152,19 @@ public class PlayerScript : MonoBehaviour {
         this.gameObject.SetActive(false);
     }
 
-    public void Transformtochild()
-    {
-        //old.SetActive(true);
-        //resetanim();
-        ////yield return new WaitForSeconds(1f);
-        //gm.GetComponent<GMScript>().cskill = 0;
-        //noclicks = 0;
-        //old.GetComponent<Transform>().position = new Vector3(transform.position.x, transform.position.y+4f,
-        //    transform.position.z);
-        //old.GetComponent<Transform>().transform.rotation = transform.rotation;
-        //this.gameObject.SetActive(false);
-        Debug.Log("test");
-    }
+    //public void Transformtochild()
+    //{
+    //    //old.SetActive(true);
+    //    //resetanim();
+    //    ////yield return new WaitForSeconds(1f);
+    //    //gm.GetComponent<GMScript>().cskill = 0;
+    //    //noclicks = 0;
+    //    //old.GetComponent<Transform>().position = new Vector3(transform.position.x, transform.position.y+4f,
+    //    //    transform.position.z);
+    //    //old.GetComponent<Transform>().transform.rotation = transform.rotation;
+    //    //this.gameObject.SetActive(false);
+    //    Debug.Log("test");
+    //}
 
     void resetanim()
     {

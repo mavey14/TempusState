@@ -70,6 +70,7 @@ public class OldOneScript : MonoBehaviour {
             Transformtochild();
 
         }
+        
        
     }
 
