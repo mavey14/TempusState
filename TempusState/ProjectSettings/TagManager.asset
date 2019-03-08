@@ -9,6 +9,11 @@ TagManager:
   - Lantern
   - Gboss
   - Old
+  - Meteor
+  - FB
+  - explo
+  - GA
+  - tr
   layers:
   - Default
   - TransparentFX

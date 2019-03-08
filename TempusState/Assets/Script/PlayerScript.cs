@@ -87,7 +87,6 @@ public class PlayerScript : MonoBehaviour {
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2) && gm.GetComponent<GMScript>().cskill == 0 && pui.mnpts > 0)
         {
-            
             StartCoroutine(Freeze());
 
         }

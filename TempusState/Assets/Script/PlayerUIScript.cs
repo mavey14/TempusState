@@ -44,9 +44,9 @@ public class PlayerUIScript : MonoBehaviour {
             pscript = GetComponent<PlayerScript>();
         }
         staminaregentime = 0.1f;
-        manadepletedskill1 = 10;
-        manadepletedskill1 = 20;
-        manadepletedskill1 = 30;
+        manadepletedskill1 = 10f;
+        manadepletedskill2= 20f;
+        manadepletedskill3 = 30f;
         //currenthb = GetComponent<Image>();
     }
 	
@@ -68,6 +68,7 @@ public class PlayerUIScript : MonoBehaviour {
         }
         else if (gmscript.GetComponent<GMScript>().cskill == 2)
         {
+            Debug.Log("test");
             DrainSkill2();
         }
         else if (gmscript.GetComponent<GMScript>().cskill == 3)
@@ -78,11 +79,11 @@ public class PlayerUIScript : MonoBehaviour {
         updatehphpandmana();
         // Debug.Log(stamina);
 
-        if (!pscript.panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge") && stamina < 100 && this.gameObject.tag == "Player")
-        {
-            stamina += Time.deltaTime / staminaregentime;
-            stamina = Mathf.Clamp(stamina, 0f, 100f);
-        }
+        //if (!pscript.panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge") && stamina < 100 && this.gameObject.tag == "Player")
+        //{
+        //    stamina += Time.deltaTime / staminaregentime;
+        //    stamina = Mathf.Clamp(stamina, 0f, 100f);
+        //}
     }
 
     
@@ -105,7 +106,7 @@ public class PlayerUIScript : MonoBehaviour {
 
     void DrainSkill2()
     {
-
+        Debug.Log("test2");
         manapoints -= manadepletedskill2 * Time.deltaTime;
         if (manapoints <= 0)
         {
