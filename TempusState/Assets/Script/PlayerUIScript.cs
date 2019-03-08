@@ -24,9 +24,9 @@ public class PlayerUIScript : MonoBehaviour {
     private static float stamina;
     private float maxstamina;
     float staminaregentime;
-    float staminadepletedskill1;
-    float staminadepletedskill2;
-    float staminadepletedskill3;
+    float manadepletedskill1;
+    float manadepletedskill2;
+    float manadepletedskill3;
     // Use this for initialization
     void Start () {
         maxhp = 150;
@@ -44,9 +44,9 @@ public class PlayerUIScript : MonoBehaviour {
             pscript = GetComponent<PlayerScript>();
         }
         staminaregentime = 0.1f;
-        staminadepletedskill1 = 10;
-        staminadepletedskill1 = 20;
-        staminadepletedskill1 = 30;
+        manadepletedskill1 = 10;
+        manadepletedskill1 = 20;
+        manadepletedskill1 = 30;
         //currenthb = GetComponent<Image>();
     }
 	
@@ -76,13 +76,13 @@ public class PlayerUIScript : MonoBehaviour {
         }
         //Debug.Log(gmscript.GetComponent<GMScript>().timestop);
         updatehphpandmana();
-       // Debug.Log(stamina);
-        
-        //if (!pscript.panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge")&&stamina<100&&this.gameObject.tag=="Player")
-        //{
-        //    stamina += Time.deltaTime/staminaregentime;
-        //    stamina = Mathf.Clamp(stamina, 0f, 100f);
-        //}
+        // Debug.Log(stamina);
+
+        if (!pscript.panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge") && stamina < 100 && this.gameObject.tag == "Player")
+        {
+            stamina += Time.deltaTime / staminaregentime;
+            stamina = Mathf.Clamp(stamina, 0f, 100f);
+        }
     }
 
     
@@ -90,7 +90,7 @@ public class PlayerUIScript : MonoBehaviour {
     void DrainSkill1()
     {
 
-        manapoints -= 10 * Time.deltaTime;
+        manapoints -= manadepletedskill1 * Time.deltaTime;
         if (manapoints <= 0)
         {
             manapoints = 0;
@@ -106,7 +106,7 @@ public class PlayerUIScript : MonoBehaviour {
     void DrainSkill2()
     {
 
-        manapoints -= 20 * Time.deltaTime;
+        manapoints -= manadepletedskill2 * Time.deltaTime;
         if (manapoints <= 0)
         {
             manapoints = 0;
@@ -123,7 +123,7 @@ public class PlayerUIScript : MonoBehaviour {
     void DrainSkill3()
     {
 
-        manapoints -= 20 * Time.deltaTime;
+        manapoints -= manadepletedskill3 * Time.deltaTime;
         if (manapoints <= 0)
         {
             manapoints = 0;

@@ -471,6 +471,15 @@ Prefab:
       propertyPath: m_Drag
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114481047498748408, guid: 491635e81da0b284997d4200affae7f7,
+        type: 2}
+      propertyPath: old
+      value: 
+      objectReference: {fileID: 1836784180}
+    - target: {fileID: 4740438234542624, guid: 491635e81da0b284997d4200affae7f7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -3.53
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 491635e81da0b284997d4200affae7f7, type: 2}
   m_IsPrefabAsset: 0
@@ -17549,6 +17558,16 @@ Prefab:
       propertyPath: young
       value: 
       objectReference: {fileID: 1114625094}
+    - target: {fileID: 114109576714879998, guid: 0c3a8845363a06f459aabfb8a17ab29b,
+        type: 2}
+      propertyPath: young
+      value: 
+      objectReference: {fileID: 1114625093}
+    - target: {fileID: 114109576714879998, guid: 0c3a8845363a06f459aabfb8a17ab29b,
+        type: 2}
+      propertyPath: gm
+      value: 
+      objectReference: {fileID: 1018878695}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c3a8845363a06f459aabfb8a17ab29b, type: 2}
   m_IsPrefabAsset: 0
