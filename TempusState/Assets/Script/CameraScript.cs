@@ -8,13 +8,13 @@ public class CameraScript : MonoBehaviour {
     private Transform[] lookAt;
     private Transform camTransform;
     private Camera cam;
-    private float distance = 20f;
+    private float distance = 10f;
     private float currentX = 0f;
     private float currentY = 0f;
     //private float sensitivityX = 4.0f;
     //private float sensitivityY = 1f;
-    private const float anglemin = -20f;
-    private const float anglemax = 60f;
+    private const float anglemin = -10f;
+    private const float anglemax = 20f;
     private const float Maxdistance = 20f;
     private const float MinDistance = 5f;
     int target;
