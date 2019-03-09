@@ -43,6 +43,13 @@ public class GMScript : MonoBehaviour {
             SceneManager.LoadScene("VolcanoBoss");
         }
     }
+
+    public void removeCursor()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     public void NormalMode()
     {
         //difficulty = 0;

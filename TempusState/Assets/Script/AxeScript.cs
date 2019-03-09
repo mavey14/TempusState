@@ -10,7 +10,7 @@ public class AxeScript : MonoBehaviour {
     private GameObject gmscript;
     [SerializeField]
     private BoxCollider axebox;
-
+  
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Gboss"  && 
@@ -44,6 +44,54 @@ public class AxeScript : MonoBehaviour {
             other.GetComponent<SkeletonScript>().ReduceHP();
             player.GetComponent<PlayerUIScript>().addmana();
             
+        }
+
+        if (other.tag == "la" &&
+            player.GetComponent<PlayerScript>().noclicks != 0)
+        {
+            other.GetComponent<RuinUISci>().Damage(10f);
+
+            player.GetComponent<PlayerUIScript>().addmana();
+
+        }
+        else if (other.tag == "la" &&
+             player.GetComponent<PlayerScript>().panim.GetCurrentAnimatorStateInfo(0).IsName("HeavyAttack"))
+        {
+            other.GetComponent<RuinUISci>().Damage(20f);
+            player.GetComponent<PlayerUIScript>().addmana();
+
+        }
+
+        if (other.tag == "lr" &&
+           player.GetComponent<PlayerScript>().noclicks != 0)
+        {
+            other.GetComponent<RuinUISci>().Damage(10f);
+
+            player.GetComponent<PlayerUIScript>().addmana();
+
+        }
+        else if (other.tag == "lr" &&
+             player.GetComponent<PlayerScript>().panim.GetCurrentAnimatorStateInfo(0).IsName("HeavyAttack"))
+        {
+            other.GetComponent<RuinUISci>().Damage(20f);
+            player.GetComponent<PlayerUIScript>().addmana();
+
+        }
+
+        if (other.tag == "wb" &&
+           player.GetComponent<PlayerScript>().noclicks != 0)
+        {
+            other.GetComponent<RuinUISci>().Damage(10f);
+
+            player.GetComponent<PlayerUIScript>().addmana();
+
+        }
+        else if (other.tag == "wb" &&
+             player.GetComponent<PlayerScript>().panim.GetCurrentAnimatorStateInfo(0).IsName("HeavyAttack"))
+        {
+            other.GetComponent<RuinUISci>().Damage(20f);
+            player.GetComponent<PlayerUIScript>().addmana();
+
         }
 
     }

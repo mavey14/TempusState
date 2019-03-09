@@ -65,6 +65,26 @@ public class RuinBoss : MonoBehaviour {
             //anim.SetBool("Move", true);
         }
 
+        if (Input.GetKeyDown(KeyCode.V) && this.gameObject.tag == "la")
+        {
+            Destroy(this.gameObject);
+            // anim.SetBool("Idle", false);
+            //anim.SetBool("Move", true);
+        }
+        else if (Input.GetKeyDown(KeyCode.B) && this.gameObject.tag == "lr")
+        {
+            Destroy(this.gameObject);
+            // anim.SetBool("Idle", false);
+            //anim.SetBool("Move", true);
+        }
+        else if (Input.GetKeyDown(KeyCode.N) && this.gameObject.tag == "wb")
+        {
+            Destroy(this.gameObject);
+            // anim.SetBool("Idle", false);
+            //anim.SetBool("Move", true);
+        }
+
+
         switch (astate)
         {
             case Armstate.idle:
@@ -118,6 +138,8 @@ public class RuinBoss : MonoBehaviour {
 
         }
     }
+
+
 
     IEnumerator AttackCD()
     {
