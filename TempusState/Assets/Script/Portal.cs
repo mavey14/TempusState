@@ -20,13 +20,13 @@ public class Portal : MonoBehaviour {
     {
         if (activate == true&& other.gameObject.tag == "Player")
         {
-            Debug.Log("asda");
+           // Debug.Log("asda");
 
-             Debug.Log("test saan galing ");
+            // Debug.Log("test saan galing ");
              Vector3 dir = (Player.GetComponent<Transform>().position - this.transform.position).normalized;
                 if (Vector3.Dot(dir, Vector3.forward) > 0)
                 {
-                    Debug.Log("Enter");
+                  //  Debug.Log("Enter");
                 //collide = true;
                 //Debug.Log(collide);
                     obsenter.SetActive(true);

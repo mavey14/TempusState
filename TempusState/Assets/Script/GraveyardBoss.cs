@@ -18,13 +18,19 @@ public class GraveyardBoss : MonoBehaviour {
     public float rotSpeed = 1f;
     float speed = 8f;
     float accuracyWP = 20f;
-    bool canattack,summontotem, summonminions, spit;
+    bool canattack,heal, summonminions, spit;
     public int Attack;
     AnimatorStateInfo charPlayerStateInfo;
     [SerializeField]
     GameObject gmscript;
     Rigidbody rb;
-    
+    [SerializeField]
+    GameObject[] skilleffects;
+    [SerializeField]
+    Transform skillpos;
+    [SerializeField]
+    GameObject Minios;
+    BossUIScript buiscript;
     public enum BossState{Patrol,Battlemode,Death};
     public enum PhaseState { phase1, phase2, phase3 };
 
@@ -38,8 +44,10 @@ public class GraveyardBoss : MonoBehaviour {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         canattack = true;
-        summontotem = summontotem = spit = false;
+        heal = spit = false;
         Attack = 0;
+        buiscript = GetComponent<BossUIScript>();
+
 	}
 	
 	// Update is called once per frame
@@ -69,11 +77,24 @@ public class GraveyardBoss : MonoBehaviour {
                 break;
 
         }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            pstate = PhaseState.phase1;
+        }
+        else if (Input.GetKeyDown(KeyCode.O))
+        {
+            pstate = PhaseState.phase2;
+        }
+        else if (Input.GetKeyDown(KeyCode.P))
+        {
+            pstate = PhaseState.phase3;
+        }
         //Debug.Log("Boss State" + bstate.ToString());
         //Debug.Log("Lanter " + lanterncount);
         //Debug.Log(countattack);
         //Debug.Log("Canattack " + canattack);
-	}
+    }
 
 
 
@@ -165,15 +186,15 @@ public class GraveyardBoss : MonoBehaviour {
 
     void phase2Attack()
     {
-        Attack = Random.Range(1, 6);
-        if (Attack == 5 && summonminions == false)
+        Attack = Random.Range(1,5);
+
+        if (Attack == 4)
         {
-            //summon minions
-            summonminions = true;
+            StartCoroutine(slam());
         }
         else
         {
-            Attack = Random.Range(1, 5);
+            Attack = Random.Range(1,4);
         }
 
         anim.SetInteger("Attack", Attack);
@@ -185,37 +206,55 @@ public class GraveyardBoss : MonoBehaviour {
     void phase3Attack()
     {
 
-        Attack = Random.Range(1, 8);
-        if (Attack == 5 && summonminions == false)
+        Attack = Random.Range(1,7);
+        if (Attack == 4)
         {
-            //summon minions
+            StartCoroutine(slam());
+        }
+        else if (Attack == 5 && spit == false)
+        {
+            //summon spit
             Debug.Log("summon minions");
-            // StartCoroutine(Reset());
-            summonminions = true;
-        }
-        else if (Attack == 7 && summontotem == false)
-        {
-            //summon Totem
-            Debug.Log("summon totem");
-            //StartCoroutine(Reset2());
-            summontotem = true;
-        }
-        else if (Attack == 6 && spit == false)
-        {
-            //summon poison
-            Debug.Log("Spit");
-            //StartCoroutine(Reset3());
+            skilleffects[1].SetActive(true);
             spit = true;
+        }
+        else if (Attack == 6 && heal == false)
+        {
+
+            buiscript.Heal();
+            heal = true;
         }
         else
         {
-            Attack = Random.Range(1, 5);
+            Attack = Random.Range(1, 4);
         }
 
         anim.SetInteger("Attack", Attack);
         anim.SetBool("Idle", true);
         anim.SetBool("Running", false);
         StartCoroutine(AttackCD());
+    }
+
+    IEnumerator CDskill()
+    {
+        yield return new WaitForSeconds(60);
+        heal = false;
+    }
+
+    IEnumerator slam()
+    { 
+
+        yield return new WaitForSeconds(0.3f);
+        GameObject obj = (GameObject)Instantiate(skilleffects[0], skillpos.transform.position, Quaternion.identity);
+        
+    }
+
+    void GroundAttack()
+    {
+
+        //Destroy(obj,2f);
+       // GameObject obj = (GameObject)Instantiate(Skilleffects[3], new Vector3(direct.x, direct.y + 2f, direct.z), Quaternion.identity);
+        Debug.Log("Explosion");
     }
 
     IEnumerator AttackCD()

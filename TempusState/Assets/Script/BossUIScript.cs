@@ -51,4 +51,9 @@ public class BossUIScript : MonoBehaviour {
         if (currenthb)
             currenthb.fillAmount = hitpoints / maxhp;
     }
+
+    public void Heal()
+    {
+        hitpoints += 200f;
+    }
 }

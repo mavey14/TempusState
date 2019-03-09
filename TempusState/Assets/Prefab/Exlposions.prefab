@@ -36,6 +36,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4611670776272386}
+  - component: {fileID: 114225793588524024}
   m_Layer: 0
   m_Name: Exlposions
   m_TagString: explo
@@ -70,6 +71,19 @@ Transform:
   m_Father: {fileID: 4611670776272386}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114225793588524024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1815972120670062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 413b4d58114710f438b3c546e9f10cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {x: 0, y: 0, z: 0}
+  waypoints: []
 --- !u!198 &198512530774749998
 ParticleSystem:
   m_ObjectHideFlags: 1

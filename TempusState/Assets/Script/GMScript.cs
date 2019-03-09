@@ -18,9 +18,31 @@ public class GMScript : MonoBehaviour {
     void Start () {
         timestop = false;
         cskill = 0;
-	}
-	
-	
+        
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+           // Debug.Log("asda");
+            SceneManager.LoadScene("GraveyardStages");
+           // SceneManager.LoadScene("Graveyard");
+        }
+        else if (Input.GetKeyDown(KeyCode.F2))
+        {
+            SceneManager.LoadScene("Graveyard");
+          //  SceneManager.LoadScene("GraveyardStages");
+        }
+        else if (Input.GetKeyDown(KeyCode.F3))
+        {
+            SceneManager.LoadScene("Ruins");
+        }
+        else if (Input.GetKeyDown(KeyCode.F4))
+        {
+            SceneManager.LoadScene("VolcanoBoss");
+        }
+    }
     public void NormalMode()
     {
         //difficulty = 0;

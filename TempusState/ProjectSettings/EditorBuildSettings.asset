@@ -11,4 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Graveyard.unity
     guid: f260e517a0f7ba341aaf49c716a59a24
+  - enabled: 1
+    path: Assets/GraveyardStages.unity
+    guid: e22d386f40b46cc4897303925aca7e62
+  - enabled: 1
+    path: Assets/Ruins.unity
+    guid: 170f55785c5e8df4a9f7bd08c18fdcf4
+  - enabled: 1
+    path: Assets/VolcanoBoss.unity
+    guid: 6bc7b8af4f5626546abcc9c364fffb17
   m_configObjects: {}

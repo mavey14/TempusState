@@ -19,7 +19,7 @@ public class LavaAttack : MonoBehaviour {
         if (this.gameObject.tag == "FB")
             Destroy(this.gameObject, 1f);
         else if (this.gameObject.tag == "meteor")
-            Destroy(this.gameObject, 7f);
+            Destroy(this.gameObject, 5f);
         else if (this.gameObject.tag == "GA")
             Destroy(this.gameObject,1f);
         else if (this.gameObject.tag == "explo")
