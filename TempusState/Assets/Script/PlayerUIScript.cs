@@ -79,11 +79,15 @@ public class PlayerUIScript : MonoBehaviour {
         updatehphpandmana();
         // Debug.Log(stamina);
 
-        if (!pscript.panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge") && stamina < 100 && this.gameObject.tag == "Player")
+        if (this.gameObject.tag == "Player")
         {
-            stamina += Time.deltaTime / staminaregentime;
-            stamina = Mathf.Clamp(stamina, 0f, 100f);
+            if (!pscript.panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge") && stamina < 100)
+            {
+                stamina += Time.deltaTime / staminaregentime;
+                stamina = Mathf.Clamp(stamina, 0f, 100f);
+            }
         }
+       
     }
 
     
