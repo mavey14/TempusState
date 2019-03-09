@@ -25,9 +25,11 @@ public class SkeletonScript : MonoBehaviour {
     public int noattack;
     int HP;
     bool awake;
+    [SerializeField]
+    GameObject gmscript;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         estate = EnemyState.Sleep;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
@@ -41,6 +43,7 @@ public class SkeletonScript : MonoBehaviour {
 	void Update () {
         if (awake == true)
         {
+            anim.enabled = !gmscript.GetComponent<GMScript>().timestop;
             if (YoungOne.activeSelf == true)
             {
                 direct = YoungOne.GetComponent<Transform>().transform.position - this.transform.position;
@@ -59,7 +62,8 @@ public class SkeletonScript : MonoBehaviour {
                 //    AwakeEne(direct);
                 //    break;
                 case EnemyState.Battle:
-                    Battle(direct, angle);
+                    if (gmscript.GetComponent<GMScript>().timestop == false)
+                        Battle(direct, angle);
                     break;
                 case EnemyState.Death:
                     break;
