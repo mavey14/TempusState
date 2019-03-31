@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 
 public class GMScript : MonoBehaviour {
 
@@ -12,6 +12,7 @@ public class GMScript : MonoBehaviour {
     public int cskill;
     [SerializeField]
     private GameObject uiportal;
+    public GameObject[] loadingScreen;
 
 
     // Use this for initialization
@@ -70,12 +71,27 @@ public class GMScript : MonoBehaviour {
         Application.Quit();
     }
 
-    public void ChangeCemeterySceene()
+
+    public void LoadLevel(int sceneIndex)
     {
-        SceneManager.LoadScene("Graveyard");
+
+        StartCoroutine(LoadAscynchronously(sceneIndex));
     }
 
+    IEnumerator LoadAscynchronously(int sceneIndex)
+    {
+        AsyncOperation operation = SceneManager
+            .LoadSceneAsync(sceneIndex);
+        loadingScreen[0].SetActive(true);
+        while (!operation.isDone)
+        {
+            //float progress = Mathf.Clamp01(operation.progress / .9f);
+            //slider.value = progress;
+            //progressText.text = progress * 100f + "%";
+            yield return null;
+        }
 
+    }
 
     private void OnTriggerEnter(Collider other)
     {
