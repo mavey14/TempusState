@@ -29,14 +29,18 @@ public class Portal : MonoBehaviour {
                   //  Debug.Log("Enter");
                 //collide = true;
                 //Debug.Log(collide);
-                    obsenter.SetActive(true);
-                    obsexit.SetActive(false);
+                   if(obsenter!=null)
+                    obsenter.SetActive(false);
+                    //if (obsexit != null)
+                    //obsexit.SetActive(true);
                  }
                 else /*if (Vector3.Dot(dir, transform.forward) < 0)*/
                 {
                     Debug.Log("Exit");
-                    obsenter.SetActive(false);
-                    obsexit.SetActive(true);
+                    if (obsenter != null)
+                    obsenter.SetActive(true);
+                    // if (obsexit != null)
+                    //obsexit.SetActive(false);
                 }
 
             StartCoroutine(Reactive());

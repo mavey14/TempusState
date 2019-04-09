@@ -13,6 +13,7 @@ public class SkeletonScript : MonoBehaviour {
     [SerializeField]
     private Transform SkelExplodePos;
     Vector3 direct;
+    CapsuleCollider skellcolider;
     //[SerializeField]
     //GameObject DeathExplode;
     Animator anim;
@@ -27,9 +28,11 @@ public class SkeletonScript : MonoBehaviour {
     bool awake;
     [SerializeField]
     GameObject gmscript;
+    Vector3 origpos;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         estate = EnemyState.Sleep;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
@@ -37,7 +40,13 @@ public class SkeletonScript : MonoBehaviour {
         direct = Vector3.zero;
         HP = 3;
         awake = false;
-	}
+        origpos = transform.position;
+        skellcolider = GetComponent<CapsuleCollider>();
+        skellcolider.enabled = true;
+        //Debug.Log(gameObject.name + " " + origpos);
+        //foreach (Transform child in transform)
+        //    child.gameObject.SetActive(false);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -69,8 +78,24 @@ public class SkeletonScript : MonoBehaviour {
                     break;
             }
         }
-       
-	}
+
+        if (Input.GetKeyDown(KeyCode.F9))
+        {
+            Debug.Log("test");
+            awake = true;
+            
+            anim.SetBool("Awake", awake);
+            estate = EnemyState.Battle;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F10))
+        {
+            ReduceHP();
+        }
+
+
+
+    }
 
     //void AwakeEne(Vector3 direct)
     //{
@@ -124,6 +149,7 @@ public class SkeletonScript : MonoBehaviour {
         if (other.tag == "Player" || other.tag == "Old")
         {
             awake = true;
+            FindObjectOfType<Audiomanager>().Play("SkeletonForm");
             anim.SetBool("Awake", awake);
             estate = EnemyState.Battle;
         }
@@ -134,10 +160,38 @@ public class SkeletonScript : MonoBehaviour {
         HP--;
         if (HP == 0)
         {
+            FindObjectOfType<Audiomanager>().Play("SkeletonDeath");
             GameObject vey = Instantiate(SkelExplode,SkelExplodePos.transform.position, Quaternion.identity);
+            foreach (Transform child in transform)
+                child.gameObject.SetActive(false);
+            skellcolider.enabled = false;
+            Invoke("Revive",10f);
             Destroy(vey, 1.5f);
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
+    }
+
+    void Revive()
+    {
+        transform.position = origpos;
+        foreach (Transform child in transform)
+            child.gameObject.SetActive(true);
+        skellcolider.enabled = true;
+        resetall ();
+    }
+
+    public void resetall()
+    {
+        HP = 3;
+        estate = EnemyState.Sleep;
+        awake = false;
+        noattack = 0;
+        anim.SetBool("Awake",awake);
+        anim.SetInteger("Attack", 0);
+        anim.SetBool("Idle", false);
+        anim.SetBool("Run", false);
+        anim.Play("Sleep");
+      
     }
 
 }

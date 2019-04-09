@@ -17,6 +17,10 @@ public class PlayerUIScript : MonoBehaviour {
     GameObject gmscript;
     [SerializeField]
     PlayerUIScript young;
+    [SerializeField]
+    Image[] cdimage;
+    float cd;
+    public bool iscd;
     private static float hitpoints;
     private float maxhp;
     private static float manapoints;
@@ -27,6 +31,7 @@ public class PlayerUIScript : MonoBehaviour {
     float manadepletedskill1;
     float manadepletedskill2;
     float manadepletedskill3;
+
     // Use this for initialization
     void Start () {
         maxhp = 150;
@@ -35,6 +40,7 @@ public class PlayerUIScript : MonoBehaviour {
         hitpoints = this.gameObject.tag == "Old" ? young.hpts : maxhp;
         manapoints = this.gameObject.tag=="Old"?young.mnpts:maxmana;
         stamina = maxstamina;
+        cd = 4f;
         if (this.gameObject.tag == "Old")
         {
             oldscript = GetComponent<OldOneScript>();
@@ -87,6 +93,21 @@ public class PlayerUIScript : MonoBehaviour {
                 stamina = Mathf.Clamp(stamina, 0f, 100f);
             }
         }
+
+        if (iscd)
+        {
+            cdimage[0].fillAmount += 1/cd * Time.deltaTime;
+            cdimage[1].fillAmount += 1 / cd * Time.deltaTime;
+            cdimage[2].fillAmount += 1 / cd * Time.deltaTime;
+
+            if (cdimage[0].fillAmount >= 1)
+            {
+                cdimage[0].fillAmount = 0;
+                cdimage[1].fillAmount = 0;
+                cdimage[2].fillAmount = 0;
+                iscd = false;
+            }
+        }
        
     }
 
@@ -98,10 +119,12 @@ public class PlayerUIScript : MonoBehaviour {
         manapoints -= manadepletedskill1 * Time.deltaTime;
         if (manapoints <= 0)
         {
+            iscd = true;
             manapoints = 0;
             if (gameObject.tag == "Old")
             {
                 Debug.Log("turnchild");
+                FindObjectOfType<Audiomanager>().Play("SkillAge");
                 oldscript.Transformtochild();
             }
               
@@ -114,10 +137,12 @@ public class PlayerUIScript : MonoBehaviour {
         manapoints -= manadepletedskill2 * Time.deltaTime;
         if (manapoints <= 0)
         {
+            iscd = true;
             manapoints = 0;
             if (this.gameObject.tag == "Player")
             {
                 gmscript.GetComponent<GMScript>().timestop = false;
+                FindObjectOfType<Audiomanager>().Stop("SkillTimeStop");
                 pscript.turnoffeffects();
             }
            
@@ -131,6 +156,7 @@ public class PlayerUIScript : MonoBehaviour {
         manapoints -= manadepletedskill3 * Time.deltaTime;
         if (manapoints <= 0)
         {
+            iscd = true;
             manapoints = 0;
             if (this.gameObject.tag == "Player")
             {

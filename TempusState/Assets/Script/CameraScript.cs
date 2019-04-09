@@ -20,32 +20,81 @@ public class CameraScript : MonoBehaviour {
     int target;
     [SerializeField]
     GameObject gmscript;
+    bool camerashake;
+    bool shakecd;
 	// Use this for initialization
 	void Start () {
         camTransform = transform;
         target=0;
+        camerashake = shakecd=false;
+
 	}
 	
 	// Update is called once per frame
 	private void Update ()
     {
-        currentX += Input.GetAxis("Mouse X");
-        currentY += Input.GetAxis("Mouse Y") * -1f;
-        currentY = Mathf.Clamp(currentY, anglemin, anglemax);
+            currentX += Input.GetAxis("Mouse X");
+            currentY += Input.GetAxis("Mouse Y") * -1f;
+            currentY = Mathf.Clamp(currentY, anglemin, anglemax);
 
-        distance += Input.GetAxis("Mouse ScrollWheel") * 10f;
-        distance = Mathf.Clamp(distance, MinDistance, Maxdistance);
+            distance += Input.GetAxis("Mouse ScrollWheel") * 10f;
+            distance = Mathf.Clamp(distance, MinDistance, Maxdistance);
 
-        changetarget();
-	}
+            changetarget();
+
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            camerashake = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.L))
+        {
+            camerashake = false;
+        }
+
+    }
 
     private void LateUpdate()
     {
-        Vector3 dir = new Vector3(0, 0, -distance);
-        Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
-        camTransform.position = lookAt[target].position + rotation * dir;
+        if (camerashake == false)
+        {
+            Vector3 dir = new Vector3(0, 0, -distance);
+            Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
+            camTransform.position = lookAt[target].position + rotation * dir;
 
-        camTransform.LookAt(lookAt[target].position);
+            camTransform.LookAt(lookAt[target].position);
+        }
+        else if (camerashake == true)
+        {
+           // if(shakecd==false)
+            StartCoroutine(shake(.1f, .1f));
+            //shakecd = true;
+        }
+       
+    }
+
+    IEnumerator shake(float duration, float magnitude)
+    {
+
+      // Vector3 originalPos = transform.position;
+        float elapsed = 0.0f;
+
+        while (elapsed < duration)
+        {
+            float x = Random.Range(-1f, 1f)*magnitude;
+            float y = Random.Range(-1f, 1f) * magnitude;
+            transform.position = new Vector3(transform.position.x+x, transform.position.y+y,transform.position.z);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+
+
+        }
+       //transform.position = originalPos;
+        yield return new WaitForSeconds(.2f);
+        camerashake = false;
+       // yield return new WaitForSeconds(5f);
+       // shakecd = false;
     }
 
     void changetarget()

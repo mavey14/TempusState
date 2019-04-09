@@ -17,6 +17,8 @@ public class AxeScript : MonoBehaviour {
              player.GetComponent<PlayerScript>().noclicks!=0)
         {
             other.GetComponent<BossUIScript>().Damage(15);
+            FindObjectOfType<Audiomanager>().Play("EnemyHit");
+            FindObjectOfType<Audiomanager>().Play("GAmbience");
             player.GetComponent<PlayerUIScript>().addmana();
             if (other.GetComponent<GraveyardBoss>().bstate != GraveyardBoss.BossState.Battlemode)
                 other.GetComponent<GraveyardBoss>().bstate = GraveyardBoss.BossState.Battlemode;
@@ -25,6 +27,7 @@ public class AxeScript : MonoBehaviour {
              player.GetComponent<PlayerScript>().panim.GetCurrentAnimatorStateInfo(0).IsName("HeavyAttack"))
         {
             other.GetComponent<BossUIScript>().Damage(25);
+            FindObjectOfType<Audiomanager>().Play("EnemyHit");
             player.GetComponent<PlayerUIScript>().addmana();
             if (other.GetComponent<GraveyardBoss>().bstate != GraveyardBoss.BossState.Battlemode)
                 other.GetComponent<GraveyardBoss>().bstate = GraveyardBoss.BossState.Battlemode;
@@ -34,7 +37,7 @@ public class AxeScript : MonoBehaviour {
              player.GetComponent<PlayerScript>().noclicks != 0)
         {
             other.GetComponent<SkeletonScript>().ReduceHP();
-
+            FindObjectOfType<Audiomanager>().Play("EnemyHit2");
             player.GetComponent<PlayerUIScript>().addmana();
             
         }
@@ -42,6 +45,7 @@ public class AxeScript : MonoBehaviour {
              player.GetComponent<PlayerScript>().panim.GetCurrentAnimatorStateInfo(0).IsName("HeavyAttack"))
         {
             other.GetComponent<SkeletonScript>().ReduceHP();
+            FindObjectOfType<Audiomanager>().Play("EnemyHit2");
             player.GetComponent<PlayerUIScript>().addmana();
             
         }
@@ -50,7 +54,7 @@ public class AxeScript : MonoBehaviour {
             player.GetComponent<PlayerScript>().noclicks != 0)
         {
             other.GetComponent<RuinUISci>().Damage(10f);
-
+            FindObjectOfType<Audiomanager>().Play("EnemyHit2");
             player.GetComponent<PlayerUIScript>().addmana();
 
         }
@@ -59,6 +63,7 @@ public class AxeScript : MonoBehaviour {
         {
             other.GetComponent<RuinUISci>().Damage(20f);
             player.GetComponent<PlayerUIScript>().addmana();
+            FindObjectOfType<Audiomanager>().Play("EnemyHit2");
 
         }
 
@@ -66,7 +71,7 @@ public class AxeScript : MonoBehaviour {
            player.GetComponent<PlayerScript>().noclicks != 0)
         {
             other.GetComponent<RuinUISci>().Damage(10f);
-
+            FindObjectOfType<Audiomanager>().Play("EnemyHit");
             player.GetComponent<PlayerUIScript>().addmana();
 
         }
@@ -74,6 +79,7 @@ public class AxeScript : MonoBehaviour {
              player.GetComponent<PlayerScript>().panim.GetCurrentAnimatorStateInfo(0).IsName("HeavyAttack"))
         {
             other.GetComponent<RuinUISci>().Damage(20f);
+            FindObjectOfType<Audiomanager>().Play("EnemyHit");
             player.GetComponent<PlayerUIScript>().addmana();
 
         }
@@ -82,7 +88,7 @@ public class AxeScript : MonoBehaviour {
            player.GetComponent<PlayerScript>().noclicks != 0)
         {
             other.GetComponent<RuinUISci>().Damage(10f);
-
+            FindObjectOfType<Audiomanager>().Play("EnemyHit");
             player.GetComponent<PlayerUIScript>().addmana();
 
         }
@@ -90,6 +96,7 @@ public class AxeScript : MonoBehaviour {
              player.GetComponent<PlayerScript>().panim.GetCurrentAnimatorStateInfo(0).IsName("HeavyAttack"))
         {
             other.GetComponent<RuinUISci>().Damage(20f);
+            FindObjectOfType<Audiomanager>().Play("EnemyHit");
             player.GetComponent<PlayerUIScript>().addmana();
 
         }

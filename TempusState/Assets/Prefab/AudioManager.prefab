@@ -1,0 +1,168 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1184606710887660}
+  m_IsPrefabAsset: 1
+--- !u!1 &1184606710887660
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4762139350044650}
+  - component: {fileID: 114745093010417570}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4762139350044650
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1184606710887660}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114745093010417570
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1184606710887660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1036794ec7fb07546bb5c6f0d1912ff4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: SkillAge
+    clip: {fileID: 8300000, guid: 7e9df9b0a210905439de0e6ede0545d2, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SkillTimeStop
+    clip: {fileID: 8300000, guid: 20455bb68e11ddf4895fe787a5179755, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: AxeSwing1
+    clip: {fileID: 8300000, guid: 739e88f73154a2d40822442c72b508a8, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: AxeSwing2
+    clip: {fileID: 8300000, guid: d39a62deb98409140a63e4a3c113ec26, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: AxeSwing3
+    clip: {fileID: 8300000, guid: 77efd3097a76eeb46bb9a23b8c7ea99e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Dodge
+    clip: {fileID: 8300000, guid: 2b4387a3bd3235f49b0473a6c1101a9a, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PlayerHit1
+    clip: {fileID: 8300000, guid: cab215bb89528964cb62d3b7755cbf39, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PlayerHit2
+    clip: {fileID: 8300000, guid: 29b2d2ba4549f7344a904ce1ed65b153, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: GAmbience
+    clip: {fileID: 8300000, guid: e07cd474ba0f40b4e996ac85006fdc15, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: SkeletonForm
+    clip: {fileID: 8300000, guid: 0749a1308887e5849a52d1926a9de80a, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SkeletonDeath
+    clip: {fileID: 8300000, guid: 320da76410d10954dbb0c96cf79bb7e4, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemyHit
+    clip: {fileID: 8300000, guid: a9b203f3f280631478a13ebf4a65a8c6, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemyHit2
+    clip: {fileID: 8300000, guid: bee0a1fe2f7e24e44bbb51c325fe9693, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: RAmbience
+    clip: {fileID: 8300000, guid: 7459b550c5da1a643ab51677d8367ee8, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: RuinSlam
+    clip: {fileID: 8300000, guid: 63a92bc3bf24fc74a96bd5cdc2015277, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: RuinSwipe
+    clip: {fileID: 8300000, guid: bee334e5ec48c924d8bd173533e80a31, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: RuinSlam2
+    clip: {fileID: 8300000, guid: cc5ecf4cd545809409f7bdbda97f66eb, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: VAmbience
+    clip: {fileID: 8300000, guid: 8801f19d3ae0d614d83cfb471ac81445, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: FireBall
+    clip: {fileID: 8300000, guid: d3c7e1c096a6b2042b5f05c630fcae0f, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

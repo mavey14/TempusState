@@ -16,6 +16,7 @@ public class OldOneScript : MonoBehaviour {
     bool canclick;
     [SerializeField]
     GameObject young;
+    [SerializeField]
     PlayerUIScript pui;
     [SerializeField]
     GameObject gm;
@@ -29,7 +30,7 @@ public class OldOneScript : MonoBehaviour {
         move = turn = true;
         rb = GetComponent<Rigidbody>();
         panim = GetComponent<Animator>();
-        pui = GetComponent<PlayerUIScript>();
+        //pui = GetComponent<PlayerUIScript>();
         noclicks = 0;
         canclick = true;
     }
@@ -67,6 +68,7 @@ public class OldOneScript : MonoBehaviour {
     {
          if (Input.GetKeyDown(KeyCode.Alpha1) && gm.GetComponent<GMScript>().cskill == 1)
         {
+           
             Transformtochild();
 
         }
@@ -80,6 +82,7 @@ public class OldOneScript : MonoBehaviour {
         //yield return new WaitForSeconds(1f);
         gm.GetComponent<GMScript>().cskill = 0;
         noclicks = 0;
+        pui.iscd = true;
         young.GetComponent<Transform>().position = new Vector3(transform.position.x, transform.position.y + 4f,
             transform.position.z);
         young.GetComponent<Transform>().transform.rotation = transform.rotation;

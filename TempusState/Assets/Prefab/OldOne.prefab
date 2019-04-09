@@ -999,6 +999,7 @@ MonoBehaviour:
   panim: {fileID: 0}
   noclicks: 0
   young: {fileID: 0}
+  pui: {fileID: 0}
   gm: {fileID: 0}
   SkillEffects: []
   Effects: []
@@ -1018,6 +1019,8 @@ MonoBehaviour:
   currentstam: {fileID: 0}
   gmscript: {fileID: 0}
   young: {fileID: 0}
+  cdimage: []
+  iscd: 0
 --- !u!114 &114171628522491928
 MonoBehaviour:
   m_ObjectHideFlags: 1

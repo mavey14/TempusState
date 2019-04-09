@@ -53,9 +53,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4429741000816638}
+  - component: {fileID: 114355921586473904}
+  - component: {fileID: 65315906254210308}
   m_Layer: 0
   m_Name: Tornado
-  m_TagString: Untagged
+  m_TagString: tr
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,7 +87,7 @@ Transform:
   m_GameObject: {fileID: 1256384362766706}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.0000005, z: 1.0000005}
+  m_LocalScale: {x: 3.8093104, y: 3.809312, z: 3.809312}
   m_Children: []
   m_Father: {fileID: 4429741000816638}
   m_RootOrder: 1
@@ -98,7 +100,7 @@ Transform:
   m_GameObject: {fileID: 1513990570046592}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3.8093104, y: 3.8093104, z: 3.8093104}
   m_Children: []
   m_Father: {fileID: 4429741000816638}
   m_RootOrder: 0
@@ -110,7 +112,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1669207497207092}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.82, y: 4.78, z: 0}
+  m_LocalPosition: {x: 41.5, y: 4.78, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4047018139824412}
@@ -127,11 +129,52 @@ Transform:
   m_GameObject: {fileID: 1966556141455776}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.0000005, z: 1.0000005}
+  m_LocalScale: {x: 3.8093104, y: 3.809312, z: 3.809312}
   m_Children: []
   m_Father: {fileID: 4429741000816638}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!65 &65315906254210308
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1669207497207092}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 16.635796, y: 20.660212, z: 16.633945}
+  m_Center: {x: 0.45170593, y: 9.830106, z: 1.1698761}
+--- !u!114 &114355921586473904
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1669207497207092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 413b4d58114710f438b3c546e9f10cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {x: 0, y: 0, z: 0}
+  waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!198 &198443293460314468
 ParticleSystem:
   m_ObjectHideFlags: 1

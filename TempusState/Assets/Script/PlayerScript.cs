@@ -24,6 +24,8 @@ public class PlayerScript : MonoBehaviour {
     GameObject[] SkillEffects;
     [SerializeField]
     Transform[] Effects;
+    public bool canskill;
+    
     
 
     // Use this for initialization
@@ -38,7 +40,7 @@ public class PlayerScript : MonoBehaviour {
         noclicks = 0;
         canclick = true;
         backtrack = false;
-        
+        canskill = true;
     }
 
     // Update is called once per frame
@@ -60,7 +62,7 @@ public class PlayerScript : MonoBehaviour {
         {
             pturn();
         }
-
+        if(pui.iscd==false)
         Skill();
         AttackandDodge();
 
@@ -71,6 +73,20 @@ public class PlayerScript : MonoBehaviour {
         {
             resetanim();
         }
+        //if (panim.GetCurrentAnimatorStateInfo(0).IsName("LightAttack"))
+        //{
+        //    FindObjectOfType<Audiomanager>().Play("AxeSwing1");
+        //}
+        //else if (panim.GetCurrentAnimatorStateInfo(0).IsName("LightAttack2"))
+        //{
+        //    FindObjectOfType<Audiomanager>().Play("AxeSwing2");
+        //}
+        //else if (panim.GetCurrentAnimatorStateInfo(0).IsName("LightAttack3"))
+        //{
+        //    FindObjectOfType<Audiomanager>().Play("AxeSwing3");
+        //}
+
+
         //Debug.Log(gm.GetComponent<GMScript>().cskill);
     }
 
@@ -79,24 +95,24 @@ public class PlayerScript : MonoBehaviour {
 
     void Skill()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && gm.GetComponent<GMScript>().cskill == 0&&pui.mnpts>0)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && gm.GetComponent<GMScript>().cskill == 0&&pui.mnpts>0&&GMScript.skills[0]==true)
         {
-            
             StartCoroutine(TransformtoOld());
-
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && gm.GetComponent<GMScript>().cskill == 0 && pui.mnpts > 0)
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && gm.GetComponent<GMScript>().cskill == 0 && pui.mnpts > 0 && GMScript.skills[1] == true)
         {
             StartCoroutine(Freeze());
-
+           
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && gm.GetComponent<GMScript>().cskill == 2)
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && gm.GetComponent<GMScript>().cskill == 2 )
         {
             gm.GetComponent<GMScript>().cskill = 0;
             gm.GetComponent<GMScript>().timestop = false;
+            pui.iscd = true;
+            FindObjectOfType<Audiomanager>().Stop("SkillTimeStop");
             SkillEffects[01].SetActive(false);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3) && gm.GetComponent<GMScript>().cskill == 0&& pui.mnpts >0)
+        else if (Input.GetKeyDown(KeyCode.Alpha3) && gm.GetComponent<GMScript>().cskill == 0&& pui.mnpts >0 && GMScript.skills[2] == true)
         {
             backtrack = true;
             gm.GetComponent<GMScript>().cskill = 3;
@@ -105,6 +121,7 @@ public class PlayerScript : MonoBehaviour {
         else if (Input.GetKeyDown(KeyCode.Alpha3) && gm.GetComponent<GMScript>().cskill == 3)
         {
             gm.GetComponent<GMScript>().cskill = 0;
+            pui.iscd = true;
             backtrack = false;
             SkillEffects[02].SetActive(false);
         }
@@ -131,6 +148,7 @@ public class PlayerScript : MonoBehaviour {
     {
         panim.SetTrigger("freeze");
         yield return new WaitForSeconds(1f);
+        FindObjectOfType<Audiomanager>().Play("SkillTimeStop");
         SkillEffects[01].SetActive(true);
         gm.GetComponent<GMScript>().cskill = 2;
         gm.GetComponent<GMScript>().timestop = true;
@@ -140,6 +158,7 @@ public class PlayerScript : MonoBehaviour {
     {
         panim.SetTrigger("age");
         yield return new WaitForSeconds(1f);
+        FindObjectOfType<Audiomanager>().Play("SkillAge");
         Instantiate(SkillEffects[0],Effects[0].transform.position, Quaternion.identity);
         yield return new WaitForSeconds(1f);
         gm.GetComponent<GMScript>().cskill = 1;
@@ -233,16 +252,51 @@ public class PlayerScript : MonoBehaviour {
         }
         if (Input.GetMouseButtonDown(1)&& this.gameObject.name == "YoungOne")
         {
+
             panim.SetTrigger("heavyattack");
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && !panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge")&&this.gameObject.name=="YoungOne"&&pui.stam>=50)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge")&&this.gameObject.name=="YoungOne"&&pui.stam>=50)
         {
-            pui.DodgeStamina();
+            pui.DodgeStamina();       
             panim.SetTrigger("dodge");
 
         }
     }
+
+    public void DodgeSound()
+    {
+        FindObjectOfType<Audiomanager>().Play("Dodge");
+    }
+
+    public void AxeSwing(int no)
+    {
+        FindObjectOfType<Audiomanager>().Play("AxeSwing" + no);
+    }
+
+    void SlashEffects(int no)
+    {
+        SkillEffects[no].SetActive(true);
+        //Debug.Log(no);
+    }
+
+    void SlashEffectsOff(int no)
+    {
+        SkillEffects[no].SetActive(false);
+       // Debug.Log(no);
+    }
+
+    //void Slash2()
+    //{
+    //    StartCoroutine(slash(4));
+    //}
+
+    //IEnumerator slash(int no)
+    //{
+    //    SkillEffects[no].SetActive(true);
+    //    yield return new WaitForSeconds(1f);
+    //    //SkillEffects[no].SetActive(false);
+    //}
 
     void pturn()
     {
