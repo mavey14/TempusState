@@ -29,10 +29,13 @@ public class SkeletonScript : MonoBehaviour {
     [SerializeField]
     GameObject gmscript;
     Vector3 origpos;
+    [SerializeField]
+    GameObject instruction;
 
     // Use this for initialization
     void Start()
     {
+       
         estate = EnemyState.Sleep;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
@@ -46,6 +49,12 @@ public class SkeletonScript : MonoBehaviour {
         //Debug.Log(gameObject.name + " " + origpos);
         //foreach (Transform child in transform)
         //    child.gameObject.SetActive(false);
+        if (gameObject.name == "Tutorial")
+        {
+            awake = true;
+            anim.SetBool("Awake", awake);
+            estate = EnemyState.Battle;
+        }
     }
 	
 	// Update is called once per frame
@@ -160,13 +169,25 @@ public class SkeletonScript : MonoBehaviour {
         HP--;
         if (HP == 0)
         {
+           
             FindObjectOfType<Audiomanager>().Play("SkeletonDeath");
             GameObject vey = Instantiate(SkelExplode,SkelExplodePos.transform.position, Quaternion.identity);
-            foreach (Transform child in transform)
-                child.gameObject.SetActive(false);
-            skellcolider.enabled = false;
-            Invoke("Revive",10f);
-            Destroy(vey, 1.5f);
+            if (gameObject.name == "Tutorial")
+            {
+                Destroy(vey, 1f);
+                if(instruction!=null)
+                instruction.SetActive(true);
+                Destroy(gameObject);
+            }
+            else
+            {
+                foreach (Transform child in transform)
+                    child.gameObject.SetActive(false);
+                skellcolider.enabled = false;
+                Invoke("Revive", 10f);
+                Destroy(vey, 1.5f);
+            }
+          
             //Destroy(this.gameObject);
         }
     }

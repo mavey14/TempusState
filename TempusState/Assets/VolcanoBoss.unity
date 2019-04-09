@@ -587,6 +587,7 @@ MonoBehaviour:
   - {fileID: 279656369}
   - {fileID: 145640812}
   gmscript: {fileID: 2064949224}
+  camerashake: 0
 --- !u!114 &350073670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3432,6 +3433,7 @@ MonoBehaviour:
   Phase3Active:
   - {fileID: 1800322266}
   - {fileID: 1563824713}
+  cm: {fileID: 350073669}
 --- !u!136 &1889827283
 CapsuleCollider:
   m_ObjectHideFlags: 0

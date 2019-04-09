@@ -20,7 +20,7 @@ public class CameraScript : MonoBehaviour {
     int target;
     [SerializeField]
     GameObject gmscript;
-    bool camerashake;
+    public bool camerashake;
     bool shakecd;
 	// Use this for initialization
 	void Start () {

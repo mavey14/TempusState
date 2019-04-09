@@ -14,6 +14,7 @@ public class SwordScript : MonoBehaviour {
         if (other.tag == "Player"  && skel.GetComponent<SkeletonScript>().noattack!=0 &&
             !player.GetComponent<PlayerScript>().panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge"))
         {
+            FindObjectOfType<Audiomanager>().Play("PlayerHit1");
             other.GetComponent<PlayerUIScript>().Damage(5f);
         }
     }

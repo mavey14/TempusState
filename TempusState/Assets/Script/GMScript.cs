@@ -12,6 +12,7 @@ public class GMScript : MonoBehaviour {
     public static bool[] stages;
     public static bool[] skills;
     public static int difficulty;
+    public static bool istutorialdone;
     public int cskill;
     [SerializeField]
     private GameObject uiportal;
@@ -27,48 +28,49 @@ public class GMScript : MonoBehaviour {
     void Start () {
         timestop = false;
         cskill = 0;
+        istutorialdone = false;
        // isgame = isgamepause =false;
         stages= new bool[3];
         skills = new bool[3];
         stages[0]= stages[1] = stages[2] = false;
         skills[0] = skills[1] = skills[2] = false;
-        skills[0] = stages[0] =  true;
+       // skills[0] = stages[0] =  true;
         currentScene = SceneManager.GetActiveScene();
         sceneIndex = currentScene.buildIndex;
-        //if (sceneIndex == 1)
-        //{
-        //    if (Audiomanager.cambience != null)
-        //    {
-        //        FindObjectOfType<Audiomanager>().Stop(Audiomanager.cambience);
-        //    }
-        //    FindObjectOfType<Audiomanager>().Play("GAmbience");
-        //   puzz[Random.Range(1, 3)].SetActive(true);
+        if (sceneIndex == 1)
+        {
+            if (Audiomanager.cambience != null)
+            {
+                FindObjectOfType<Audiomanager>().Stop(Audiomanager.cambience);
+            }
+            FindObjectOfType<Audiomanager>().Play("GAmbience");
+            puzz[Random.Range(1, 3)].SetActive(true);
 
-        //}
-        //else if (sceneIndex == 2)
-        //{
-        //    if (Audiomanager.cambience != null)
-        //    {
-        //        FindObjectOfType<Audiomanager>().Stop(Audiomanager.cambience);
-        //    }
-        //    FindObjectOfType<Audiomanager>().Play("GAmbience");
-        //}
-        //else if (sceneIndex == 3)
-        //{
-        //    if (Audiomanager.cambience != null)
-        //    {
-        //        FindObjectOfType<Audiomanager>().Stop(Audiomanager.cambience);
-        //    }
-        //    FindObjectOfType<Audiomanager>().Play("RAmbience");
-        //}
-        //else if (sceneIndex == 4)
-        //{
-        //    if (Audiomanager.cambience != null)
-        //    {
-        //        FindObjectOfType<Audiomanager>().Stop(Audiomanager.cambience);
-        //    }
-        //    FindObjectOfType<Audiomanager>().Play("VAmbience");
-        //}
+        }
+        else if (sceneIndex == 2)
+        {
+            if (Audiomanager.cambience != null)
+            {
+                FindObjectOfType<Audiomanager>().Stop(Audiomanager.cambience);
+            }
+            FindObjectOfType<Audiomanager>().Play("GAmbience");
+        }
+        else if (sceneIndex == 3)
+        {
+            if (Audiomanager.cambience != null)
+            {
+                FindObjectOfType<Audiomanager>().Stop(Audiomanager.cambience);
+            }
+            FindObjectOfType<Audiomanager>().Play("RAmbience");
+        }
+        else if (sceneIndex == 4)
+        {
+            if (Audiomanager.cambience != null)
+            {
+                FindObjectOfType<Audiomanager>().Stop(Audiomanager.cambience);
+            }
+            FindObjectOfType<Audiomanager>().Play("VAmbience");
+        }
 
     }
 
@@ -210,6 +212,8 @@ public class GMScript : MonoBehaviour {
 
     public void PlayGame()
     {
+
+        if(istutorialdone==true)
         isgame = true;
     }
 

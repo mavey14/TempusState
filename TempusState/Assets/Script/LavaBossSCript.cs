@@ -27,6 +27,8 @@ public class LavaBossSCript : MonoBehaviour {
     GameObject gmscript;
     [SerializeField]
     GameObject[] Phase3Active;
+    [SerializeField]
+    CameraScript cm;
     // Use this for initialization
     void Start () {
         pstate = PhaseState.phase1;
@@ -233,6 +235,7 @@ public class LavaBossSCript : MonoBehaviour {
     {
 
         //Destroy(obj,2f);
+        FindObjectOfType<Audiomanager>().Play("FireBall");
         GameObject obj = (GameObject)Instantiate(Skilleffects[3], new Vector3(direct.x, direct.y+2f, direct.z), Quaternion.identity);
         Debug.Log("Explosion");
     }
@@ -241,12 +244,19 @@ public class LavaBossSCript : MonoBehaviour {
     {
 
         //Destroy(obj,2f);
+        FindObjectOfType<Audiomanager>().Play("FireBall");
         GameObject obj = (GameObject)Instantiate(Skilleffects[2], new Vector3(direct.x, direct.y, direct.z), Quaternion.identity);
         Debug.Log("Explosion");
     }
 
     void Meteor()
     {
+        int random = Random.Range(0,4);
+        if(random==1||random==2)
+        {
+            cm.camerashake = true;
+        }
+        FindObjectOfType<Audiomanager>().Play("FireBall");
         GameObject obj = (GameObject)Instantiate(Skilleffects[1], new Vector3(direct.x, direct.y+40f, direct.z), Quaternion.identity);
         Debug.Log("Meteor");
     }
@@ -254,6 +264,7 @@ public class LavaBossSCript : MonoBehaviour {
     void Fireball(int random)
     {
         Debug.Log("aaasd");
+        FindObjectOfType<Audiomanager>().Play("FireBall");
         GameObject obj = (GameObject)Instantiate(Skilleffects[0],Fireballpos.transform.position,Quaternion.identity);
         Vector3 direction = Fireballpos.transform.position - getposplayer();
         obj.transform.rotation = Quaternion.LookRotation(direction);
