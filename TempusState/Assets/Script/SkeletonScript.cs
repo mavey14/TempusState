@@ -31,6 +31,7 @@ public class SkeletonScript : MonoBehaviour {
     Vector3 origpos;
     [SerializeField]
     GameObject instruction;
+    bool cankb;
 
     // Use this for initialization
     void Start()
@@ -41,11 +42,12 @@ public class SkeletonScript : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         canattack = true;
         direct = Vector3.zero;
-        HP = 3;
+        HP = 5;
         awake = false;
         origpos = transform.position;
         skellcolider = GetComponent<CapsuleCollider>();
         skellcolider.enabled = true;
+        cankb = true;
         //Debug.Log(gameObject.name + " " + origpos);
         //foreach (Transform child in transform)
         //    child.gameObject.SetActive(false);
@@ -86,6 +88,7 @@ public class SkeletonScript : MonoBehaviour {
                 case EnemyState.Death:
                     break;
             }
+            //Debug.Log(HP);
         }
 
         if (Input.GetKeyDown(KeyCode.F9))
@@ -213,6 +216,22 @@ public class SkeletonScript : MonoBehaviour {
         anim.SetBool("Run", false);
         anim.Play("Sleep");
       
+    }
+
+    public void kb()
+    {
+        if (cankb == true)
+        {
+            anim.SetTrigger("Kb");
+            cankb = false;
+            StartCoroutine(ckb());
+        }
+    }
+
+    IEnumerator ckb()
+    {
+        yield return new WaitForSeconds(3f);
+        cankb = true;
     }
 
 }

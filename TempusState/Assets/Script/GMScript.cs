@@ -23,6 +23,7 @@ public class GMScript : MonoBehaviour {
     int sceneIndex;
     [SerializeField]
     GameObject[] puzz;
+    bool skill1;
 
     // Use this for initialization
     void Start () {
@@ -34,7 +35,7 @@ public class GMScript : MonoBehaviour {
         skills = new bool[3];
         stages[0]= stages[1] = stages[2] = false;
         skills[0] = skills[1] = skills[2] = false;
-       // skills[0] = stages[0] =  true;
+        skills[0] = stages[0] =  true;
         currentScene = SceneManager.GetActiveScene();
         sceneIndex = currentScene.buildIndex;
         if (sceneIndex == 1)
@@ -116,6 +117,8 @@ public class GMScript : MonoBehaviour {
 
         }
 
+        
+
         //if (Input.GetKeyDown(KeyCode.F1))
         //{
         //    SavePlayer();
@@ -151,13 +154,13 @@ public class GMScript : MonoBehaviour {
     {
         playerdata data = SaveSystem.loadPlayer();
         Debug.Log("Stages");
-        Debug.Log(data.stage[0].ToString());
-        Debug.Log(data.stage[1].ToString());
-        Debug.Log(data.stage[2].ToString());
-        Debug.Log("Skills");
-        Debug.Log(data.skils[0].ToString());
-        Debug.Log(data.skils[1].ToString());
-        Debug.Log(data.skils[2].ToString());
+       // Debug.Log(data.stage[0].ToString());
+       // Debug.Log(data.stage[1].ToString());
+       // Debug.Log(data.stage[2].ToString());
+       // Debug.Log("Skills");
+       // Debug.Log(data.skils[0].ToString());
+        //Debug.Log(data.skils[1].ToString());
+       // Debug.Log(data.skils[2].ToString());
 
         //public bool[] stages;
         //public bool[] skills;
@@ -169,6 +172,8 @@ public class GMScript : MonoBehaviour {
         skills[0] = data.skils[0];
         skills[1] = data.skils[1];
         skills[2] = data.skils[2];
+
+        
 
         difficulty = data.difficulty;
     }
@@ -213,7 +218,7 @@ public class GMScript : MonoBehaviour {
     public void PlayGame()
     {
 
-        if(istutorialdone==true)
+     
         isgame = true;
     }
 

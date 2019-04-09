@@ -136,7 +136,7 @@ public class RuinBoss : MonoBehaviour {
                 anim.SetBool("Move", false);
                 //if(this.gameObject.tag=="la")
                 anim.SetInteger("Attack",noattack);
-                //FindObjectOfType<Audiomanager>().Play("RuinSlam");
+                FindObjectOfType<Audiomanager>().Play("RuinSlam");
                 StartCoroutine(AttackCD());
                 canattack = false;
             }
@@ -164,6 +164,7 @@ public class RuinBoss : MonoBehaviour {
                 other.GetComponent<PlayerUIScript>().Damage(5);
                 Delay = true;
                 StartCoroutine(IDIOT());
+                other.GetComponent<PlayerScript>().kb();
                 Debug.Log("Damage Player");
             }
     

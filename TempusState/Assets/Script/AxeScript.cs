@@ -37,6 +37,7 @@ public class AxeScript : MonoBehaviour {
              player.GetComponent<PlayerScript>().noclicks != 0)
         {
             other.GetComponent<SkeletonScript>().ReduceHP();
+            other.GetComponent<SkeletonScript>().kb();
             FindObjectOfType<Audiomanager>().Play("EnemyHit2");
             player.GetComponent<PlayerUIScript>().addmana();
             
@@ -45,6 +46,7 @@ public class AxeScript : MonoBehaviour {
              player.GetComponent<PlayerScript>().panim.GetCurrentAnimatorStateInfo(0).IsName("HeavyAttack"))
         {
             other.GetComponent<SkeletonScript>().ReduceHP();
+            other.GetComponent<SkeletonScript>().kb();
             FindObjectOfType<Audiomanager>().Play("EnemyHit2");
             player.GetComponent<PlayerUIScript>().addmana();
             

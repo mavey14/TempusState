@@ -25,6 +25,7 @@ public class PlayerScript : MonoBehaviour {
     [SerializeField]
     Transform[] Effects;
     public bool canskill;
+    public bool cankb;
     
     
 
@@ -41,6 +42,7 @@ public class PlayerScript : MonoBehaviour {
         canclick = true;
         backtrack = false;
         canskill = true;
+        cankb = true;
     }
 
     // Update is called once per frame
@@ -97,6 +99,7 @@ public class PlayerScript : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.Alpha1) && gm.GetComponent<GMScript>().cskill == 0&&pui.mnpts>0&&GMScript.skills[0]==true)
         {
+          
             StartCoroutine(TransformtoOld());
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2) && gm.GetComponent<GMScript>().cskill == 0 && pui.mnpts > 0 && GMScript.skills[1] == true)
@@ -188,6 +191,10 @@ public class PlayerScript : MonoBehaviour {
     {
         canclick = true;
         noclicks = 0;
+        panim.SetInteger("lightattack", noclicks);
+        SlashEffectsOff(3);
+        SlashEffectsOff(4);
+        SlashEffectsOff(5);
         panim.Play("Idle");
     }
 
@@ -361,4 +368,22 @@ public class PlayerScript : MonoBehaviour {
     {
         //StartCoroutine(PlayerDeath());
     }
+
+    public void kb()
+    {
+        if (cankb == true)
+        {
+            panim.SetTrigger("KB");
+            resetanim();
+            cankb = false;
+            StartCoroutine(ckb());
+        }
+    }
+
+    IEnumerator ckb()
+    {
+        yield return new WaitForSeconds(5f);
+        cankb = true;
+    }
+
 }
