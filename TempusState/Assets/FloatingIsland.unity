@@ -8631,6 +8631,11 @@ Prefab:
       propertyPath: instruction
       value: 
       objectReference: {fileID: 401042540}
+    - target: {fileID: 114034620931639662, guid: 474a53e9a66d3024e9d3e4cd63b1da0f,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1141876674}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 474a53e9a66d3024e9d3e4cd63b1da0f, type: 2}
   m_IsPrefabAsset: 0
@@ -9969,12 +9974,12 @@ Prefab:
     - target: {fileID: 224356977323665352, guid: ef496ea8356b7bf4184533dc4d2fb73f,
         type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224327105482867324, guid: ef496ea8356b7bf4184533dc4d2fb73f,
         type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 224062693360785896, guid: ef496ea8356b7bf4184533dc4d2fb73f,
         type: 2}
@@ -9984,7 +9989,7 @@ Prefab:
     - target: {fileID: 224607989254992148, guid: ef496ea8356b7bf4184533dc4d2fb73f,
         type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 224448360756394630, guid: ef496ea8356b7bf4184533dc4d2fb73f,
         type: 2}
@@ -9994,17 +9999,17 @@ Prefab:
     - target: {fileID: 224249178145158258, guid: ef496ea8356b7bf4184533dc4d2fb73f,
         type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 224660547918006112, guid: ef496ea8356b7bf4184533dc4d2fb73f,
         type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 224704456823163104, guid: ef496ea8356b7bf4184533dc4d2fb73f,
         type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1871797713625980, guid: ef496ea8356b7bf4184533dc4d2fb73f, type: 2}
       propertyPath: m_IsActive
