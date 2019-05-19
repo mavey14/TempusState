@@ -19,6 +19,7 @@ TagManager:
   - wb
   - lac
   - lrc
+  - LastPortal
   layers:
   - Default
   - TransparentFX

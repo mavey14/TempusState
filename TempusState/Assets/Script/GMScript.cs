@@ -45,7 +45,7 @@ public class GMScript : MonoBehaviour {
                 FindObjectOfType<Audiomanager>().Stop(Audiomanager.cambience);
             }
            // FindObjectOfType<Audiomanager>().Play("GAmbience");
-            puzz[/*Random.Range(1, 3)*/0].SetActive(true);
+            puzz[Random.Range(0,3)].SetActive(true);
 
         }
         else if (sceneIndex == 2)

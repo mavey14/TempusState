@@ -6,8 +6,8 @@ public class Portal : MonoBehaviour {
 
     [SerializeField]
     GameObject obsenter;
-    [SerializeField]
-    GameObject obsexit;
+    //[SerializeField]
+    //GameObject obsexit;
     [SerializeField]
     GameObject Player;
     bool activate;
@@ -32,6 +32,7 @@ public class Portal : MonoBehaviour {
                 //  Debug.Log("Enter");
                 //collide = true;
                 //Debug.Log(collide);
+                Debug.Log("Enter");
                 if (obsenter != null)
                     obsenter.SetActive(false);
                 if (this.gameObject.name == "LastPortal")
