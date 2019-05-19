@@ -29,8 +29,8 @@ public class Shovel : MonoBehaviour {
             graveyardboss.GetComponent<GraveyardBoss>().Attack>0&&
             !player.GetComponent<PlayerScript>().panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge")&&player.GetComponent<PlayerScript>().backtrack==false)
         {
-            Debug.Log("Damage Player");
-            other.GetComponent<PlayerUIScript>().Damage(5f);
+            //Debug.Log("Damage Player");
+            other.GetComponent<PlayerUIScript>().Damage(2f);
         }
     }
 }

@@ -111,6 +111,11 @@ public class PlayerUIScript : MonoBehaviour {
        
     }
 
+
+    public void Poison()
+    {
+        hitpoints -= 0.5f * Time.deltaTime * 1;
+    }
     
 
     void DrainSkill1()

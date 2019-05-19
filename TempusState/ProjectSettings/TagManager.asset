@@ -21,6 +21,7 @@ TagManager:
   - lrc
   - LastPortal
   - PortalToFloat
+  - Ava
   layers:
   - Default
   - TransparentFX

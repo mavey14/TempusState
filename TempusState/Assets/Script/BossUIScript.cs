@@ -64,6 +64,10 @@ public class BossUIScript : MonoBehaviour {
 
     public void Heal()
     {
-        hitpoints += 200f;
+      hitpoints += 50f;
+        if(hitpoints>=1000)
+        {
+            hitpoints = maxhp;
+        }
     }
 }

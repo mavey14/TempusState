@@ -188,15 +188,7 @@ public class GraveyardBoss : MonoBehaviour {
     {
         Attack = Random.Range(1,5);
 
-        if (Attack == 4)
-        {
-            StartCoroutine(slam());
-        }
-        else
-        {
-            Attack = Random.Range(1,4);
-        }
-
+        //slam attack effects gawin sa event
         anim.SetInteger("Attack", Attack);
         anim.SetBool("Idle", true);
         anim.SetBool("Running", false);
@@ -206,22 +198,20 @@ public class GraveyardBoss : MonoBehaviour {
     void phase3Attack()
     {
 
-        Attack = Random.Range(1,7);
-        if (Attack == 4)
-        {
-            StartCoroutine(slam());
-        }
-        else if (Attack == 5 && spit == false)
+        Attack = Random.Range(1,8);
+        //slam attack effects gawin sa event
+        if (Attack == 5 && spit == false)
         {
             //summon spit
-            Debug.Log("summon minions");
-            skilleffects[1].SetActive(true);
+            //Debug.Log("summon minions");
+            //skilleffects[1].SetActive(true); gawin sa evnet
             spit = true;
         }
         else if (Attack == 6 && heal == false)
         {
-
+            //skilleffects[2] heal gawin sa event
             buiscript.Heal();
+            CDskill();
             heal = true;
         }
         else
@@ -241,20 +231,28 @@ public class GraveyardBoss : MonoBehaviour {
         heal = false;
     }
 
-    IEnumerator slam()
-    { 
-
-        yield return new WaitForSeconds(0.3f);
+    void slam()
+    {
+        Debug.Log("test");
         GameObject obj = (GameObject)Instantiate(skilleffects[0], skillpos.transform.position, Quaternion.identity);
-        
+        Destroy(obj, 2f);
     }
 
-    void GroundAttack()
+    void spits()
     {
+        skilleffects[1].SetActive(true);
+    }
 
-        //Destroy(obj,2f);
-       // GameObject obj = (GameObject)Instantiate(Skilleffects[3], new Vector3(direct.x, direct.y + 2f, direct.z), Quaternion.identity);
-        Debug.Log("Explosion");
+    void heals()
+    {
+        skilleffects[2].SetActive(true);
+        StartCoroutine(deactiveheal());
+    }
+
+    IEnumerator deactiveheal()
+    {
+        yield return new WaitForSeconds(6f);
+        skilleffects[2].SetActive(false);
     }
 
     IEnumerator AttackCD()
@@ -263,7 +261,7 @@ public class GraveyardBoss : MonoBehaviour {
         Attack = 0;
         canattack = true;
         anim.SetBool("Idle", false);
-        Debug.Log("ReadyToAttack");
+       // Debug.Log("ReadyToAttack");
     }
 
  
