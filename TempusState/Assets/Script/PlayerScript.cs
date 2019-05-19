@@ -273,12 +273,12 @@ public class PlayerScript : MonoBehaviour {
 
     public void DodgeSound()
     {
-        FindObjectOfType<Audiomanager>().Play("Dodge");
+        //FindObjectOfType<Audiomanager>().Play("Dodge");
     }
 
     public void AxeSwing(int no)
     {
-        FindObjectOfType<Audiomanager>().Play("AxeSwing" + no);
+       // FindObjectOfType<Audiomanager>().Play("AxeSwing" + no);
     }
 
     void SlashEffects(int no)

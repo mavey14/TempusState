@@ -11,9 +11,12 @@ public class Portal : MonoBehaviour {
     [SerializeField]
     GameObject Player;
     bool activate;
+    [SerializeField]
+    GameObject gmscript;
     // Use this for initialization
     void Start () {
         activate = true;
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,24 +27,31 @@ public class Portal : MonoBehaviour {
 
             // Debug.Log("test saan galing ");
              Vector3 dir = (Player.GetComponent<Transform>().position - this.transform.position).normalized;
-                if (Vector3.Dot(dir, Vector3.forward) > 0)
-                {
-                  //  Debug.Log("Enter");
+            if (Vector3.Dot(dir, Vector3.forward) > 0)
+            {
+                //  Debug.Log("Enter");
                 //collide = true;
                 //Debug.Log(collide);
-                   if(obsenter!=null)
+                if (obsenter != null)
                     obsenter.SetActive(false);
-                    //if (obsexit != null)
-                    //obsexit.SetActive(true);
-                 }
-                else /*if (Vector3.Dot(dir, transform.forward) < 0)*/
+                if (this.gameObject.name == "LastPortal")
                 {
-                    Debug.Log("Exit");
-                    if (obsenter != null)
-                    obsenter.SetActive(true);
-                    // if (obsexit != null)
-                    //obsexit.SetActive(false);
+                    if (gmscript != null)
+                    {
+                        gmscript.GetComponent<GMScript>().LoadLevel(2);
+                    }
                 }
+                //if (obsexit != null)
+                //obsexit.SetActive(true);
+            }
+            else /*if (Vector3.Dot(dir, transform.forward) < 0)*/
+            {
+                Debug.Log("Exit");
+                if (obsenter != null)
+                    obsenter.SetActive(true);
+                // if (obsexit != null)
+                //obsexit.SetActive(false);
+            }
 
             StartCoroutine(Reactive());
             activate = false;

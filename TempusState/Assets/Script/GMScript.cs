@@ -44,8 +44,8 @@ public class GMScript : MonoBehaviour {
             {
                 FindObjectOfType<Audiomanager>().Stop(Audiomanager.cambience);
             }
-            FindObjectOfType<Audiomanager>().Play("GAmbience");
-            puzz[Random.Range(1, 3)].SetActive(true);
+           // FindObjectOfType<Audiomanager>().Play("GAmbience");
+            puzz[/*Random.Range(1, 3)*/0].SetActive(true);
 
         }
         else if (sceneIndex == 2)
@@ -54,7 +54,7 @@ public class GMScript : MonoBehaviour {
             {
                 FindObjectOfType<Audiomanager>().Stop(Audiomanager.cambience);
             }
-            FindObjectOfType<Audiomanager>().Play("GAmbience");
+            //FindObjectOfType<Audiomanager>().Play("GAmbience");
         }
         else if (sceneIndex == 3)
         {

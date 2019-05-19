@@ -161,7 +161,7 @@ public class SkeletonScript : MonoBehaviour {
         if (other.tag == "Player" || other.tag == "Old")
         {
             awake = true;
-            FindObjectOfType<Audiomanager>().Play("SkeletonForm");
+           // FindObjectOfType<Audiomanager>().Play("SkeletonForm");
             anim.SetBool("Awake", awake);
             estate = EnemyState.Battle;
         }
