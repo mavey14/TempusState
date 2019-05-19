@@ -42,14 +42,30 @@ public class Portal : MonoBehaviour {
                         gmscript.GetComponent<GMScript>().LoadLevel(2);
                     }
                 }
+                else if (this.gameObject.tag == "PortalToFloat")
+                {
+                    
+                    if (gmscript != null)
+                    {
+                        gmscript.GetComponent<GMScript>().LoadLevel(0);
+                    }
+                }
                 //if (obsexit != null)
                 //obsexit.SetActive(true);
             }
             else /*if (Vector3.Dot(dir, transform.forward) < 0)*/
             {
-                Debug.Log("Exit");
+                
                 if (obsenter != null)
                     obsenter.SetActive(true);
+                if (this.gameObject.tag == "PortalToFloat")
+                {
+                    
+                    if (gmscript != null)
+                    {
+                        gmscript.GetComponent<GMScript>().LoadLevel(0);
+                    }
+                }
                 // if (obsexit != null)
                 //obsexit.SetActive(false);
             }

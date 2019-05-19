@@ -20,6 +20,7 @@ TagManager:
   - lac
   - lrc
   - LastPortal
+  - PortalToFloat
   layers:
   - Default
   - TransparentFX

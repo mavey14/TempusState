@@ -173,7 +173,7 @@ public class SkeletonScript : MonoBehaviour {
         if (HP == 0)
         {
            
-            FindObjectOfType<Audiomanager>().Play("SkeletonDeath");
+            //FindObjectOfType<Audiomanager>().Play("SkeletonDeath");
             GameObject vey = Instantiate(SkelExplode,SkelExplodePos.transform.position, Quaternion.identity);
             if (gameObject.name == "Tutorial")
             {

@@ -24,18 +24,17 @@ public class GMScript : MonoBehaviour {
     [SerializeField]
     GameObject[] puzz;
     bool skill1;
-
+    [SerializeField]
+    GameObject[] disableifrun;
+    [SerializeField]
+    GameObject[] enableifrun;
     // Use this for initialization
     void Start () {
         timestop = false;
         cskill = 0;
-        istutorialdone = false;
        // isgame = isgamepause =false;
         stages= new bool[3];
         skills = new bool[3];
-        stages[0]= stages[1] = stages[2] = false;
-        skills[0] = skills[1] = skills[2] = false;
-        skills[0] = stages[0] =  true;
         currentScene = SceneManager.GetActiveScene();
         sceneIndex = currentScene.buildIndex;
         if (sceneIndex == 1)
@@ -72,6 +71,20 @@ public class GMScript : MonoBehaviour {
             }
             FindObjectOfType<Audiomanager>().Play("VAmbience");
         }
+        if (isgame == true)
+        {
+            foreach (var d in disableifrun)
+            {
+                d.SetActive(false);
+            }
+
+            foreach (var e in enableifrun)
+            {
+                e.SetActive(true);
+            }
+        }
+
+        
 
     }
 

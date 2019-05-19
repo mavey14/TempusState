@@ -10,7 +10,8 @@ public class BossUIScript : MonoBehaviour {
     Image currenthb;
     [SerializeField]
     GraveyardBoss GraveyardBossScript;
-
+    [SerializeField]
+    GameObject TeleportToFloat;
     private float hitpoints;
     private float maxhp;
     private float totalhp;
@@ -24,7 +25,7 @@ public class BossUIScript : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Y))
         {
-            Damage(20f);
+            Damage(100f);
             Debug.Log("Damage");
         }
         updatehp();
@@ -44,12 +45,21 @@ public class BossUIScript : MonoBehaviour {
     public void Damage(float dmg)
     {
         hitpoints = hitpoints - dmg;
+        if (hitpoints<=0)
+        {
+            GraveyardBossScript.anim.SetTrigger("Death");
+            GraveyardBossScript.bstate = GraveyardBoss.BossState.Death;
+            TeleportToFloat.SetActive(true);
+            GMScript.stages[0] = true;
+            Destroy(gameObject,0.5f);
+        }
     }
 
     void updatehp()
     {
         if (currenthb)
             currenthb.fillAmount = hitpoints / maxhp;
+        
     }
 
     public void Heal()
