@@ -52,7 +52,7 @@ public class PlayerScript : MonoBehaviour {
         move = Input.GetAxisRaw("Vertical") != 0 && noclicks == 0 && !panim.GetCurrentAnimatorStateInfo(0).IsName("HeavyAttack")
             || Input.GetAxisRaw("Horizontal") != 0 && noclicks == 0 && !panim.GetCurrentAnimatorStateInfo(0).IsName("HeavyAttack");
 
-        speed = panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge") == true ? gm.GetComponent<GMScript>().sceneIndex == 3 ? 48f : 28f : gm.GetComponent<GMScript>().sceneIndex== 3 ? 35f : 15f;
+        speed = panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge") == true ? gm.GetComponent<GMScript>().sceneIndex == 3 ? 33f : 28f : gm.GetComponent<GMScript>().sceneIndex== 3 ? 20f : 15f;
 
         GetMovement();
 

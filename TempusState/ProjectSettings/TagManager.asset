@@ -22,6 +22,8 @@ TagManager:
   - LastPortal
   - PortalToFloat
   - Ava
+  - Dimension
+  - NeedToDestroy
   layers:
   - Default
   - TransparentFX
