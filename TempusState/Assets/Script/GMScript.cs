@@ -20,7 +20,7 @@ public class GMScript : MonoBehaviour {
     [SerializeField]
     private GameObject EscMenu;
     Scene currentScene;
-    int sceneIndex;
+    public int sceneIndex;
     [SerializeField]
     GameObject[] puzz;
     bool skill1;
@@ -35,6 +35,9 @@ public class GMScript : MonoBehaviour {
        // isgame = isgamepause =false;
         stages= new bool[3];
         skills = new bool[3];
+        skills[0] = true;
+        skills[1] = true;
+        skills[2] = true;
         currentScene = SceneManager.GetActiveScene();
         sceneIndex = currentScene.buildIndex;
         if (sceneIndex == 1)
@@ -61,7 +64,7 @@ public class GMScript : MonoBehaviour {
             {
                 FindObjectOfType<Audiomanager>().Stop(Audiomanager.cambience);
             }
-            FindObjectOfType<Audiomanager>().Play("RAmbience");
+            //FindObjectOfType<Audiomanager>().Play("RAmbience");
         }
         else if (sceneIndex == 4)
         {
@@ -69,7 +72,7 @@ public class GMScript : MonoBehaviour {
             {
                 FindObjectOfType<Audiomanager>().Stop(Audiomanager.cambience);
             }
-            FindObjectOfType<Audiomanager>().Play("VAmbience");
+            //FindObjectOfType<Audiomanager>().Play("VAmbience");
         }
         if (isgame == true)
         {

@@ -8,15 +8,15 @@ public class CameraScript : MonoBehaviour {
     private Transform[] lookAt;
     private Transform camTransform;
     private Camera cam;
-    private float distance = 10f;
+    private float distance;
     private float currentX = 0f;
     private float currentY = 0f;
     //private float sensitivityX = 4.0f;
     //private float sensitivityY = 1f;
     private const float anglemin = -10f;
     private const float anglemax = 20f;
-    private const float Maxdistance = 20f;
-    private const float MinDistance = 5f;
+    private float Maxdistance;
+    private float MinDistance;
     int target;
     [SerializeField]
     GameObject gmscript;
@@ -24,6 +24,9 @@ public class CameraScript : MonoBehaviour {
     bool shakecd;
 	// Use this for initialization
 	void Start () {
+        distance = gmscript.GetComponent<GMScript>().sceneIndex == 3 ? 80f : 10f;
+        MinDistance = gmscript.GetComponent<GMScript>().sceneIndex == 3 ? 25f : 5f;
+        Maxdistance = gmscript.GetComponent<GMScript>().sceneIndex == 3 ? 40f : 20f;
         camTransform = transform;
         target=0;
         camerashake = shakecd=false;

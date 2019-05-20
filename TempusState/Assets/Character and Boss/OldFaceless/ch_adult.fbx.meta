@@ -1,0 +1,353 @@
+fileFormatVersion: 2
+guid: 94409762e04b34545aeb6bb00fcdd4f1
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: armor_Hand_L
+    100002: armor_Hand_R
+    100004: armor_left
+    100006: armor_pad_L
+    100008: armor_pad_R
+    100010: armor_right
+    100012: armorhands_l3
+    100014: armorhands_l3 1
+    100016: //RootNode
+    100018: CH_Main
+    100020: character
+    100022: ikHandle10
+    100024: ikHandle11
+    100026: joint102
+    100028: joint103
+    100030: joint104
+    100032: joint105
+    100034: joint106
+    100036: joint125
+    100038: joint125 1
+    100040: joint126
+    100042: joint126 1
+    100044: joint127
+    100046: joint127 1
+    100048: joint128
+    100050: joint128 1
+    100052: joint129
+    100054: joint129 1
+    100056: joint13
+    100058: joint130
+    100060: joint130 1
+    100062: joint131
+    100064: joint131 1
+    100066: joint132
+    100068: joint132 1
+    100070: joint133
+    100072: joint133 1
+    100074: joint134
+    100076: joint134 1
+    100078: joint135
+    100080: joint135 1
+    100082: joint136
+    100084: joint136 1
+    100086: joint137
+    100088: joint137 1
+    100090: joint138
+    100092: joint138 1
+    100094: joint139
+    100096: joint139 1
+    100098: joint14
+    100100: joint15
+    100102: joint156
+    100104: joint17
+    100106: joint173
+    100108: joint18
+    100110: joint31
+    100112: joint82
+    100114: joint83
+    100116: joint84
+    100118: joint85
+    100120: joint86
+    100122: l_elbow3
+    100124: l_elbow3 1
+    100126: l_hands5
+    100128: l_hands5 1
+    100130: l_hands6
+    100132: l_hands6 1
+    100134: legs
+    100136: new_ch
+    100138: rig_group
+    100140: root
+    100142: weapns
+    400000: armor_Hand_L
+    400002: armor_Hand_R
+    400004: armor_left
+    400006: armor_pad_L
+    400008: armor_pad_R
+    400010: armor_right
+    400012: armorhands_l3
+    400014: armorhands_l3 1
+    400016: //RootNode
+    400018: CH_Main
+    400020: character
+    400022: ikHandle10
+    400024: ikHandle11
+    400026: joint102
+    400028: joint103
+    400030: joint104
+    400032: joint105
+    400034: joint106
+    400036: joint125
+    400038: joint125 1
+    400040: joint126
+    400042: joint126 1
+    400044: joint127
+    400046: joint127 1
+    400048: joint128
+    400050: joint128 1
+    400052: joint129
+    400054: joint129 1
+    400056: joint13
+    400058: joint130
+    400060: joint130 1
+    400062: joint131
+    400064: joint131 1
+    400066: joint132
+    400068: joint132 1
+    400070: joint133
+    400072: joint133 1
+    400074: joint134
+    400076: joint134 1
+    400078: joint135
+    400080: joint135 1
+    400082: joint136
+    400084: joint136 1
+    400086: joint137
+    400088: joint137 1
+    400090: joint138
+    400092: joint138 1
+    400094: joint139
+    400096: joint139 1
+    400098: joint14
+    400100: joint15
+    400102: joint156
+    400104: joint17
+    400106: joint173
+    400108: joint18
+    400110: joint31
+    400112: joint82
+    400114: joint83
+    400116: joint84
+    400118: joint85
+    400120: joint86
+    400122: l_elbow3
+    400124: l_elbow3 1
+    400126: l_hands5
+    400128: l_hands5 1
+    400130: l_hands6
+    400132: l_hands6 1
+    400134: legs
+    400136: new_ch
+    400138: rig_group
+    400140: root
+    400142: weapns
+    2100000: seven
+    2100002: five
+    2100004: One
+    2100006: three
+    2100008: four
+    2100010: six
+    2100012: eight
+    2100014: two
+    2100016: EdgeGlow
+    2100018: Armor
+    2100020: Body1
+    2100022: Pants
+    2100024: Shoes
+    2300000: weapns
+    3300000: weapns
+    4300000: weapns
+    4300002: character
+    4300004: armor_Hand_L
+    4300006: armor_pad_L
+    4300008: armor_pad_R
+    4300010: armor_Hand_R
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: armor_Hand_L
+    13700002: armor_Hand_R
+    13700004: armor_pad_L
+    13700006: armor_pad_R
+    13700008: character
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Armor
+    second: {fileID: 2100000, guid: c495be0855a44eb4f8009b94a2912a91, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body1
+    second: {fileID: 2100000, guid: 625aa6870613d18439ddfd8637e88f1f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: EdgeGlow
+    second: {fileID: 2100000, guid: e1fec5ef0ad5cd24790165042017832a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: One
+    second: {fileID: 2100000, guid: 7fea6666b91f9f542b059f81f0f159ee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pants
+    second: {fileID: 2100000, guid: 3313e9746a8a58f45943823931e04989, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shoes
+    second: {fileID: 2100000, guid: 8a026675c05fd24439b90fc4153b0ec4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eight
+    second: {fileID: 2100000, guid: 7aa0ac0f6c5d6714ba7f58189c6455d0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: five
+    second: {fileID: 2100000, guid: 8714d34b2d2378243aa200018d6ff2d2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: four
+    second: {fileID: 2100000, guid: c792d1de0c7a7ac4a9e259bd770dd104, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: seven
+    second: {fileID: 2100000, guid: 2be80353c1c02ca4981fce64b10f2486, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: six
+    second: {fileID: 2100000, guid: 3942773751ce54c418f25e2566aa74db, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: three
+    second: {fileID: 2100000, guid: 96ac60915363136428f4237c37137aea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: two
+    second: {fileID: 2100000, guid: 61d1373b2c3d94f4eb8b5c2d31545f29, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 65
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.7
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

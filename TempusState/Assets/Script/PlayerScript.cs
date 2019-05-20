@@ -33,7 +33,7 @@ public class PlayerScript : MonoBehaviour {
     void Start()
     {
        
-        speed = 15f;
+        speed =15f;
         move = turn = true;
         rb = GetComponent<Rigidbody>();
         panim = GetComponent<Animator>();
@@ -52,7 +52,7 @@ public class PlayerScript : MonoBehaviour {
         move = Input.GetAxisRaw("Vertical") != 0 && noclicks == 0 && !panim.GetCurrentAnimatorStateInfo(0).IsName("HeavyAttack")
             || Input.GetAxisRaw("Horizontal") != 0 && noclicks == 0 && !panim.GetCurrentAnimatorStateInfo(0).IsName("HeavyAttack");
 
-        speed = panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge") == true ? 28f : 15f;
+        speed = panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge") == true ? gm.GetComponent<GMScript>().sceneIndex == 3 ? 48f : 28f : gm.GetComponent<GMScript>().sceneIndex== 3 ? 35f : 15f;
 
         GetMovement();
 
@@ -161,7 +161,7 @@ public class PlayerScript : MonoBehaviour {
     {
         panim.SetTrigger("age");
         yield return new WaitForSeconds(1f);
-        FindObjectOfType<Audiomanager>().Play("SkillAge");
+       // FindObjectOfType<Audiomanager>().Play("SkillAge");
         Instantiate(SkillEffects[0],Effects[0].transform.position, Quaternion.identity);
         yield return new WaitForSeconds(1f);
         gm.GetComponent<GMScript>().cskill = 1;
