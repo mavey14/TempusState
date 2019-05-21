@@ -14,9 +14,6 @@ TagManager:
   - explo
   - GA
   - tr
-  - la
-  - lr
-  - wb
   - lac
   - lrc
   - LastPortal
@@ -24,6 +21,11 @@ TagManager:
   - Ava
   - Dimension
   - NeedToDestroy
+  - 1Hand
+  - Crystal
+  - 2Hand
+  - RuinsBoss
+  - Awaken
   layers:
   - Default
   - TransparentFX

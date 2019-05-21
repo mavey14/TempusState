@@ -7,6 +7,8 @@ public class RuinUISci : MonoBehaviour {
 
     [SerializeField]
     Image currenthb;
+    [SerializeField]
+    GameObject boss;
 
 
     private float hitpoints;
@@ -14,7 +16,7 @@ public class RuinUISci : MonoBehaviour {
     private float totalhp;
     // Use this for initialization
     void Start () {
-        maxhp = 1000;
+        maxhp = 1;
         hitpoints = maxhp;
     }
 	
@@ -31,6 +33,22 @@ public class RuinUISci : MonoBehaviour {
     public void Damage(float dmg)
     {
         hitpoints = hitpoints - dmg;
+        if (hitpoints <= 0)
+        {
+            Debug.Log("damage");
+            if (boss!=null&&boss.tag!="RuinsBoss")
+            Destroy(boss);
+            else
+            {
+                Debug.Log("death");
+                boss.GetComponent<RuinBoss>().Death();
+                Destroy(boss,1.5f);
+            }
+            Dimension.isbattle = false;
+
+            Destroy(gameObject);
+
+        }
     }
 
     void updatehp()

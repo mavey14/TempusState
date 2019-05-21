@@ -12,8 +12,6 @@ public class RuinBoss : MonoBehaviour {
     Vector3 direct;
     [SerializeField]
     Animator anim;
-    [SerializeField]
-    BoxCollider bosscolider;
     enum Armstate { idle, battle, death };
     Armstate astate;
     float speed;
@@ -22,6 +20,9 @@ public class RuinBoss : MonoBehaviour {
     public bool canattack;
     public int noattack;
     bool Delay;
+    bool awakes;
+    [SerializeField]
+    GameObject portaltofloat;
 
     // Use this for initialization
     void Start () {
@@ -30,10 +31,12 @@ public class RuinBoss : MonoBehaviour {
         //anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         canattack = true;
+
         speed = 20f;
         rotSpeed = 3f;
         direct = Vector3.zero;
         Delay = false;
+        awakes = false;
     }
 	
 	// Update is called once per frame
@@ -47,21 +50,21 @@ public class RuinBoss : MonoBehaviour {
             direct = OldOne.GetComponent<Transform>().transform.position - this.transform.position;
         }
         direct.y = 0;
-        if (Input.GetKeyDown(KeyCode.G)&&this.gameObject.tag=="la")
+        if (Input.GetKeyDown(KeyCode.G)&&this.gameObject.tag=="RuinsBoss")
+        {
+            Debug.Log("test");
+            StartCoroutine(Awakes());
+            // anim.SetBool("Idle", false);
+            //anim.SetBool("Move", true);
+        }
+        else if(Input.GetKeyDown(KeyCode.H) && this.gameObject.tag == "2Hand")
         {
             Debug.Log("test");
             astate = Armstate.battle;
             // anim.SetBool("Idle", false);
             //anim.SetBool("Move", true);
         }
-        else if(Input.GetKeyDown(KeyCode.H) && this.gameObject.tag == "lr")
-        {
-            Debug.Log("test");
-            astate = Armstate.battle;
-            // anim.SetBool("Idle", false);
-            //anim.SetBool("Move", true);
-        }
-        else if (Input.GetKeyDown(KeyCode.J) && this.gameObject.tag == "wb")
+        else if (Input.GetKeyDown(KeyCode.J) && this.gameObject.tag == "1Hand")
         {
             Debug.Log("test");
             astate = Armstate.battle;
@@ -69,28 +72,11 @@ public class RuinBoss : MonoBehaviour {
             //anim.SetBool("Move", true);
         }
 
-        if (Input.GetKeyDown(KeyCode.V) && this.gameObject.tag == "la")
-        {
-            Destroy(this.gameObject);
-            // anim.SetBool("Idle", false);
-            //anim.SetBool("Move", true);
-        }
-        else if (Input.GetKeyDown(KeyCode.B) && this.gameObject.tag == "lr")
-        {
-            Destroy(this.gameObject);
-            // anim.SetBool("Idle", false);
-            //anim.SetBool("Move", true);
-        }
-        else if (Input.GetKeyDown(KeyCode.N) && this.gameObject.tag == "wb")
-        {
-            Destroy(this.gameObject);
-            // anim.SetBool("Idle", false);
-            //anim.SetBool("Move", true);
-        }
 
 
         switch (astate)
         {
+
             case Armstate.idle:
                 Idle();
                 break;
@@ -113,7 +99,23 @@ public class RuinBoss : MonoBehaviour {
         this.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation
             (direct), rotSpeed * Time.deltaTime);
 
-        if (direct.magnitude > 15) //change gaano kalayo ang player bago umuatak
+        if (direct.magnitude > 20&&gameObject.tag == "1Hand") //change gaano kalayo ang player bago umuatak
+        {
+            noattack = 0;
+            rb.MovePosition(rb.position + transform.forward * speed * Time.deltaTime);
+            anim.SetBool("Move", true);
+            anim.SetBool("Idle", false);
+            anim.SetInteger("Attack", noattack);
+        }
+        else if (direct.magnitude > 25 && gameObject.tag == "2Hand") //change gaano kalayo ang player bago umuatak
+        {
+            noattack = 0;
+            rb.MovePosition(rb.position + transform.forward * speed * Time.deltaTime);
+            anim.SetBool("Move", true);
+            anim.SetBool("Idle", false);
+            anim.SetInteger("Attack", noattack);
+        }
+        else if (direct.magnitude > 40 && gameObject.tag == "RuinsBoss") //change gaano kalayo ang player bago umuatak
         {
             noattack = 0;
             rb.MovePosition(rb.position + transform.forward * speed * Time.deltaTime);
@@ -125,18 +127,12 @@ public class RuinBoss : MonoBehaviour {
         {
             if (canattack == true)
             {
-                if (this.gameObject.tag == "la" || this.gameObject.tag == "lr")
-                {
-                    noattack = Random.Range(1, 4);
-                }
-                else
-                {
-                    noattack = Random.Range(1, 5);
-                }
+                Debug.Log("why random");
+                noattack = Random.Range(1,4);
                 anim.SetBool("Move", false);
                 //if(this.gameObject.tag=="la")
                 anim.SetInteger("Attack",noattack);
-                FindObjectOfType<Audiomanager>().Play("RuinSlam");
+                //FindObjectOfType<Audiomanager>().Play("RuinSlam");
                 StartCoroutine(AttackCD());
                 canattack = false;
             }
@@ -145,6 +141,18 @@ public class RuinBoss : MonoBehaviour {
     }
 
 
+    IEnumerator Awakes()
+    {
+        if (gameObject.tag == "RuinsBoss")
+        {
+            Debug.Log("test");
+            awakes = true;
+            anim.SetBool("Awake", awakes);
+            yield return new WaitForSeconds(2f);
+            anim.SetBool("Awake", false);
+        }
+        astate = Armstate.battle;
+    }
 
     IEnumerator AttackCD()
     {
@@ -161,7 +169,7 @@ public class RuinBoss : MonoBehaviour {
         {
             if (noattack > 0&&!YoungOne.GetComponent<PlayerScript>().panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge")&&Delay==false)
             {
-                other.GetComponent<PlayerUIScript>().Damage(5);
+                other.GetComponent<PlayerUIScript>().Damage(2);
                 Delay = true;
                 StartCoroutine(IDIOT());
                 other.GetComponent<PlayerScript>().kb();
@@ -177,5 +185,17 @@ public class RuinBoss : MonoBehaviour {
     {
         yield return new WaitForSeconds(3f);
         Delay = false;
+    }
+
+    public void awke()
+    {
+        StartCoroutine(Awakes());
+    }
+
+    public void Death()
+    {
+        anim.SetTrigger("Death");
+        astate = Armstate.death;
+        portaltofloat.SetActive(true);
     }
 }

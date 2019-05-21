@@ -52,15 +52,16 @@ public class AxeScript : MonoBehaviour {
             
         }
 
-        if (other.tag == "la" &&
+        if (other.tag == "Crystal" &&
             player.GetComponent<PlayerScript>().noclicks != 0)
         {
             other.GetComponent<RuinUISci>().Damage(10f);
+            Debug.Log("Damage");
            // FindObjectOfType<Audiomanager>().Play("EnemyHit2");
             player.GetComponent<PlayerUIScript>().addmana();
 
         }
-        else if (other.tag == "la" &&
+        else if (other.tag == "Crystal" &&
              player.GetComponent<PlayerScript>().panim.GetCurrentAnimatorStateInfo(0).IsName("HeavyAttack"))
         {
             other.GetComponent<RuinUISci>().Damage(20f);
