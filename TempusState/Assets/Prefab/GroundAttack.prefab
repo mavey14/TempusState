@@ -20,9 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4776966365074434}
   - component: {fileID: 114718238069073366}
+  - component: {fileID: 65248372587261288}
   m_Layer: 0
   m_Name: GroundAttack
-  m_TagString: GA
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,7 +129,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1392373055292452}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -34.44, y: 2.52, z: 0}
+  m_LocalPosition: {x: -119.30832, y: -3.3726926, z: 162.27998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4423510404475492}
@@ -164,6 +165,18 @@ Transform:
   m_Father: {fileID: 4776966365074434}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!65 &65248372587261288
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1392373055292452}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 15.186325, y: 5.4169407, z: 13.118881}
+  m_Center: {x: -0.65696716, y: 2.2084703, z: -1.3120804}
 --- !u!114 &114718238069073366
 MonoBehaviour:
   m_ObjectHideFlags: 1

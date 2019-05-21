@@ -26,7 +26,7 @@ public class OldOneScript : MonoBehaviour {
     Transform[] Effects;
     // Use this for initialization
     void Start () {
-        speed = 15f;
+        speed = gm.GetComponent<GMScript>().sceneIndex == 3 ? 40f : 25f;
         move = turn = true;
         rb = GetComponent<Rigidbody>();
         panim = GetComponent<Animator>();
@@ -38,8 +38,8 @@ public class OldOneScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        move = Input.GetAxisRaw("Vertical") != 0 && noclicks == 0 
-            || Input.GetAxisRaw("Horizontal") != 0 && noclicks == 0 ;
+        move = Input.GetAxisRaw("Vertical") != 0 && noclicks == 0 && noclicks==0
+            || Input.GetAxisRaw("Horizontal") != 0 && noclicks == 0 && noclicks == 0;
 
         GetMovement();
 

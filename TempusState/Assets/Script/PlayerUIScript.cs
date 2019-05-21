@@ -74,7 +74,6 @@ public class PlayerUIScript : MonoBehaviour {
         }
         else if (gmscript.GetComponent<GMScript>().cskill == 2)
         {
-            Debug.Log("test");
             DrainSkill2();
         }
         else if (gmscript.GetComponent<GMScript>().cskill == 3)
@@ -96,17 +95,21 @@ public class PlayerUIScript : MonoBehaviour {
 
         if (iscd)
         {
-            cdimage[0].fillAmount += 1/cd * Time.deltaTime;
-            cdimage[1].fillAmount += 1 / cd * Time.deltaTime;
-            cdimage[2].fillAmount += 1 / cd * Time.deltaTime;
-
-            if (cdimage[0].fillAmount >= 1)
+            if (gameObject.tag == "Player")
             {
-                cdimage[0].fillAmount = 0;
-                cdimage[1].fillAmount = 0;
-                cdimage[2].fillAmount = 0;
-                iscd = false;
+                cdimage[0].fillAmount += 1 / cd * Time.deltaTime;
+                cdimage[1].fillAmount += 1 / cd * Time.deltaTime;
+                cdimage[2].fillAmount += 1 / cd * Time.deltaTime;
+
+                if (cdimage[0].fillAmount >= 1)
+                {
+                    cdimage[0].fillAmount = 0;
+                    cdimage[1].fillAmount = 0;
+                    cdimage[2].fillAmount = 0;
+                    iscd = false;
+                }
             }
+           
         }
        
     }
@@ -128,8 +131,8 @@ public class PlayerUIScript : MonoBehaviour {
             manapoints = 0;
             if (gameObject.tag == "Old")
             {
-                Debug.Log("turnchild");
-                FindObjectOfType<Audiomanager>().Play("SkillAge");
+               // Debug.Log("turnchild");
+               FindObjectOfType<Audiomanager>().Play("SkillAge");
                 oldscript.Transformtochild();
             }
               
@@ -147,6 +150,7 @@ public class PlayerUIScript : MonoBehaviour {
             if (this.gameObject.tag == "Player")
             {
                 gmscript.GetComponent<GMScript>().timestop = false;
+                gmscript.GetComponent<GMScript>().cskill = 0;
                 FindObjectOfType<Audiomanager>().Stop("SkillTimeStop");
                 pscript.turnoffeffects();
             }
@@ -223,7 +227,12 @@ public class PlayerUIScript : MonoBehaviour {
 
     public void Damage(float dmg)
     {
+        if(hitpoints>0)
         hitpoints = hitpoints - dmg;
+        if (hitpoints <= 0)
+        {
+            pscript.dead();
+        }
     }
 
     public void addmana()

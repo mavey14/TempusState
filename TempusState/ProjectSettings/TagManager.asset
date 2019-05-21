@@ -9,10 +9,6 @@ TagManager:
   - Lantern
   - Gboss
   - Old
-  - Meteor
-  - FB
-  - explo
-  - GA
   - tr
   - lac
   - lrc
@@ -26,6 +22,12 @@ TagManager:
   - 2Hand
   - RuinsBoss
   - Awaken
+  - Cactivate
+  - LavaBoss
+  - Meteor
+  - Tornado
+  - Fireball
+  - AxeOld
   layers:
   - Default
   - TransparentFX

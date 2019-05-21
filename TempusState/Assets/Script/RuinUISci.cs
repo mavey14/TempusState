@@ -9,6 +9,8 @@ public class RuinUISci : MonoBehaviour {
     Image currenthb;
     [SerializeField]
     GameObject boss;
+    [SerializeField]
+    GameObject[] deactivateUI;
 
 
     private float hitpoints;
@@ -16,7 +18,7 @@ public class RuinUISci : MonoBehaviour {
     private float totalhp;
     // Use this for initialization
     void Start () {
-        maxhp = 1;
+        maxhp = 400;
         hitpoints = maxhp;
     }
 	
@@ -35,9 +37,18 @@ public class RuinUISci : MonoBehaviour {
         hitpoints = hitpoints - dmg;
         if (hitpoints <= 0)
         {
-            Debug.Log("damage");
-            if (boss!=null&&boss.tag!="RuinsBoss")
-            Destroy(boss);
+            if (boss != null && boss.tag != "RuinsBoss")
+            {
+                foreach (var item in deactivateUI)
+                {
+                    if (item != null)
+                    {
+                        item.SetActive(false);
+                    }
+                }
+                Destroy(boss);
+
+            }
             else
             {
                 Debug.Log("death");

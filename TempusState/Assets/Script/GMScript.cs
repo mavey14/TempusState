@@ -28,6 +28,7 @@ public class GMScript : MonoBehaviour {
     GameObject[] disableifrun;
     [SerializeField]
     GameObject[] enableifrun;
+
     // Use this for initialization
     void Start () {
         timestop = false;
@@ -42,37 +43,42 @@ public class GMScript : MonoBehaviour {
         sceneIndex = currentScene.buildIndex;
         if (sceneIndex == 1)
         {
+            addCursor();
             if (Audiomanager.cambience != null)
             {
                 FindObjectOfType<Audiomanager>().Stop(Audiomanager.cambience);
             }
-           // FindObjectOfType<Audiomanager>().Play("GAmbience");
+           FindObjectOfType<Audiomanager>().Play("GAmbience");
             puzz[Random.Range(0,3)].SetActive(true);
 
         }
         else if (sceneIndex == 2)
         {
+
             if (Audiomanager.cambience != null)
             {
                 FindObjectOfType<Audiomanager>().Stop(Audiomanager.cambience);
             }
-            //FindObjectOfType<Audiomanager>().Play("GAmbience");
+            removeCursor();
+            FindObjectOfType<Audiomanager>().Play("GAmbience");
         }
         else if (sceneIndex == 3)
         {
+            addCursor();
             if (Audiomanager.cambience != null)
             {
                 FindObjectOfType<Audiomanager>().Stop(Audiomanager.cambience);
             }
-            //FindObjectOfType<Audiomanager>().Play("RAmbience");
+            FindObjectOfType<Audiomanager>().Play("RAmbience");
         }
         else if (sceneIndex == 4)
         {
+            addCursor();
             if (Audiomanager.cambience != null)
             {
                 FindObjectOfType<Audiomanager>().Stop(Audiomanager.cambience);
             }
-            //FindObjectOfType<Audiomanager>().Play("VAmbience");
+            FindObjectOfType<Audiomanager>().Play("VAmbience");
         }
         if (isgame == true)
         {
@@ -115,17 +121,17 @@ public class GMScript : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-             Debug.Log("test");
             if (EscMenu != null)
             {
                 if (isgame && !EscMenu.activeSelf)
                 {
-                    Debug.Log("test");
+                    Time.timeScale = 0f;
+                    
                     EscMenu.SetActive(true);
                 }
                 else if (isgame && EscMenu.activeSelf)
                 {
-                    Debug.Log("test");
+                    Time.timeScale = 1f;
                     EscMenu.SetActive(false);
                 }
             }
@@ -221,14 +227,26 @@ public class GMScript : MonoBehaviour {
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    public void addCursor()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
     public void NormalMode()
     {
         difficulty = 0;
+        skills[0] = true;
+        skills[1] = true;
+        skills[2] = true;
     }
 
     public void ApocalypseMode()
     {
         difficulty = 1;
+        skills[0] = false;
+        skills[1] = false;
+        skills[2] = false;
     }
 
     public void PlayGame()
@@ -246,7 +264,7 @@ public class GMScript : MonoBehaviour {
 
     public void LoadLevel(int sceneIndex)
     {
-
+        Debug.Log("asd");
         StartCoroutine(LoadAscynchronously(sceneIndex));
     }
 
@@ -291,5 +309,22 @@ public class GMScript : MonoBehaviour {
             
             uiportal.SetActive(false);
         }
+    }
+
+    public void ReturnToMainMenu()
+    {
+        isgame = false;
+        LoadLevel(0);
+    }
+
+    public void unpause()
+    {
+        Debug.Log("test");
+        Time.timeScale = 1f;
+    }
+
+    public void reload()
+    {
+        LoadLevel(sceneIndex);
     }
 }

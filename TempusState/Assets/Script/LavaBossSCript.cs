@@ -10,12 +10,12 @@ public class LavaBossSCript : MonoBehaviour {
     private GameObject OldOne;
     Vector3 direct;
     Vector3 fbdirect;
-    Animator anim;
+    public Animator anim;
     [SerializeField]
     GameObject[] Skilleffects;
-    enum PhaseState { phase1, phase2, phase3 };
+    public enum PhaseState { phase1, phase2, phase3 };
     enum BossState { idle, battle, death };
-    PhaseState pstate;
+    public PhaseState pstate;
     BossState bstate;
     public int chargecount;
     bool canattack;
@@ -79,10 +79,10 @@ public class LavaBossSCript : MonoBehaviour {
         {
             pstate = PhaseState.phase3;
         }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            resetanim();
-        }
+        //if (Input.GetKeyDown(KeyCode.P))
+        //{
+        //    resetanim();
+        //}
 
         if (Input.GetKeyDown(KeyCode.G))
         {
@@ -163,16 +163,13 @@ public class LavaBossSCript : MonoBehaviour {
         //Debug.Log(3);
         if (random == 1)
         {
-            Fireball(random);
             anim.SetInteger("Attack", 1);
             anim.SetBool("Idle", true);
             StartCoroutine(AttackCD(2f));
-            Debug.Log("asd");
 
         }
         else if (random == 2)
         {
-            Meteor();
             anim.SetInteger("Attack",2);
             anim.SetBool("Idle", true);
             StartCoroutine(AttackCD(2f));
@@ -186,7 +183,6 @@ public class LavaBossSCript : MonoBehaviour {
         int random = Random.Range(1,5);
             if (random == 1)
             {
-                Fireball(random);
                 anim.SetInteger("Attack", random);
                 anim.SetBool("Idle", true);
                 StartCoroutine(AttackCD(2f));
@@ -194,21 +190,18 @@ public class LavaBossSCript : MonoBehaviour {
             }
             else if (random == 2)
             {
-                Meteor();
                 anim.SetInteger("Attack", 3);
                 anim.SetBool("Idle", true);
                 StartCoroutine(AttackCD(2f));
             }
             else if (random ==3)
             {
-                Explosion();
                 anim.SetInteger("Attack", 4);
                 anim.SetBool("Idle", true);
                 StartCoroutine(AttackCD(2f));
             }
             else if (random == 4)
             {
-                 GroundAttack();
                 anim.SetInteger("Attack", 4);
                 anim.SetBool("Idle", true);
                 StartCoroutine(AttackCD(2f));
@@ -224,6 +217,11 @@ public class LavaBossSCript : MonoBehaviour {
 
     }
 
+    public void Attackmode()
+    {
+        bstate = BossState.battle;
+    }
+
     IEnumerator ChargeExplo()
     {
         yield return new WaitForSeconds(5f);
@@ -235,18 +233,20 @@ public class LavaBossSCript : MonoBehaviour {
     {
 
         //Destroy(obj,2f);
-        FindObjectOfType<Audiomanager>().Play("FireBall");
+       // FindObjectOfType<Audiomanager>().Play("FireBall");
         GameObject obj = (GameObject)Instantiate(Skilleffects[3], new Vector3(direct.x, direct.y+2f, direct.z), Quaternion.identity);
-        Debug.Log("Explosion");
+        Destroy(obj, 1f);
     }
 
     void Explosion()
     {
 
         //Destroy(obj,2f);
-        FindObjectOfType<Audiomanager>().Play("FireBall");
+       // FindObjectOfType<Audiomanager>().Play("FireBall");
         GameObject obj = (GameObject)Instantiate(Skilleffects[2], new Vector3(direct.x, direct.y, direct.z), Quaternion.identity);
-        Debug.Log("Explosion");
+        Destroy(obj, 1f);
+
+       
     }
 
     void Meteor()
@@ -256,23 +256,23 @@ public class LavaBossSCript : MonoBehaviour {
         {
             cm.camerashake = true;
         }
-        FindObjectOfType<Audiomanager>().Play("FireBall");
+       // FindObjectOfType<Audiomanager>().Play("FireBall");
         GameObject obj = (GameObject)Instantiate(Skilleffects[1], new Vector3(direct.x, direct.y+40f, direct.z), Quaternion.identity);
-        Debug.Log("Meteor");
+        Destroy(obj, 5f);
+
     }
 
-    void Fireball(int random)
+    void Fireball()
     {
-        Debug.Log("aaasd");
-        FindObjectOfType<Audiomanager>().Play("FireBall");
+       // FindObjectOfType<Audiomanager>().Play("FireBall");
         GameObject obj = (GameObject)Instantiate(Skilleffects[0],Fireballpos.transform.position,Quaternion.identity);
         Vector3 direction = Fireballpos.transform.position - getposplayer();
         obj.transform.rotation = Quaternion.LookRotation(direction);
         Vector3 pos = YoungOne.GetComponent<Transform>().transform.position;
         //Instantiate(bullet, bulletPoint.position, bulletPoint.rotation);
        // bullet.velocity = (player.position - bullet.position).normalized * constant;
-            obj.GetComponent<LavaAttack>().player = pos;
-        Debug.Log("Fireball");
+         obj.GetComponent<LavaAttack>().player = pos;
+        Destroy(obj, 1f);
     }
 
     Vector3 getposplayer()

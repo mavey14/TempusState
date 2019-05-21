@@ -17,7 +17,7 @@ public class BossUIScript : MonoBehaviour {
     private float totalhp;
     // Use this for initialization
     void Start () {
-        maxhp = 1000;
+        maxhp = 800;
         hitpoints = maxhp;
     }
 	
@@ -26,18 +26,18 @@ public class BossUIScript : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Y))
         {
             Damage(100f);
-            Debug.Log("Damage");
+           // Debug.Log("Damage");
         }
         updatehp();
         if (hitpoints < 660&&GraveyardBossScript.pstate== GraveyardBoss.PhaseState.phase1)
         {
             GraveyardBossScript.changephase2();
-            Debug.Log("change to phase 2");
+           // Debug.Log("change to phase 2");
         }
         else if (hitpoints < 330&& GraveyardBossScript.pstate == GraveyardBoss.PhaseState.phase2)
         {
             GraveyardBossScript.changephase3();
-            Debug.Log("change to phase 3");
+           // Debug.Log("change to phase 3");
         }
     }
 

@@ -37,9 +37,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4611670776272386}
   - component: {fileID: 114225793588524024}
+  - component: {fileID: 65745475399409008}
   m_Layer: 0
   m_Name: Exlposions
-  m_TagString: explo
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,7 +52,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1815972120670062}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.51, z: 28.85}
+  m_LocalPosition: {x: -71.673134, y: 2.5406065, z: 74.955505}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4908174483370600}
@@ -71,6 +72,18 @@ Transform:
   m_Father: {fileID: 4611670776272386}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &65745475399409008
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1815972120670062}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.918518, y: 15.483669, z: 18.482773}
+  m_Center: {x: 7.8503494, y: 0.4395733, z: 3.397499}
 --- !u!114 &114225793588524024
 MonoBehaviour:
   m_ObjectHideFlags: 1

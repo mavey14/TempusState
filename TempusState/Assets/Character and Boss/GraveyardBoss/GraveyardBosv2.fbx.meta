@@ -308,7 +308,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.8785329
+      - time: 0.6711596
         functionName: spits
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 99a25d33059557543a4b32a5babc0b16,

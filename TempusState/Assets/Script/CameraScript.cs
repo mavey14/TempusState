@@ -28,7 +28,7 @@ public class CameraScript : MonoBehaviour {
         MinDistance = gmscript.GetComponent<GMScript>().sceneIndex == 3 ? 25f : 5f;
         Maxdistance = gmscript.GetComponent<GMScript>().sceneIndex == 3 ? 40f : 20f;
         camTransform = transform;
-        target=0;
+        target=1;
         camerashake = shakecd=false;
 
 	}

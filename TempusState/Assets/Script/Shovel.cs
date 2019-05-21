@@ -17,9 +17,9 @@ public class Shovel : MonoBehaviour {
 
     private void Update()
     {
-        collide.enabled = graveyardboss.GetComponent<GraveyardBoss>().anim.GetCurrentAnimatorStateInfo(0).IsName("Attack") ||
-            graveyardboss.GetComponent<GraveyardBoss>().anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1") ||
-            graveyardboss.GetComponent<GraveyardBoss>().anim.GetCurrentAnimatorStateInfo(0).IsName("ChargeAttack");
+        //collide.enabled = graveyardboss.GetComponent<GraveyardBoss>().anim.GetCurrentAnimatorStateInfo(0).IsName("Attack") ||
+        //    graveyardboss.GetComponent<GraveyardBoss>().anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1") ||
+        //    graveyardboss.GetComponent<GraveyardBoss>().anim.GetCurrentAnimatorStateInfo(0).IsName("ChargeAttack");
 
     }
 
@@ -30,6 +30,7 @@ public class Shovel : MonoBehaviour {
             !player.GetComponent<PlayerScript>().panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge")&&player.GetComponent<PlayerScript>().backtrack==false)
         {
             //Debug.Log("Damage Player");
+            FindObjectOfType<Audiomanager>().Play("PlayerHit1");
             other.GetComponent<PlayerUIScript>().Damage(2f);
         }
     }

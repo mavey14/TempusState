@@ -28,8 +28,6 @@ public class GraveyardBoss : MonoBehaviour {
     GameObject[] skilleffects;
     [SerializeField]
     Transform skillpos;
-    [SerializeField]
-    GameObject Minios;
     BossUIScript buiscript;
     public enum BossState{Patrol,Battlemode,Death};
     public enum PhaseState { phase1, phase2, phase3 };
@@ -233,13 +231,14 @@ public class GraveyardBoss : MonoBehaviour {
 
     void slam()
     {
-        Debug.Log("test");
+       // Debug.Log("test");
         GameObject obj = (GameObject)Instantiate(skilleffects[0], skillpos.transform.position, Quaternion.identity);
         Destroy(obj, 2f);
     }
 
     void spits()
     {
+       // Debug.Log("test");
         skilleffects[1].SetActive(true);
     }
 

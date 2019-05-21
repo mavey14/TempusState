@@ -23,6 +23,8 @@ public class RuinBoss : MonoBehaviour {
     bool awakes;
     [SerializeField]
     GameObject portaltofloat;
+    [SerializeField]
+    GameObject gmscript;
 
     // Use this for initialization
     void Start () {
@@ -32,7 +34,7 @@ public class RuinBoss : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         canattack = true;
 
-        speed = 20f;
+        speed = 30f;
         rotSpeed = 3f;
         direct = Vector3.zero;
         Delay = false;
@@ -50,21 +52,21 @@ public class RuinBoss : MonoBehaviour {
             direct = OldOne.GetComponent<Transform>().transform.position - this.transform.position;
         }
         direct.y = 0;
-        if (Input.GetKeyDown(KeyCode.G)&&this.gameObject.tag=="RuinsBoss")
+        if (Input.GetKeyDown(KeyCode.Alpha5)&&this.gameObject.tag=="RuinsBoss")
         {
             Debug.Log("test");
             StartCoroutine(Awakes());
             // anim.SetBool("Idle", false);
             //anim.SetBool("Move", true);
         }
-        else if(Input.GetKeyDown(KeyCode.H) && this.gameObject.tag == "2Hand")
+        else if(Input.GetKeyDown(KeyCode.Alpha6) && this.gameObject.tag == "2Hand")
         {
             Debug.Log("test");
             astate = Armstate.battle;
             // anim.SetBool("Idle", false);
             //anim.SetBool("Move", true);
         }
-        else if (Input.GetKeyDown(KeyCode.J) && this.gameObject.tag == "1Hand")
+        else if (Input.GetKeyDown(KeyCode.Alpha7) && this.gameObject.tag == "1Hand")
         {
             Debug.Log("test");
             astate = Armstate.battle;
@@ -77,11 +79,15 @@ public class RuinBoss : MonoBehaviour {
         switch (astate)
         {
 
+
             case Armstate.idle:
+                anim.enabled = !gmscript.GetComponent<GMScript>().timestop;
                 Idle();
                 break;
             case Armstate.battle:
-                Battle(direct);
+                anim.enabled = !gmscript.GetComponent<GMScript>().timestop;
+                if (gmscript.GetComponent<GMScript>().timestop == false)
+                    Battle(direct);
                 break;
             case Armstate.death:
                 break;
@@ -167,12 +173,13 @@ public class RuinBoss : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
-            if (noattack > 0&&!YoungOne.GetComponent<PlayerScript>().panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge")&&Delay==false)
+            if (noattack > 0&&!YoungOne.GetComponent<PlayerScript>().panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge")&&Delay==false&&YoungOne.GetComponent<PlayerScript>().backtrack==false)
             {
-                other.GetComponent<PlayerUIScript>().Damage(2);
+                other.GetComponent<PlayerUIScript>().Damage(5);
                 Delay = true;
                 StartCoroutine(IDIOT());
                 other.GetComponent<PlayerScript>().kb();
+                FindObjectOfType<Audiomanager>().Play("PlayerHit2");
                 Debug.Log("Damage Player");
             }
     
@@ -194,6 +201,7 @@ public class RuinBoss : MonoBehaviour {
 
     public void Death()
     {
+        GMScript.stages[1] = true;
         anim.SetTrigger("Death");
         astate = Armstate.death;
         portaltofloat.SetActive(true);

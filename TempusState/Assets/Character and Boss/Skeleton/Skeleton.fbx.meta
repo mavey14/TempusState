@@ -132,12 +132,37 @@ ModelImporter:
     7400012: Run
     9500000: //RootNode
     13700000: Minios
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: blck
+    second: {fileID: 2100000, guid: 988c793a41d680f42a8352bd9c8860ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bod
+    second: {fileID: 2100000, guid: 8fb9f6d3a973d4d4bac5c0a34ba155b8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: reddd
+    second: {fileID: 2100000, guid: 7485f9958a5dbe249a0299989e71f311, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wayt
+    second: {fileID: 2100000, guid: f3faa80af68a8e944b9ea49beba289f6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: white
+    second: {fileID: 2100000, guid: c26aceec11f83e949ab6e1dd1facde72, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -379,7 +404,7 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.000001
+    previousCalculatedGlobalScale: 1
     hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60

@@ -7,7 +7,7 @@ public class LavaAttack : MonoBehaviour {
     
     public Vector3 player;
     float speed;
-    Rigidbody rb;
+    //Rigidbody rb;
     public GameObject[] waypoints;
     int currentWP = 0;
     float accuracyWP = 10f;
@@ -15,30 +15,23 @@ public class LavaAttack : MonoBehaviour {
     // Use this for initialization
     void Start () {
         speed = 50f;
-        rb = GetComponent<Rigidbody>();
-        if (this.gameObject.tag == "FB")
-            Destroy(this.gameObject, 1f);
-        else if (this.gameObject.tag == "meteor")
-            Destroy(this.gameObject, 5f);
-        else if (this.gameObject.tag == "GA")
-            Destroy(this.gameObject,1f);
-        else if (this.gameObject.tag == "explo")
-            Destroy(this.gameObject, 1f);
+       // rb = GetComponent<Rigidbody>();
+       
     }
 	
 	// Update is called once per frame
 	void Update () {
         if (this.gameObject.tag == "Meteor")
             transform.Translate(0, -20f * Time.deltaTime, 0);
-        else if (this.gameObject.tag == "FB")
+        else if (this.gameObject.tag == "Fireball")
             transform.position = Vector3.MoveTowards(transform.position, player, speed * Time.deltaTime);
-        else if (this.gameObject.tag == "tr")
+        else if (this.gameObject.tag == "Tornado")
         {
             Patrol();
         }
 
 
-
+        //di ksama
         //transform.position = Transform.(transform.position, player, speed * Time.deltaTime);
         //Vector3 velo = transform.TransformDirection(new Vector3(0, 0,-1)).normalized * speed;
         //rb.MovePosition(transform.position + velo * Time.fixedDeltaTime);
@@ -73,9 +66,25 @@ public class LavaAttack : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player"&&gameObject.tag!="Torando")
         {
-            other.GetComponent<PlayerUIScript>().Damage(5);
+            if (other.GetComponent<PlayerScript>().backtrack == false)
+            {
+                other.GetComponent<PlayerUIScript>().Damage(2);
+            }
+            FindObjectOfType<Audiomanager>().Play("PlayerHit2");
         }
+
     }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Player" && gameObject.tag == "Torando")
+        {
+            if (other.GetComponent<PlayerScript>().backtrack == false)
+                other.GetComponent<PlayerUIScript>().Poison();
+            FindObjectOfType<Audiomanager>().Play("PlayerHit2");
+        }
+
+    }
+
 }

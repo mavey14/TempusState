@@ -49,8 +49,8 @@ public class PlayerScript : MonoBehaviour {
     void Update()
     {
 
-        move = Input.GetAxisRaw("Vertical") != 0 && noclicks == 0 && !panim.GetCurrentAnimatorStateInfo(0).IsName("HeavyAttack")
-            || Input.GetAxisRaw("Horizontal") != 0 && noclicks == 0 && !panim.GetCurrentAnimatorStateInfo(0).IsName("HeavyAttack");
+        move = Input.GetAxisRaw("Vertical") != 0 && noclicks == 0 && !panim.GetCurrentAnimatorStateInfo(0).IsName("HeavyAttack") && !panim.GetCurrentAnimatorStateInfo(0).IsName("Death") && !panim.GetCurrentAnimatorStateInfo(0).IsName("Age") && !panim.GetCurrentAnimatorStateInfo(0).IsName("Freeze")
+            || Input.GetAxisRaw("Horizontal") != 0 && noclicks == 0 && !panim.GetCurrentAnimatorStateInfo(0).IsName("HeavyAttack") && !panim.GetCurrentAnimatorStateInfo(0).IsName("Death") && !panim.GetCurrentAnimatorStateInfo(0).IsName("Age") && !panim.GetCurrentAnimatorStateInfo(0).IsName("Freeze");
 
         speed = panim.GetCurrentAnimatorStateInfo(0).IsName("Dodge") == true ? gm.GetComponent<GMScript>().sceneIndex == 3 ? 33f : 28f : gm.GetComponent<GMScript>().sceneIndex== 3 ? 20f : 15f;
 
@@ -99,7 +99,7 @@ public class PlayerScript : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.Alpha1) && gm.GetComponent<GMScript>().cskill == 0&&pui.mnpts>0&&GMScript.skills[0]==true)
         {
-          
+            FindObjectOfType<Audiomanager>().Play("SkillAge");
             StartCoroutine(TransformtoOld());
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2) && gm.GetComponent<GMScript>().cskill == 0 && pui.mnpts > 0 && GMScript.skills[1] == true)
@@ -151,7 +151,7 @@ public class PlayerScript : MonoBehaviour {
     {
         panim.SetTrigger("freeze");
         yield return new WaitForSeconds(1f);
-        FindObjectOfType<Audiomanager>().Play("SkillTimeStop");
+      //  FindObjectOfType<Audiomanager>().Play("SkillTimeStop");
         SkillEffects[01].SetActive(true);
         gm.GetComponent<GMScript>().cskill = 2;
         gm.GetComponent<GMScript>().timestop = true;
@@ -364,9 +364,17 @@ public class PlayerScript : MonoBehaviour {
         }
     }
 
-    void dead()
+    public void dead()
     {
-        //StartCoroutine(PlayerDeath());
+        StartCoroutine(PlayerDeath());
+    }
+
+    IEnumerator PlayerDeath()
+    {
+        panim.SetTrigger("death");
+        yield return new WaitForSeconds(2f);
+        gm.GetComponent<GMScript>().reload();
+
     }
 
     public void kb()
@@ -379,6 +387,8 @@ public class PlayerScript : MonoBehaviour {
             StartCoroutine(ckb());
         }
     }
+
+
 
     IEnumerator ckb()
     {
